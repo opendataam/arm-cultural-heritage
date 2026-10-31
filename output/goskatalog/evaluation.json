@@ -1,0 +1,1469 @@
+{
+  "created_at": "2026-10-31T06:30:58.743536+00:00",
+  "input": "/Users/ibegtin/workspace/wa/goskatalog/data/data.parquet",
+  "labels": "evaluation/goskatalog_labels.csv",
+  "terms_sha256": "8908712940ea1d76b3726056d23cb47f5609703459ebf35ace7eeefab76e579d",
+  "sample_size": 93,
+  "scope": "Metrics describe only this manually labeled sample, not the full corpus",
+  "automatic_filter": {
+    "true_positive": 33,
+    "false_positive": 0,
+    "false_negative": 4,
+    "true_negative": 51,
+    "precision": 1.0,
+    "recall": 0.891892
+  },
+  "candidate_retrieval": {
+    "relevant_total": 37,
+    "relevant_include": 33,
+    "relevant_review": 4,
+    "relevant_exclude": 0,
+    "candidate_recall": 1.0
+  },
+  "confusion_matrix": [
+    {
+      "label": "nonrelevant",
+      "predicted": "exclude",
+      "count": 14
+    },
+    {
+      "label": "nonrelevant",
+      "predicted": "review",
+      "count": 37
+    },
+    {
+      "label": "relevant",
+      "predicted": "include",
+      "count": 33
+    },
+    {
+      "label": "relevant",
+      "predicted": "review",
+      "count": 4
+    },
+    {
+      "label": "review",
+      "predicted": "review",
+      "count": 5
+    }
+  ],
+  "records": [
+    {
+      "id": 1014877,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Армения и государственный театр Армении указаны явно",
+      "matched_terms": [
+        "ru:армения",
+        "ru:тарьян"
+      ],
+      "matched_fields": [
+        "authors",
+        "name"
+      ],
+      "reasons": [
+        "strong_content",
+        "weak_support"
+      ]
+    },
+    {
+      "id": 1014881,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Армения и ТЮЗ Еревана указаны явно",
+      "matched_terms": [
+        "ru:армения",
+        "ru:тарьян"
+      ],
+      "matched_fields": [
+        "authors",
+        "name"
+      ],
+      "reasons": [
+        "strong_content",
+        "weak_support"
+      ]
+    },
+    {
+      "id": 1014882,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Армения и армянский драматический театр указаны явно",
+      "matched_terms": [
+        "ru:армения",
+        "ru:тарьян"
+      ],
+      "matched_fields": [
+        "authors",
+        "name"
+      ],
+      "reasons": [
+        "strong_content",
+        "weak_support"
+      ]
+    },
+    {
+      "id": 1014887,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Армения указана в описании постановки",
+      "matched_terms": [
+        "ru:армения",
+        "ru:тарьян"
+      ],
+      "matched_fields": [
+        "authors",
+        "name"
+      ],
+      "reasons": [
+        "strong_content",
+        "weak_support"
+      ]
+    },
+    {
+      "id": 1014894,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Армения указана в описании премьеры",
+      "matched_terms": [
+        "ru:армения",
+        "ru:камо",
+        "ru:тарьян"
+      ],
+      "matched_fields": [
+        "authors",
+        "name"
+      ],
+      "reasons": [
+        "strong_content",
+        "weak_support"
+      ]
+    },
+    {
+      "id": 1014898,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Армения и армянский драматический театр указаны явно",
+      "matched_terms": [
+        "ru:армения",
+        "ru:тарьян"
+      ],
+      "matched_fields": [
+        "authors",
+        "name"
+      ],
+      "reasons": [
+        "strong_content",
+        "weak_support"
+      ]
+    },
+    {
+      "id": 1014906,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Армения указана в описании эскиза",
+      "matched_terms": [
+        "ru:армения",
+        "ru:камо",
+        "ru:тарьян"
+      ],
+      "matched_fields": [
+        "authors",
+        "name"
+      ],
+      "reasons": [
+        "strong_content",
+        "weak_support"
+      ]
+    },
+    {
+      "id": 1014924,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Армения указана в описании эскиза",
+      "matched_terms": [
+        "ru:армения",
+        "ru:камо",
+        "ru:тарьян"
+      ],
+      "matched_fields": [
+        "authors",
+        "name"
+      ],
+      "reasons": [
+        "strong_content",
+        "weak_support"
+      ]
+    },
+    {
+      "id": 1014937,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Армения указана в описании эскиза",
+      "matched_terms": [
+        "ru:армения",
+        "ru:камо",
+        "ru:тарьян"
+      ],
+      "matched_fields": [
+        "authors",
+        "name"
+      ],
+      "reasons": [
+        "strong_content",
+        "weak_support"
+      ]
+    },
+    {
+      "id": 1014955,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Армения и ереванский театр указаны явно",
+      "matched_terms": [
+        "ru:армения",
+        "ru:ереванский",
+        "ru:тарьян"
+      ],
+      "matched_fields": [
+        "authors",
+        "name"
+      ],
+      "reasons": [
+        "strong_content",
+        "weak_support"
+      ]
+    },
+    {
+      "id": 10003799,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Армавир и кубанские казаки без армянского контекста",
+      "matched_terms": [
+        "ru:армавирский"
+      ],
+      "matched_fields": [
+        "museum.name"
+      ],
+      "reasons": [
+        "museum_only",
+        "negative_context"
+      ]
+    },
+    {
+      "id": 10039730,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Армавир Краснодарского края и вычислительная техника",
+      "matched_terms": [
+        "ru:армавирский"
+      ],
+      "matched_fields": [
+        "museum.name"
+      ],
+      "reasons": [
+        "museum_only",
+        "negative_context"
+      ]
+    },
+    {
+      "id": 10042360,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Книга об Успенском районе Краснодарского края",
+      "matched_terms": [
+        "ru:армавирский"
+      ],
+      "matched_fields": [
+        "museum.name"
+      ],
+      "reasons": [
+        "museum_only",
+        "negative_context"
+      ]
+    },
+    {
+      "id": 10042460,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Книга об Успенском районе Краснодарского края",
+      "matched_terms": [
+        "ru:армавирский"
+      ],
+      "matched_fields": [
+        "museum.name"
+      ],
+      "reasons": [
+        "museum_only",
+        "negative_context"
+      ]
+    },
+    {
+      "id": 10042551,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Книга об Успенском районе Краснодарского края",
+      "matched_terms": [
+        "ru:армавирский"
+      ],
+      "matched_fields": [
+        "museum.name"
+      ],
+      "reasons": [
+        "museum_only",
+        "negative_context"
+      ]
+    },
+    {
+      "id": 10042685,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Книга об Успенском районе Краснодарского края",
+      "matched_terms": [
+        "ru:армавирский"
+      ],
+      "matched_fields": [
+        "museum.name"
+      ],
+      "reasons": [
+        "museum_only",
+        "negative_context"
+      ]
+    },
+    {
+      "id": 10129926,
+      "label": "nonrelevant",
+      "predicted": "exclude",
+      "note": "Место изготовления Армавир Краснодарский край",
+      "matched_terms": [],
+      "matched_fields": [],
+      "reasons": [
+        "negative_context"
+      ]
+    },
+    {
+      "id": 1000887,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Армавирский театр имени Луначарского без армянского контекста",
+      "matched_terms": [
+        "ru:армавир",
+        "ru:армавирский"
+      ],
+      "matched_fields": [
+        "name",
+        "productionPlace"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10004925,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Российский Армавир и формирование кавалерийской дивизии",
+      "matched_terms": [
+        "ru:армавир",
+        "ru:армавирский"
+      ],
+      "matched_fields": [
+        "findPlace",
+        "museum.name",
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed",
+        "museum_support"
+      ]
+    },
+    {
+      "id": 10033913,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Почтовый штемпель российского Армавира без армянского контекста",
+      "matched_terms": [
+        "ru:армавир"
+      ],
+      "matched_fields": [
+        "description"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 1001491,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Имя Берд в театральных материалах без армянского контекста",
+      "matched_terms": [
+        "ru:берд"
+      ],
+      "matched_fields": [
+        "description"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 1001500,
+      "label": "nonrelevant",
+      "predicted": "exclude",
+      "note": "Имя Берд в театральных материалах без армянского контекста",
+      "matched_terms": [],
+      "matched_fields": [],
+      "reasons": [
+        "no_active_match"
+      ]
+    },
+    {
+      "id": 10143905,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Ткацкое бердо а не армянский город Берд",
+      "matched_terms": [
+        "ru:берд"
+      ],
+      "matched_fields": [
+        "description"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10143913,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Ткацкое бердо а не армянский город Берд",
+      "matched_terms": [
+        "ru:берд"
+      ],
+      "matched_fields": [
+        "description"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 1002255,
+      "label": "nonrelevant",
+      "predicted": "exclude",
+      "note": "Пьеса Дядя Ваня не относится к городу Ван",
+      "matched_terms": [],
+      "matched_fields": [],
+      "reasons": [
+        "no_active_match"
+      ]
+    },
+    {
+      "id": 1002366,
+      "label": "nonrelevant",
+      "predicted": "exclude",
+      "note": "Пьеса Дядя Ваня не относится к городу Ван",
+      "matched_terms": [],
+      "matched_fields": [],
+      "reasons": [
+        "no_active_match"
+      ]
+    },
+    {
+      "id": 1014215,
+      "label": "nonrelevant",
+      "predicted": "exclude",
+      "note": "Сценическое имя Ваня не относится к городу Ван",
+      "matched_terms": [],
+      "matched_fields": [],
+      "reasons": [
+        "no_active_match"
+      ]
+    },
+    {
+      "id": 1014684,
+      "label": "nonrelevant",
+      "predicted": "exclude",
+      "note": "Пьеса Дядя Ваня не относится к городу Ван",
+      "matched_terms": [],
+      "matched_fields": [],
+      "reasons": [
+        "no_active_match"
+      ]
+    },
+    {
+      "id": 1014702,
+      "label": "nonrelevant",
+      "predicted": "exclude",
+      "note": "Пьеса Дядя Ваня не относится к городу Ван",
+      "matched_terms": [],
+      "matched_fields": [],
+      "reasons": [
+        "no_active_match"
+      ]
+    },
+    {
+      "id": 1011777,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Эндель Ани это персональное имя без армянского контекста",
+      "matched_terms": [
+        "ru:ани"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 1016277,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Персонаж пьесы Любовь Ани Березко",
+      "matched_terms": [
+        "ru:ани"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 1016282,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Персонаж пьесы Любовь Ани Березко",
+      "matched_terms": [
+        "ru:ани"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 1016296,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Персонаж пьесы Любовь Ани Березко",
+      "matched_terms": [
+        "ru:ани"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 1016343,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Персонаж пьесы Любовь Ани Березко",
+      "matched_terms": [
+        "ru:ани"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 1014893,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Тифлисский театр без армянского контекста",
+      "matched_terms": [
+        "ru:тифлис"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10000034,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Григорианская дата на монете не армянский признак",
+      "matched_terms": [
+        "ru:григорианский"
+      ],
+      "matched_fields": [
+        "description"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10000051,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Григорианская дата на монете не армянский признак",
+      "matched_terms": [
+        "ru:григорианский"
+      ],
+      "matched_fields": [
+        "description"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10010796,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Шуша это челнок для ткацкого станка",
+      "matched_terms": [
+        "ru:шуша"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10014418,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Концерт памяти Чехова и имя Ваня без армянского контекста",
+      "matched_terms": [
+        "ru:погасян"
+      ],
+      "matched_fields": [
+        "description"
+      ],
+      "reasons": [
+        "weak_only"
+      ]
+    },
+    {
+      "id": 10033150,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Веди как форма глагола в названии издания",
+      "matched_terms": [
+        "ru:веди"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10123345,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Пейзаж Таллина а не армянский Талин",
+      "matched_terms": [
+        "ru:талин"
+      ],
+      "matched_fields": [
+        "description"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10142039,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Спортсмен Талин без армянского контекста",
+      "matched_terms": [
+        "ru:вартаньян",
+        "ru:талин"
+      ],
+      "matched_fields": [
+        "description"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10159365,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Северная Двина а не древний Двин",
+      "matched_terms": [
+        "ru:двин"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10004391,
+      "label": "review",
+      "predicted": "review",
+      "note": "Тифлисская пломба без дополнительного контекста",
+      "matched_terms": [
+        "ru:тифлис"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10004447,
+      "label": "review",
+      "predicted": "review",
+      "note": "Тифлисская пломба без дополнительного контекста",
+      "matched_terms": [
+        "ru:тифлис"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10004468,
+      "label": "review",
+      "predicted": "review",
+      "note": "Тифлисская пломба без дополнительного контекста",
+      "matched_terms": [
+        "ru:тифлис"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10004553,
+      "label": "review",
+      "predicted": "review",
+      "note": "Тифлисская таможня без дополнительного контекста",
+      "matched_terms": [
+        "ru:тифлис"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10003950,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Копия картины Ивана Айвазовского с указанием инициала",
+      "matched_terms": [
+        "ru:айвазовский",
+        "ru:иван айвазовский"
+      ],
+      "matched_fields": [
+        "description",
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 10128014,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Открытка с картины И.К. Айвазовского",
+      "matched_terms": [
+        "ru:айвазовский",
+        "ru:иван айвазовский"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 10153975,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Портрет Ивана Константиновича Айвазовского",
+      "matched_terms": [
+        "ru:айвазовский",
+        "ru:иван айвазовский"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 10030563,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Книга М.С. Сарьяна Из моей жизни",
+      "matched_terms": [
+        "ru:мартирос сарян",
+        "ru:сарьян"
+      ],
+      "matched_fields": [
+        "description",
+        "name"
+      ],
+      "reasons": [
+        "strong_content",
+        "weak_support"
+      ]
+    },
+    {
+      "id": 10069279,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Режиссер Параджанов С.И. на съемках фильма",
+      "matched_terms": [
+        "ru:параджанов",
+        "ru:саят-нова",
+        "ru:сергей параджанов",
+        "ru:шахбазян"
+      ],
+      "matched_fields": [
+        "description",
+        "name"
+      ],
+      "reasons": [
+        "strong_content",
+        "weak_support"
+      ]
+    },
+    {
+      "id": 10069462,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Портрет Сергея Параджанова",
+      "matched_terms": [
+        "ru:параджанов",
+        "ru:сергей параджанов"
+      ],
+      "matched_fields": [
+        "description",
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 10033785,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Квартет имени Комитаса в программе концерта",
+      "matched_terms": [
+        "ru:комитас"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 10165053,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Медаль в честь Комитаса",
+      "matched_terms": [
+        "ru:комитас",
+        "ru:тамразян"
+      ],
+      "matched_fields": [
+        "authors",
+        "name"
+      ],
+      "reasons": [
+        "strong_content",
+        "weak_support"
+      ]
+    },
+    {
+      "id": 1025020,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Афиша к 70-летию А.И. Хачатуряна",
+      "matched_terms": [
+        "ru:арам хачатурян",
+        "ru:хачатурян"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 1007598,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Фотография композитора А. Хачатуряна",
+      "matched_terms": [
+        "ru:арам хачатурян",
+        "ru:хачатурян"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "strong_content",
+        "weak_support"
+      ]
+    },
+    {
+      "id": 28697029,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Храм в Артике в Армении",
+      "matched_terms": [
+        "ru:армения",
+        "ru:артик"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 29542948,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Храм в городе Артик в Армении",
+      "matched_terms": [
+        "ru:армения",
+        "ru:артик"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 10019109,
+      "label": "review",
+      "predicted": "review",
+      "note": "Хачатурян среди композиторов без уточнения имени",
+      "matched_terms": [
+        "ru:хачатурян"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 15126163,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Cher это французский департамент",
+      "matched_terms": [
+        "en:cher"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 16650543,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Cher seigneur это французская формула титула",
+      "matched_terms": [
+        "en:cher"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 26227975,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Cher как французское слово дорого",
+      "matched_terms": [
+        "en:cher"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 22148267,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Cher honoré Monsieur это французское обращение",
+      "matched_terms": [
+        "en:cher"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 13036775,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Артик как сокращение артикула ткани",
+      "matched_terms": [
+        "ru:артик"
+      ],
+      "matched_fields": [
+        "description"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 12890579,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Артик как сокращение артикула ситца",
+      "matched_terms": [
+        "ru:артик"
+      ],
+      "matched_fields": [
+        "description"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 13036795,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Артик как сокращение артикула фланели",
+      "matched_terms": [
+        "ru:артик"
+      ],
+      "matched_fields": [
+        "description"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 31177326,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Дизайн-студия Артика а не армянский город Артик",
+      "matched_terms": [
+        "ru:артик"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10156064,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Художник Рослин без указания Тороса Рослина",
+      "matched_terms": [
+        "ru:рослин"
+      ],
+      "matched_fields": [
+        "authors",
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10057591,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Александр Рослин не армянский миниатюрист Торос Рослин",
+      "matched_terms": [
+        "ru:рослин"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 10366951,
+      "label": "nonrelevant",
+      "predicted": "exclude",
+      "note": "Armeniaca vulgaris это ботаническое название абрикоса",
+      "matched_terms": [],
+      "matched_fields": [],
+      "reasons": [
+        "no_active_match"
+      ]
+    },
+    {
+      "id": 1013454,
+      "label": "nonrelevant",
+      "predicted": "review",
+      "note": "Арменина это персональное имя без армянского контекста",
+      "matched_terms": [
+        "ru:арменин"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 25332300,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Перевод с древнеармянского языка",
+      "matched_terms": [
+        "ru:древнеармянский"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 38871636,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Гандзасарский монастырь",
+      "matched_terms": [
+        "ru:гандзасарский"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 10991587,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Новоармянская церковь в Кишиневе",
+      "matched_terms": [
+        "ru:древнеармянский"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 30405480,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Лермонтов на армянском языке с сокращением армянск. яз.",
+      "matched_terms": [
+        "ru:армянск. яз."
+      ],
+      "matched_fields": [
+        "description",
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 40957342,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Грамматика древнеармянского языка",
+      "matched_terms": [
+        "ru:древнеармянский"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 16117655,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Исторические формы Эчмиадзинь и Еривана",
+      "matched_terms": [
+        "ru:ериван",
+        "ru:эчмиадзинь"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 42607627,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Латинское Armeniae на исторической карте",
+      "matched_terms": [
+        "en:armenia"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 29952168,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Книга Григора Нарекаци с фамилией перед именем",
+      "matched_terms": [
+        "ru:григор нарекаци",
+        "ru:нарекаци"
+      ],
+      "matched_fields": [
+        "authors",
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 30382023,
+      "label": "relevant",
+      "predicted": "review",
+      "note": "Арменин как исторический этноним в типах народов России",
+      "matched_terms": [
+        "ru:арменин"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 30382050,
+      "label": "relevant",
+      "predicted": "review",
+      "note": "Арменин из Астрахани как представитель народа",
+      "matched_terms": [
+        "ru:арменин"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 15635251,
+      "label": "relevant",
+      "predicted": "review",
+      "note": "Исторический текст об армянском еретике Мартине",
+      "matched_terms": [
+        "ru:арменин"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 1529979,
+      "label": "relevant",
+      "predicted": "review",
+      "note": "Рукописный текст об армянском еретике Мартине",
+      "matched_terms": [
+        "ru:арменин"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "context_only_unconfirmed"
+      ]
+    },
+    {
+      "id": 19177419,
+      "label": "nonrelevant",
+      "predicted": "exclude",
+      "note": "Армянскйо это OCR-форма улицы в Бухаресте",
+      "matched_terms": [],
+      "matched_fields": [],
+      "reasons": [
+        "no_active_match"
+      ]
+    },
+    {
+      "id": 34791312,
+      "label": "nonrelevant",
+      "predicted": "exclude",
+      "note": "Armeniaca sibirica это ботаническое название",
+      "matched_terms": [],
+      "matched_fields": [],
+      "reasons": [
+        "no_active_match"
+      ]
+    },
+    {
+      "id": 25305688,
+      "label": "nonrelevant",
+      "predicted": "exclude",
+      "note": "Scarabaeus armeniacus это вид жука",
+      "matched_terms": [],
+      "matched_fields": [],
+      "reasons": [
+        "no_active_match"
+      ]
+    },
+    {
+      "id": 33392977,
+      "label": "nonrelevant",
+      "predicted": "exclude",
+      "note": "Армянинова это фамилия без армянского контекста",
+      "matched_terms": [],
+      "matched_fields": [],
+      "reasons": [
+        "no_active_match"
+      ]
+    },
+    {
+      "id": 35027704,
+      "label": "nonrelevant",
+      "predicted": "exclude",
+      "note": "Памятник Армяниновой без армянского контекста",
+      "matched_terms": [],
+      "matched_fields": [],
+      "reasons": [
+        "no_active_match"
+      ]
+    },
+    {
+      "id": 29760091,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "De Armeniaco указывает армянского кардинала",
+      "matched_terms": [
+        "la:armeniaco",
+        "la:de armeniaco"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 30398923,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Палаццо Дзенобио дельи Армени в Венеции",
+      "matched_terms": [
+        "ru:дельи армени"
+      ],
+      "matched_fields": [
+        "name"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 29651095,
+      "label": "relevant",
+      "predicted": "include",
+      "note": "Газета на литературном восточноармянском языке",
+      "matched_terms": [
+        "ru:древнеармянский",
+        "ru:нахичевань"
+      ],
+      "matched_fields": [
+        "description",
+        "productionPlace"
+      ],
+      "reasons": [
+        "strong_content"
+      ]
+    },
+    {
+      "id": 12502071,
+      "label": "nonrelevant",
+      "predicted": "exclude",
+      "note": "Хьарцахьарниг это не армянский Арцах",
+      "matched_terms": [],
+      "matched_fields": [],
+      "reasons": [
+        "no_active_match"
+      ]
+    }
+  ]
+}

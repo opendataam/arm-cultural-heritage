@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Armenian Keywords term registry row",
+  "description": "Схема одной строки data/terms.csv после чтения CSV в объект. Все значения CSV являются строками; пустые pattern и negative_pattern означают отсутствие regex.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "entity_id",
+    "value",
+    "lang",
+    "script",
+    "category",
+    "pattern",
+    "match_strength",
+    "negative_pattern",
+    "source",
+    "review_status"
+  ],
+  "x-csv": {
+    "encoding": "UTF-8",
+    "delimiter": ",",
+    "quotechar": "\"",
+    "header": true,
+    "columns": [
+      "entity_id",
+      "value",
+      "lang",
+      "script",
+      "category",
+      "pattern",
+      "match_strength",
+      "negative_pattern",
+      "source",
+      "review_status"
+    ]
+  },
+  "properties": {
+    "entity_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$",
+      "description": "Внутренний идентификатор сущности, общий для её языковых и орфографических вариантов. Не является внешним authority ID."
+    },
+    "value": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Отображаемый термин или alias без начальных и конечных пробелов."
+    },
+    "lang": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}$",
+      "description": "Код языка ISO 639 в нижнем регистре. Армянский — hy."
+    },
+    "script": {
+      "type": "string",
+      "enum": ["Arab", "Armn", "Cyrl", "Latn", "Other"],
+      "description": "Система письма конкретного значения, а не обязательно основной алфавит языка lang."
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "dynasty",
+        "event",
+        "geoname",
+        "institution",
+        "keyword",
+        "language",
+        "midname",
+        "name",
+        "object",
+        "person",
+        "religion",
+        "surname"
+      ],
+      "description": "Тип термина или сущности."
+    },
+    "pattern": {
+      "type": "string",
+      "description": "Необязательный regex для вариантов и словоформ. Пустая строка означает литеральное совпадение value. Разрешены только незахватывающие группы (?:...)."
+    },
+    "match_strength": {
+      "type": "string",
+      "enum": ["context_only", "strong", "weak"],
+      "description": "Сила доказательства: strong включает запись, context_only требует проверки, weak является только вспомогательным признаком."
+    },
+    "negative_pattern": {
+      "type": "string",
+      "description": "Необязательный regex отрицательного контекста. Подавляет только совпадения той же сущности и не отменяет независимые сильные совпадения."
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Происхождение записи; несколько источников разделяются точкой с запятой."
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["approved", "rejected", "unverified"],
+      "description": "Статус проверки записи. rejected исключает её из matcher и экспортов; rejected-записи всегда имеют weak."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "review_status": {"const": "rejected"}
+        },
+        "required": ["review_status"]
+      },
+      "then": {
+        "properties": {
+          "match_strength": {"const": "weak"}
+        },
+        "required": ["match_strength"]
+      }
+    }
+  ],
+  "examples": [
+    {
+      "entity_id": "place.armenia",
+      "value": "армения",
+      "lang": "ru",
+      "script": "Cyrl",
+      "category": "geoname",
+      "pattern": "армени(?:я|и|е|й|ю|ей|ею)",
+      "match_strength": "strong",
+      "negative_pattern": "",
+      "source": "manual/curated-v2",
+      "review_status": "approved"
+    },
+    {
+      "entity_id": "place.armavir",
+      "value": "армавир",
+      "lang": "ru",
+      "script": "Cyrl",
+      "category": "geoname",
+      "pattern": "армавир(?:а|у|ом|ем|е)?",
+      "match_strength": "context_only",
+      "negative_pattern": "краснодар|кубан|krasnodar",
+      "source": "legacy/goskatalog",
+      "review_status": "approved"
+    },
+    {
+      "entity_id": "import.surname.0123456789ab",
+      "value": "петросян",
+      "lang": "ru",
+      "script": "Cyrl",
+      "category": "surname",
+      "pattern": "",
+      "match_strength": "weak",
+      "negative_pattern": "",
+      "source": "rusources/arm_fullnames.csv",
+      "review_status": "unverified"
+    }
+  ]
+}
