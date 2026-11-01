@@ -1,0 +1,32 @@
+{
+  "bytes": {
+    "available_total": 2725071650,
+    "downloaded_this_run": 4400465
+  },
+  "counts": {
+    "downloaded": 3,
+    "failed": 0,
+    "requested": 6634,
+    "skipped": 6631
+  },
+  "duration_seconds": 0.739,
+  "errors": [],
+  "finished_at": "2026-10-31T21:20:16.902664+00:00",
+  "input": {
+    "distinct_image_urls": 6634,
+    "image_links": 6634,
+    "max_images_per_record": 18,
+    "path": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/output/goskatalog_images_iteration1/image_sample.parquet",
+    "records": 5664,
+    "records_with_images": 5664,
+    "records_without_images": 0
+  },
+  "manifest": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/output/goskatalog_images_iteration1/image_manifest.jsonl",
+  "mode": "download",
+  "settings": {
+    "retries": 2,
+    "timeout_seconds": 60,
+    "workers": 4
+  },
+  "started_at": "2026-10-31T21:20:16.163292+00:00"
+}

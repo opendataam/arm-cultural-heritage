@@ -1,0 +1,255 @@
+{
+  "confidence_interval_95": {
+    "lower_bytes": 11337622180,
+    "upper_bytes": 24055862401
+  },
+  "duration_seconds": 118.579,
+  "errors": [
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "28821429",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/33115336",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 400: Bad Request",
+      "image_index": 1,
+      "record_id": "42399451",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/51941431",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "30317081",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/35175897",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "10459280",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/7576955",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "39447974",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/47720888",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 400: Bad Request",
+      "image_index": 1,
+      "record_id": "33294090",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/39282994",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "30316974",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/35175838",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "23216093",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/55832266",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 2,
+      "record_id": "3988747",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/792481",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "12742418",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/10663578",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "30317010",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/35175853",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "34245416",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/40614810",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 400: Bad Request",
+      "image_index": 1,
+      "record_id": "28925279",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/33252025",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 400: Bad Request",
+      "image_index": 1,
+      "record_id": "29973781",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/34699781",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 400: Bad Request",
+      "image_index": 1,
+      "record_id": "36853746",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/44205648",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "41097847",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/50087212",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "18965227",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/19315715",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "3976245",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/781685",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "24360164",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/26806024",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "18793989",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/19088076",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 400: Bad Request",
+      "image_index": 2,
+      "record_id": "41174291",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/50232382",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 2,
+      "record_id": "32612914",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/38348446",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "27940860",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/31932919",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "27868428",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/41528621",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 400: Bad Request",
+      "image_index": 1,
+      "record_id": "39771212",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/48265293",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 400: Bad Request",
+      "image_index": 1,
+      "record_id": "10927008",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/8220366",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "30317135",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/35175944",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 400: Bad Request",
+      "image_index": 1,
+      "record_id": "33637605",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/39750684",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 400: Bad Request",
+      "image_index": 1,
+      "record_id": "39771339",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/48265385",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 400: Bad Request",
+      "image_index": 2,
+      "record_id": "15155770",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/13979495",
+      "status": "error"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "image_index": 1,
+      "record_id": "30317158",
+      "source_url": "https://goskatalog.ru/muzfo-imaginator/rest/images/original/35175958",
+      "status": "error"
+    }
+  ],
+  "estimated_available_images": 56065,
+  "estimated_total_bytes": 17696742291,
+  "finished_at": "2026-10-31T17:39:44.986488+00:00",
+  "input": {
+    "distinct_image_urls": 66349,
+    "image_links": 66349,
+    "max_images_per_record": 38,
+    "path": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/output/goskatalog/armenia_records.parquet",
+    "records": 58291,
+    "records_with_images": 56614,
+    "records_without_images": 1677
+  },
+  "method": "Deterministic simple random sample of image links; full GET responses measured in memory; failed requests count as zero downloadable bytes",
+  "mode": "estimate",
+  "sample": {
+    "bytes": 53344413,
+    "failed": 31,
+    "mean_bytes": 315647.4142011834,
+    "mean_bytes_per_link": 266722.065,
+    "requested": 200,
+    "seed": 42,
+    "succeeded": 169
+  },
+  "settings": {
+    "retries": 2,
+    "timeout_seconds": 60,
+    "workers": 4
+  },
+  "started_at": "2026-10-31T17:37:46.406596+00:00"
+}

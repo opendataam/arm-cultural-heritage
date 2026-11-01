@@ -1,0 +1,35 @@
+{
+  "counts": {
+    "api_http_status": {
+      "200": 5666,
+      "403": 484
+    },
+    "api_records_considered": 6150,
+    "api_records_fetched_this_run": 0,
+    "api_records_without_images": 2,
+    "records_over_cap": 0,
+    "selected_images": 6634,
+    "selected_records": 5664
+  },
+  "duration_seconds": 1.804,
+  "finished_at": "2026-10-31T21:20:15.917520+00:00",
+  "input": {
+    "image_links": 66349,
+    "path": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/output/goskatalog/armenia_records.parquet",
+    "records": 58291,
+    "records_with_images": 56614
+  },
+  "outputs": {
+    "api_cache": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/output/goskatalog_images_iteration1/api_records.jsonl",
+    "sample": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/output/goskatalog_images_iteration1/image_sample.parquet",
+    "sample_bytes": 1274013
+  },
+  "settings": {
+    "max_images": 6634,
+    "retries": 2,
+    "seed": 42,
+    "timeout_seconds": 60,
+    "workers": 4
+  },
+  "started_at": "2026-10-31T21:20:14.113438+00:00"
+}

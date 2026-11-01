@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Resumable Goskatalog image downloader with per-record manifests and sample-based volume estimates covering multiple images and unavailable links.
+- Deterministic, API-refreshed image sampling with a hard file cap, full API-response caching, and support for bounded first-iteration downloads.
+- Armeniana taxonomy with 5 zones, 19 themes, 210 subthemes, and 13 initial person IDs.
+- Deterministic field-aware thematic tagger with multi-label Parquet outputs, assignment evidence, taxonomy export, summary reports, and editorial audit samples.
+- End-to-end tests for thematic assignments, unclassified records, person IDs, false substrings, and confirmed-only input.
+- Tagging methodology and technical specification for the Armeniana web portal.
+
 ## [1.0.0] - 2026-10-31
 
 ### Added

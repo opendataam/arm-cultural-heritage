@@ -1,0 +1,20 @@
+zone_id,zone_name_ru,theme_id,theme_name_ru,europeana_theme
+history_memory,"История, пространство и память",archaeology,Археология и древняя Армения,Archaeology
+history_memory,"История, пространство и память",history,"История Армении, войны и общественная жизнь",World War I
+history_memory,"История, пространство и память",genocide,"Геноцид армян: свидетельства и память",
+history_memory,"История, пространство и память",diaspora,Диаспора и миграция,Migration
+history_memory,"История, пространство и память",maps_geography,"Карты, историческая география и путешествия",Maps and Geography
+arts_media,"Искусство, архитектура и аудиовизуальное наследие",architecture,Архитектура и памятники,
+arts_media,"Искусство, архитектура и аудиовизуальное наследие",art,Изобразительное искусство,Art
+arts_media,"Искусство, архитектура и аудиовизуальное наследие",photography,Фотография,Photography
+arts_media,"Искусство, архитектура и аудиовизуальное наследие",music,Музыка,Music
+arts_media,"Искусство, архитектура и аудиовизуальное наследие",performing_audiovisual,"Театр, кино, танец и аудиовизуальное наследие",Audiovisual Heritage
+word_documents,"Книга, слово и документальное наследие",manuscripts_books,"Рукописи, книга и армянская письменность",Manuscripts
+word_documents,"Книга, слово и документальное наследие",language_literature,"Армянский язык, литература и фольклор",
+word_documents,"Книга, слово и документальное наследие",press_archives,"Пресса, архивы и документальное наследие",Newspapers
+traditions_religion,"Религия, традиции и повседневная жизнь",religion,Армянская церковь и религиозное наследие,
+traditions_religion,"Религия, традиции и повседневная жизнь",traditional_culture,"Народная культура, костюм и быт",Fashion
+traditions_religion,"Религия, традиции и повседневная жизнь",sport,Спорт и традиционные игры,Sport
+collections_nature_science,"Предметные коллекции, природа и знания",numismatics_philately,"Нумизматика, филателия и историческая символика",
+collections_nature_science,"Предметные коллекции, природа и знания",natural_history,Природа и естественная история,Natural History
+collections_nature_science,"Предметные коллекции, природа и знания",science_industry,"Наука, образование, промышленность и техника",Industrial Heritage

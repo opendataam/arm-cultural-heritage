@@ -1,0 +1,1088 @@
+{
+  "persons": [
+    {
+      "id": "person.hovhannes_aivazovsky",
+      "name_en": "Hovhannes Aivazovsky",
+      "name_ru": "Иван Оганесович Айвазовский",
+      "primary_theme_id": "art"
+    },
+    {
+      "id": "person.aram_khachaturian",
+      "name_en": "Aram Khachaturian",
+      "name_ru": "Арам Хачатурян",
+      "primary_theme_id": "music"
+    },
+    {
+      "id": "person.martiros_saryan",
+      "name_en": "Martiros Saryan",
+      "name_ru": "Мартирос Сарьян",
+      "primary_theme_id": "art"
+    },
+    {
+      "id": "person.komitas",
+      "name_en": "Komitas",
+      "name_ru": "Комитас",
+      "primary_theme_id": "music"
+    },
+    {
+      "id": "person.sayat_nova",
+      "name_en": "Sayat-Nova",
+      "name_ru": "Саят-Нова",
+      "primary_theme_id": "language_literature"
+    },
+    {
+      "id": "person.hovhannes_tumanyan",
+      "name_en": "Hovhannes Tumanyan",
+      "name_ru": "Ованес Туманян",
+      "primary_theme_id": "language_literature"
+    },
+    {
+      "id": "person.sergei_parajanov",
+      "name_en": "Sergei Parajanov",
+      "name_ru": "Сергей Параджанов",
+      "primary_theme_id": "performing_audiovisual"
+    },
+    {
+      "id": "person.mesrop_mashtots",
+      "name_en": "Mesrop Mashtots",
+      "name_ru": "Месроп Маштоц",
+      "primary_theme_id": "manuscripts_books"
+    },
+    {
+      "id": "person.yeghishe_charents",
+      "name_en": "Yeghishe Charents",
+      "name_ru": "Егише Чаренц",
+      "primary_theme_id": "language_literature"
+    },
+    {
+      "id": "person.grigor_narekatsi",
+      "name_en": "Grigor Narekatsi",
+      "name_ru": "Григор Нарекаци",
+      "primary_theme_id": "language_literature"
+    },
+    {
+      "id": "person.movses_khorenatsi",
+      "name_en": "Movses Khorenatsi",
+      "name_ru": "Мовсес Хоренаци",
+      "primary_theme_id": "language_literature"
+    },
+    {
+      "id": "person.paruyr_sevak",
+      "name_en": "Paruyr Sevak",
+      "name_ru": "Паруйр Севак",
+      "primary_theme_id": "language_literature"
+    },
+    {
+      "id": "person.toros_roslin",
+      "name_en": "Toros Roslin",
+      "name_ru": "Торос Рослин",
+      "primary_theme_id": "manuscripts_books"
+    }
+  ],
+  "version": "1.0.0",
+  "zones": [
+    {
+      "id": "history_memory",
+      "name_ru": "История, пространство и память",
+      "themes": [
+        {
+          "europeana_theme": "Archaeology",
+          "id": "archaeology",
+          "name_ru": "Археология и древняя Армения",
+          "subthemes": [
+            {
+              "id": "archaeology.prehistory",
+              "name_ru": "Первобытная археология"
+            },
+            {
+              "id": "archaeology.urartu",
+              "name_ru": "Урарту и армянское нагорье"
+            },
+            {
+              "id": "archaeology.ancient_kingdoms",
+              "name_ru": "Армянское царство и династии"
+            },
+            {
+              "id": "archaeology.historic_cities",
+              "name_ru": "Исторические города и поселения"
+            },
+            {
+              "id": "archaeology.material_culture",
+              "name_ru": "Материальная культура"
+            },
+            {
+              "id": "archaeology.epigraphy",
+              "name_ru": "Эпиграфика и надписи"
+            },
+            {
+              "id": "archaeology.expeditions",
+              "name_ru": "Археологические экспедиции"
+            },
+            {
+              "id": "archaeology.collections",
+              "name_ru": "Археологические коллекции"
+            }
+          ]
+        },
+        {
+          "europeana_theme": "World War I",
+          "id": "history",
+          "name_ru": "История Армении, войны и общественная жизнь",
+          "subthemes": [
+            {
+              "id": "history.ancient_medieval",
+              "name_ru": "Древние и средневековые государства"
+            },
+            {
+              "id": "history.cilicia",
+              "name_ru": "Киликийское армянское царство"
+            },
+            {
+              "id": "history.imperial_period",
+              "name_ru": "Армяне в Османской и Российской империях"
+            },
+            {
+              "id": "history.wwi",
+              "name_ru": "Первая мировая война и Кавказский фронт"
+            },
+            {
+              "id": "history.first_republic",
+              "name_ru": "Первая Республика Армения"
+            },
+            {
+              "id": "history.soviet_armenia",
+              "name_ru": "Советская Армения"
+            },
+            {
+              "id": "history.wwii",
+              "name_ru": "Вторая мировая война"
+            },
+            {
+              "id": "history.independence",
+              "name_ru": "Независимая Армения"
+            },
+            {
+              "id": "history.karabakh",
+              "name_ru": "История Арцаха и Карабаха"
+            },
+            {
+              "id": "history.earthquake_1988",
+              "name_ru": "Землетрясение 1988 года"
+            },
+            {
+              "id": "history.public_life",
+              "name_ru": "Общественная и политическая жизнь"
+            },
+            {
+              "id": "history.military_heritage",
+              "name_ru": "Военная история и оружие"
+            }
+          ]
+        },
+        {
+          "europeana_theme": null,
+          "id": "genocide",
+          "name_ru": "Геноцид армян: свидетельства и память",
+          "subthemes": [
+            {
+              "id": "genocide.events_1915",
+              "name_ru": "События 1915 года"
+            },
+            {
+              "id": "genocide.testimonies",
+              "name_ru": "Документы и свидетельства"
+            },
+            {
+              "id": "genocide.refugees_relief",
+              "name_ru": "Беженцы и гуманитарная помощь"
+            },
+            {
+              "id": "genocide.memorials",
+              "name_ru": "Мемориалы и памятники"
+            },
+            {
+              "id": "genocide.commemoration",
+              "name_ru": "Памятные события и предметы"
+            },
+            {
+              "id": "genocide.oral_history",
+              "name_ru": "Устная история и семейная память"
+            }
+          ]
+        },
+        {
+          "europeana_theme": "Migration",
+          "id": "diaspora",
+          "name_ru": "Диаспора и миграция",
+          "subthemes": [
+            {
+              "id": "diaspora.migration_routes",
+              "name_ru": "Миграционные пути и переселения"
+            },
+            {
+              "id": "diaspora.forced_migration",
+              "name_ru": "Вынужденная миграция и беженцы"
+            },
+            {
+              "id": "diaspora.communities_russia",
+              "name_ru": "Общины России"
+            },
+            {
+              "id": "diaspora.communities_georgia",
+              "name_ru": "Общины Грузии"
+            },
+            {
+              "id": "diaspora.communities_iran",
+              "name_ru": "Общины Ирана"
+            },
+            {
+              "id": "diaspora.communities_world",
+              "name_ru": "Армянские общины мира"
+            },
+            {
+              "id": "diaspora.institutions",
+              "name_ru": "Церкви, школы и организации"
+            },
+            {
+              "id": "diaspora.culture",
+              "name_ru": "Культура диаспоры"
+            },
+            {
+              "id": "diaspora.return_memory",
+              "name_ru": "Возвращение и семейная память"
+            }
+          ]
+        },
+        {
+          "europeana_theme": "Maps and Geography",
+          "id": "maps_geography",
+          "name_ru": "Карты, историческая география и путешествия",
+          "subthemes": [
+            {
+              "id": "maps_geography.historical_maps",
+              "name_ru": "Исторические карты и атласы"
+            },
+            {
+              "id": "maps_geography.historical_regions",
+              "name_ru": "Исторические области и топонимия"
+            },
+            {
+              "id": "maps_geography.city_plans",
+              "name_ru": "Планы городов"
+            },
+            {
+              "id": "maps_geography.expeditions",
+              "name_ru": "Экспедиции и маршруты"
+            },
+            {
+              "id": "maps_geography.travel",
+              "name_ru": "Путешествия, виды и открытки"
+            },
+            {
+              "id": "maps_geography.cartographers",
+              "name_ru": "Картографы и географы"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arts_media",
+      "name_ru": "Искусство, архитектура и аудиовизуальное наследие",
+      "themes": [
+        {
+          "europeana_theme": null,
+          "id": "architecture",
+          "name_ru": "Архитектура и памятники",
+          "subthemes": [
+            {
+              "id": "architecture.religious",
+              "name_ru": "Храмовая и церковная архитектура"
+            },
+            {
+              "id": "architecture.monasteries",
+              "name_ru": "Монастыри и монастырские ансамбли"
+            },
+            {
+              "id": "architecture.khachkars",
+              "name_ru": "Хачкары и мемориальная пластика"
+            },
+            {
+              "id": "architecture.civic",
+              "name_ru": "Гражданская и общественная архитектура"
+            },
+            {
+              "id": "architecture.vernacular",
+              "name_ru": "Жилая и народная архитектура"
+            },
+            {
+              "id": "architecture.urban",
+              "name_ru": "Градостроительство и городские ансамбли"
+            },
+            {
+              "id": "architecture.soviet_modernism",
+              "name_ru": "Советский модернизм"
+            },
+            {
+              "id": "architecture.diaspora",
+              "name_ru": "Архитектура диаспоры"
+            },
+            {
+              "id": "architecture.restoration",
+              "name_ru": "Реставрация, обмеры и реконструкция"
+            },
+            {
+              "id": "architecture.architects",
+              "name_ru": "Архитекторы и зодчие"
+            },
+            {
+              "id": "architecture.lost_heritage",
+              "name_ru": "Утраченное и уязвимое наследие"
+            },
+            {
+              "id": "architecture.collections",
+              "name_ru": "Архитектурные коллекции"
+            }
+          ]
+        },
+        {
+          "europeana_theme": "Art",
+          "id": "art",
+          "name_ru": "Изобразительное искусство",
+          "subthemes": [
+            {
+              "id": "art.painting",
+              "name_ru": "Живопись"
+            },
+            {
+              "id": "art.graphics",
+              "name_ru": "Графика"
+            },
+            {
+              "id": "art.sculpture",
+              "name_ru": "Скульптура"
+            },
+            {
+              "id": "art.miniature",
+              "name_ru": "Средневековая миниатюра"
+            },
+            {
+              "id": "art.landscape",
+              "name_ru": "Пейзаж и армянская художественная школа"
+            },
+            {
+              "id": "art.marine",
+              "name_ru": "Маринистика"
+            },
+            {
+              "id": "art.portrait",
+              "name_ru": "Портрет и жанровая сцена"
+            },
+            {
+              "id": "art.modernism",
+              "name_ru": "Модернизм и искусство диаспоры"
+            },
+            {
+              "id": "art.posters",
+              "name_ru": "Плакат, афиша и карикатура"
+            },
+            {
+              "id": "art.book_graphics",
+              "name_ru": "Экслибрис и книжная графика"
+            },
+            {
+              "id": "art.stage_design",
+              "name_ru": "Сценография и эскизы костюмов"
+            },
+            {
+              "id": "art.movements",
+              "name_ru": "Художественные направления, объединения и выставки"
+            }
+          ]
+        },
+        {
+          "europeana_theme": "Photography",
+          "id": "photography",
+          "name_ru": "Фотография",
+          "subthemes": [
+            {
+              "id": "photography.early",
+              "name_ru": "Ранняя фотография и фотоателье"
+            },
+            {
+              "id": "photography.photographers",
+              "name_ru": "Фотографы"
+            },
+            {
+              "id": "photography.ethnographic",
+              "name_ru": "Этнографическая фотография"
+            },
+            {
+              "id": "photography.architecture",
+              "name_ru": "Архитектура и памятники"
+            },
+            {
+              "id": "photography.cities",
+              "name_ru": "Города и сельская среда"
+            },
+            {
+              "id": "photography.portrait",
+              "name_ru": "Портреты и семейные альбомы"
+            },
+            {
+              "id": "photography.events",
+              "name_ru": "Исторические события и общественная жизнь"
+            },
+            {
+              "id": "photography.soviet",
+              "name_ru": "Фотолетопись советской Армении"
+            },
+            {
+              "id": "photography.collections",
+              "name_ru": "Негативы, альбомы и фотоколлекции"
+            }
+          ]
+        },
+        {
+          "europeana_theme": "Music",
+          "id": "music",
+          "name_ru": "Музыка",
+          "subthemes": [
+            {
+              "id": "music.sacred",
+              "name_ru": "Духовная музыка и армянская нотация"
+            },
+            {
+              "id": "music.folk",
+              "name_ru": "Народная музыка и песня"
+            },
+            {
+              "id": "music.ashugh",
+              "name_ru": "Ашугское искусство"
+            },
+            {
+              "id": "music.classical",
+              "name_ru": "Классическая музыка"
+            },
+            {
+              "id": "music.opera_ballet",
+              "name_ru": "Опера и балет"
+            },
+            {
+              "id": "music.instruments",
+              "name_ru": "Музыкальные инструменты"
+            },
+            {
+              "id": "music.composers",
+              "name_ru": "Композиторы"
+            },
+            {
+              "id": "music.performers",
+              "name_ru": "Исполнители и дирижёры"
+            },
+            {
+              "id": "music.musicology",
+              "name_ru": "Музыковедение и образование"
+            },
+            {
+              "id": "music.recordings",
+              "name_ru": "Ноты, грампластинки и звукозаписи"
+            },
+            {
+              "id": "music.collections",
+              "name_ru": "Музыкальные коллекции"
+            }
+          ]
+        },
+        {
+          "europeana_theme": "Audiovisual Heritage",
+          "id": "performing_audiovisual",
+          "name_ru": "Театр, кино, танец и аудиовизуальное наследие",
+          "subthemes": [
+            {
+              "id": "performing_audiovisual.drama_theatre",
+              "name_ru": "Драматический театр"
+            },
+            {
+              "id": "performing_audiovisual.actors_directors",
+              "name_ru": "Актёры, режиссёры и сценографы"
+            },
+            {
+              "id": "performing_audiovisual.stage_design",
+              "name_ru": "Декорации, костюмы и афиши"
+            },
+            {
+              "id": "performing_audiovisual.opera_ballet",
+              "name_ru": "Опера и балет"
+            },
+            {
+              "id": "performing_audiovisual.cinema",
+              "name_ru": "Армянское кино"
+            },
+            {
+              "id": "performing_audiovisual.armenfilm",
+              "name_ru": "Арменфильм и киностудии"
+            },
+            {
+              "id": "performing_audiovisual.parajanov",
+              "name_ru": "Сергей Параджанов"
+            },
+            {
+              "id": "performing_audiovisual.animation",
+              "name_ru": "Анимация"
+            },
+            {
+              "id": "performing_audiovisual.radio_tv",
+              "name_ru": "Радио и телевидение"
+            },
+            {
+              "id": "performing_audiovisual.dance",
+              "name_ru": "Народный и сценический танец"
+            },
+            {
+              "id": "performing_audiovisual.oral_history",
+              "name_ru": "Аудио- и видеосвидетельства"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word_documents",
+      "name_ru": "Книга, слово и документальное наследие",
+      "themes": [
+        {
+          "europeana_theme": "Manuscripts",
+          "id": "manuscripts_books",
+          "name_ru": "Рукописи, книга и армянская письменность",
+          "subthemes": [
+            {
+              "id": "manuscripts_books.alphabet",
+              "name_ru": "Армянский алфавит и Месроп Маштоц"
+            },
+            {
+              "id": "manuscripts_books.manuscript_books",
+              "name_ru": "Рукописные книги"
+            },
+            {
+              "id": "manuscripts_books.fragments",
+              "name_ru": "Фрагменты рукописей"
+            },
+            {
+              "id": "manuscripts_books.gospels_liturgical",
+              "name_ru": "Евангелия и богослужебные книги"
+            },
+            {
+              "id": "manuscripts_books.illumination",
+              "name_ru": "Миниатюра и книжное убранство"
+            },
+            {
+              "id": "manuscripts_books.matenadaran",
+              "name_ru": "Матенадаран и рукописные собрания"
+            },
+            {
+              "id": "manuscripts_books.paleography_restoration",
+              "name_ru": "Палеография и реставрация"
+            },
+            {
+              "id": "manuscripts_books.early_printing",
+              "name_ru": "Раннее книгопечатание"
+            },
+            {
+              "id": "manuscripts_books.publishing_diaspora",
+              "name_ru": "Издательства и книга диаспоры"
+            },
+            {
+              "id": "manuscripts_books.book_design",
+              "name_ru": "Переплёт, иллюстрация и экслибрис"
+            },
+            {
+              "id": "manuscripts_books.collections",
+              "name_ru": "Книжные коллекции"
+            }
+          ]
+        },
+        {
+          "europeana_theme": null,
+          "id": "language_literature",
+          "name_ru": "Армянский язык, литература и фольклор",
+          "subthemes": [
+            {
+              "id": "language_literature.armenian_text",
+              "name_ru": "Материалы на армянском языке"
+            },
+            {
+              "id": "language_literature.language_history",
+              "name_ru": "История армянского языка"
+            },
+            {
+              "id": "language_literature.eastern_western",
+              "name_ru": "Восточный и западный варианты"
+            },
+            {
+              "id": "language_literature.dialects",
+              "name_ru": "Диалекты"
+            },
+            {
+              "id": "language_literature.medieval_literature",
+              "name_ru": "Средневековая литература"
+            },
+            {
+              "id": "language_literature.historiography",
+              "name_ru": "Историография"
+            },
+            {
+              "id": "language_literature.spiritual_poetry",
+              "name_ru": "Духовная поэзия"
+            },
+            {
+              "id": "language_literature.poetry",
+              "name_ru": "Поэзия"
+            },
+            {
+              "id": "language_literature.prose_drama",
+              "name_ru": "Проза и драматургия"
+            },
+            {
+              "id": "language_literature.diaspora_literature",
+              "name_ru": "Литература диаспоры"
+            },
+            {
+              "id": "language_literature.david_sassoun",
+              "name_ru": "Эпос Давид Сасунский"
+            },
+            {
+              "id": "language_literature.folk_tales",
+              "name_ru": "Сказки, легенды и пословицы"
+            },
+            {
+              "id": "language_literature.ashugh_poetry",
+              "name_ru": "Ашугская поэзия"
+            },
+            {
+              "id": "language_literature.translations",
+              "name_ru": "Переводы и переводчики"
+            },
+            {
+              "id": "language_literature.literary_studies",
+              "name_ru": "Литературоведение и критика"
+            }
+          ]
+        },
+        {
+          "europeana_theme": "Newspapers",
+          "id": "press_archives",
+          "name_ru": "Пресса, архивы и документальное наследие",
+          "subthemes": [
+            {
+              "id": "press_archives.newspapers",
+              "name_ru": "Газеты"
+            },
+            {
+              "id": "press_archives.journals",
+              "name_ru": "Журналы, бюллетени и альманахи"
+            },
+            {
+              "id": "press_archives.diaspora_press",
+              "name_ru": "Пресса диаспоры"
+            },
+            {
+              "id": "press_archives.personal_archives",
+              "name_ru": "Личные и семейные архивы"
+            },
+            {
+              "id": "press_archives.correspondence",
+              "name_ru": "Письма, дневники и телеграммы"
+            },
+            {
+              "id": "press_archives.institutional_archives",
+              "name_ru": "Архивы учреждений и общин"
+            },
+            {
+              "id": "press_archives.official_documents",
+              "name_ru": "Официальные документы"
+            },
+            {
+              "id": "press_archives.ephemera",
+              "name_ru": "Афиши, программы и листовки"
+            },
+            {
+              "id": "press_archives.collections",
+              "name_ru": "Документальные коллекции"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "traditions_religion",
+      "name_ru": "Религия, традиции и повседневная жизнь",
+      "themes": [
+        {
+          "europeana_theme": null,
+          "id": "religion",
+          "name_ru": "Армянская церковь и религиозное наследие",
+          "subthemes": [
+            {
+              "id": "religion.christianization",
+              "name_ru": "Принятие христианства"
+            },
+            {
+              "id": "religion.apostolic_church",
+              "name_ru": "Армянская Апостольская Церковь"
+            },
+            {
+              "id": "religion.etchmiadzin",
+              "name_ru": "Эчмиадзин"
+            },
+            {
+              "id": "religion.catholicoi",
+              "name_ru": "Католикосы и церковные иерархи"
+            },
+            {
+              "id": "religion.dioceses",
+              "name_ru": "Епархии и общины"
+            },
+            {
+              "id": "religion.catholic_evangelical",
+              "name_ru": "Католическая и евангельская традиции"
+            },
+            {
+              "id": "religion.liturgical_objects",
+              "name_ru": "Церковная утварь и реликварии"
+            },
+            {
+              "id": "religion.vestments",
+              "name_ru": "Облачения и церковный текстиль"
+            },
+            {
+              "id": "religion.icons_manuscripts",
+              "name_ru": "Иконы, миниатюры и рукописи"
+            },
+            {
+              "id": "religion.rituals",
+              "name_ru": "Богослужение и обряды"
+            },
+            {
+              "id": "religion.sacred_music",
+              "name_ru": "Духовная музыка"
+            },
+            {
+              "id": "religion.monasteries_education",
+              "name_ru": "Монастыри и образование"
+            }
+          ]
+        },
+        {
+          "europeana_theme": "Fashion",
+          "id": "traditional_culture",
+          "name_ru": "Народная культура, костюм и быт",
+          "subthemes": [
+            {
+              "id": "traditional_culture.taraz",
+              "name_ru": "Региональный костюм тараз"
+            },
+            {
+              "id": "traditional_culture.clothing",
+              "name_ru": "Одежда и аксессуары"
+            },
+            {
+              "id": "traditional_culture.textiles",
+              "name_ru": "Текстиль и ткачество"
+            },
+            {
+              "id": "traditional_culture.carpets",
+              "name_ru": "Ковры и килимы"
+            },
+            {
+              "id": "traditional_culture.embroidery",
+              "name_ru": "Вышивка и кружево"
+            },
+            {
+              "id": "traditional_culture.jewelry",
+              "name_ru": "Ювелирные украшения"
+            },
+            {
+              "id": "traditional_culture.metalwork",
+              "name_ru": "Металл и чеканка"
+            },
+            {
+              "id": "traditional_culture.ceramics_wood",
+              "name_ru": "Керамика, дерево и ремёсла"
+            },
+            {
+              "id": "traditional_culture.household",
+              "name_ru": "Домашняя утварь и интерьер"
+            },
+            {
+              "id": "traditional_culture.rituals",
+              "name_ru": "Семейные и календарные обряды"
+            },
+            {
+              "id": "traditional_culture.cuisine",
+              "name_ru": "Армянская кухня"
+            },
+            {
+              "id": "traditional_culture.winemaking",
+              "name_ru": "Виноделие и коньяк"
+            },
+            {
+              "id": "traditional_culture.crafts_trade",
+              "name_ru": "Ремёсла, труд и торговля"
+            },
+            {
+              "id": "traditional_culture.collections",
+              "name_ru": "Этнографические коллекции"
+            }
+          ]
+        },
+        {
+          "europeana_theme": "Sport",
+          "id": "sport",
+          "name_ru": "Спорт и традиционные игры",
+          "subthemes": [
+            {
+              "id": "sport.chess",
+              "name_ru": "Шахматы"
+            },
+            {
+              "id": "sport.wrestling",
+              "name_ru": "Борьба"
+            },
+            {
+              "id": "sport.koh",
+              "name_ru": "Традиционная борьба кох"
+            },
+            {
+              "id": "sport.weightlifting_boxing",
+              "name_ru": "Тяжёлая атлетика и бокс"
+            },
+            {
+              "id": "sport.gymnastics",
+              "name_ru": "Гимнастика"
+            },
+            {
+              "id": "sport.football",
+              "name_ru": "Футбол"
+            },
+            {
+              "id": "sport.olympics",
+              "name_ru": "Олимпийские игры и спартакиады"
+            },
+            {
+              "id": "sport.athletes",
+              "name_ru": "Спортсмены и тренеры"
+            },
+            {
+              "id": "sport.clubs",
+              "name_ru": "Клубы и соревнования"
+            },
+            {
+              "id": "sport.memorabilia",
+              "name_ru": "Спортивные марки, значки и плакаты"
+            },
+            {
+              "id": "sport.games",
+              "name_ru": "Народные игры"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "collections_nature_science",
+      "name_ru": "Предметные коллекции, природа и знания",
+      "themes": [
+        {
+          "europeana_theme": null,
+          "id": "numismatics_philately",
+          "name_ru": "Нумизматика, филателия и историческая символика",
+          "subthemes": [
+            {
+              "id": "numismatics_philately.coins",
+              "name_ru": "Монеты"
+            },
+            {
+              "id": "numismatics_philately.ancient_coins",
+              "name_ru": "Монеты армянских царств"
+            },
+            {
+              "id": "numismatics_philately.cilician_coins",
+              "name_ru": "Монеты Киликии"
+            },
+            {
+              "id": "numismatics_philately.first_republic_money",
+              "name_ru": "Денежные знаки Первой Республики"
+            },
+            {
+              "id": "numismatics_philately.soviet_modern_money",
+              "name_ru": "Советский период и армянский драм"
+            },
+            {
+              "id": "numismatics_philately.banknotes",
+              "name_ru": "Банкноты и бонистика"
+            },
+            {
+              "id": "numismatics_philately.medals_tokens",
+              "name_ru": "Медали и жетоны"
+            },
+            {
+              "id": "numismatics_philately.orders_badges",
+              "name_ru": "Ордена, награды и значки"
+            },
+            {
+              "id": "numismatics_philately.seals",
+              "name_ru": "Печати и сфрагистика"
+            },
+            {
+              "id": "numismatics_philately.heraldry",
+              "name_ru": "Гербы и геральдика"
+            },
+            {
+              "id": "numismatics_philately.stamps",
+              "name_ru": "Почтовые марки и филателия"
+            },
+            {
+              "id": "numismatics_philately.postal_history",
+              "name_ru": "История почты"
+            },
+            {
+              "id": "numismatics_philately.international_images",
+              "name_ru": "Армения на деньгах и марках мира"
+            },
+            {
+              "id": "numismatics_philately.collections",
+              "name_ru": "Нумизматические и филателистические коллекции"
+            }
+          ]
+        },
+        {
+          "europeana_theme": "Natural History",
+          "id": "natural_history",
+          "name_ru": "Природа и естественная история",
+          "subthemes": [
+            {
+              "id": "natural_history.flora",
+              "name_ru": "Флора и гербарии"
+            },
+            {
+              "id": "natural_history.fauna",
+              "name_ru": "Фауна"
+            },
+            {
+              "id": "natural_history.endemic",
+              "name_ru": "Эндемичные и редкие виды"
+            },
+            {
+              "id": "natural_history.geology",
+              "name_ru": "Геология и вулканические ландшафты"
+            },
+            {
+              "id": "natural_history.obsidian",
+              "name_ru": "Обсидиан"
+            },
+            {
+              "id": "natural_history.minerals",
+              "name_ru": "Минералы и руды"
+            },
+            {
+              "id": "natural_history.paleontology",
+              "name_ru": "Палеонтология"
+            },
+            {
+              "id": "natural_history.ararat",
+              "name_ru": "Арарат"
+            },
+            {
+              "id": "natural_history.sevan",
+              "name_ru": "Севан"
+            },
+            {
+              "id": "natural_history.landscapes",
+              "name_ru": "Природные ландшафты"
+            },
+            {
+              "id": "natural_history.expeditions",
+              "name_ru": "Экспедиции и натуралисты"
+            },
+            {
+              "id": "natural_history.natural_resources",
+              "name_ru": "Природные ресурсы"
+            },
+            {
+              "id": "natural_history.collections",
+              "name_ru": "Естественнонаучные коллекции"
+            }
+          ]
+        },
+        {
+          "europeana_theme": "Industrial Heritage",
+          "id": "science_industry",
+          "name_ru": "Наука, образование, промышленность и техника",
+          "subthemes": [
+            {
+              "id": "science_industry.education",
+              "name_ru": "Образование и просвещение"
+            },
+            {
+              "id": "science_industry.academy",
+              "name_ru": "Академия наук и институты"
+            },
+            {
+              "id": "science_industry.byurakan",
+              "name_ru": "Бюраканская обсерватория"
+            },
+            {
+              "id": "science_industry.astronomy",
+              "name_ru": "Астрономия"
+            },
+            {
+              "id": "science_industry.physics_mathematics",
+              "name_ru": "Физика и математика"
+            },
+            {
+              "id": "science_industry.medicine",
+              "name_ru": "Медицина и биология"
+            },
+            {
+              "id": "science_industry.scientists",
+              "name_ru": "Учёные и изобретатели"
+            },
+            {
+              "id": "science_industry.industrialization",
+              "name_ru": "Индустриализация"
+            },
+            {
+              "id": "science_industry.energy",
+              "name_ru": "Энергетика"
+            },
+            {
+              "id": "science_industry.transport",
+              "name_ru": "Транспорт"
+            },
+            {
+              "id": "science_industry.communications",
+              "name_ru": "Связь"
+            },
+            {
+              "id": "science_industry.factories",
+              "name_ru": "Заводы и производства"
+            },
+            {
+              "id": "science_industry.computing",
+              "name_ru": "Вычислительная техника и электроника"
+            },
+            {
+              "id": "science_industry.instruments",
+              "name_ru": "Приборы, машины и часы"
+            },
+            {
+              "id": "science_industry.conferences",
+              "name_ru": "Научные съезды и публикации"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
