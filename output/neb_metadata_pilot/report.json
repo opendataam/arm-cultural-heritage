@@ -8,17 +8,17 @@
     "review": 0
   },
   "download_notice": "The NEB user agreement prohibits mass automated downloading of NEB objects. Use only explicit bounded downloads of open documents unless the operator grants permission.",
-  "duration_seconds": 0.165,
-  "finished_at": "2026-10-31T21:19:52.065805+00:00",
+  "duration_seconds": 0.16,
+  "finished_at": "2026-11-01T07:15:24.987984+00:00",
   "http": {
     "cache_hits": 4,
     "network_requests": 0
   },
   "outputs": {
-    "audit_sample": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/output/neb_metadata_pilot/audit_sample.csv",
+    "audit_sample": "output/neb_metadata_pilot/audit_sample.csv",
     "errors": null,
-    "include": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/output/neb_metadata_pilot/armenia_records.parquet",
-    "review": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/output/neb_metadata_pilot/armenia_review.parquet"
+    "include": "output/neb_metadata_pilot/armenia_records.parquet",
+    "review": "output/neb_metadata_pilot/armenia_review.parquet"
   },
   "queries": [
     {
@@ -37,9 +37,9 @@
     ]
   },
   "source": "neb",
-  "started_at": "2026-10-31T21:19:51.901074+00:00",
+  "started_at": "2026-11-01T07:15:24.827627+00:00",
   "terms": {
-    "path": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/data/terms.csv",
+    "path": "data/terms.csv",
     "sha256": "8908712940ea1d76b3726056d23cb47f5609703459ebf35ace7eeefab76e579d"
   }
 }

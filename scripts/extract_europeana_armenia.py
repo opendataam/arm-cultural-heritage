@@ -17,6 +17,7 @@ from source_common import (
     append_jsonl,
     base_record,
     classify_candidate,
+    display_path,
     is_open_rights,
     text_values,
     unique_strings,
@@ -249,7 +250,7 @@ def extract(args):
             "proxy": args.proxy,
             "api_key_env": args.api_key_env,
         },
-        "terms": {"path": str(terms_path), "sha256": hashlib.sha256(terms_path.read_bytes()).hexdigest()},
+        "terms": {"path": display_path(terms_path), "sha256": hashlib.sha256(terms_path.read_bytes()).hexdigest()},
         "counts": {
             "candidates": candidates,
             **outputs.counts,
@@ -259,10 +260,10 @@ def extract(args):
         "queries": query_stats,
         "http": {"network_requests": client.network_requests, "cache_hits": client.cache_hits},
         "outputs": {
-            "include": str(outputs.paths["include"]),
-            "review": str(outputs.paths["review"]),
-            "audit_sample": str(output_dir / "audit_sample.csv"),
-            "errors": str(errors_path) if errors_path.is_file() else None,
+            "include": display_path(outputs.paths["include"]),
+            "review": display_path(outputs.paths["review"]),
+            "audit_sample": display_path(output_dir / "audit_sample.csv"),
+            "errors": display_path(errors_path) if errors_path.is_file() else None,
         },
     }
     write_json(output_dir / "report.json", report)

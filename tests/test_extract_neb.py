@@ -22,6 +22,7 @@ def card(port, record_id, title, description, armenian):
     <meta property="og:title" content="{title}">
     <meta name="description" content="{description}">
     </head><body>
+    {pdf}
     <div>Библиографическое описание</div><div>Скопировать</div><p>{description}</p>
     <div>Детальная информация</div>
     <div>Код документа в НЭБ</div><div>{record_id}</div>
@@ -30,9 +31,18 @@ def card(port, record_id, title, description, armenian):
     <div>Заглавие</div><div>{title}</div>
     <div>Место издания</div><div>{place}</div>
     <div>Год издания</div><div>1906</div>
-    <div>Язык</div><div>Русский</div>
-    <div>Библиотека</div><div>Российская национальная библиотека</div>
-    {pdf}
+    <div class="cards-table__row"><div class="cards-table__left">Язык</div>
+    <div class="cards-table__right"><div class="cards-table__right_box">Русский</div>
+    <div class="cards-table__right_link"><span>Еще</span> <span style="display: none;">Свернуть</span></div></div></div>
+    <div class="cards-table__row"><div class="cards-table__left">Библиотека</div>
+    <div class="cards-table__right"><div class="cards-table__right_box"><a href="/library/rnb/">Российская национальная библиотека</a></div>
+    <div class="cards-table__right_link"><span>Еще</span> <span style="display: none;">Свернуть</span></div></div></div>
+    <div class="maps"><div class="maps__title">Место хранения оригинала документа на карте</div>
+    <span class="marker_lib hidden" hidden>
+    <span>Адрес:</span><br/>
+    <span>График работы:</span>
+    <span class="b-mapcard_status">Участник</span>
+    <a href="#">перейти в библиотеку</a></span></div>
     <div>Похожие документы</div>
     </body></html>""".format(
         port=port,
@@ -117,6 +127,9 @@ def test_neb_end_to_end_cards_assets_and_resume(tmp_path):
         row = included.to_pylist()[0]
         assert row["title"] == "Армянский вопрос"
         assert row["authors"] == ["А. В. Амфитеатров"]
+        assert row["languages"] == ["Русский"]
+        assert row["provider"] == "Российская национальная библиотека"
+        assert "Место хранения оригинала документа на карте" not in json.loads(row["raw_json"])["fields"]
         assert row["access"] == "open"
         assert len(row["assets"]) == 1
         assert row["assets"][0]["mime_type"] == "application/pdf"

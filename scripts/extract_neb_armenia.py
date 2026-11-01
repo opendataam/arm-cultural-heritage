@@ -18,6 +18,7 @@ from source_common import (
     append_jsonl,
     base_record,
     classify_candidate,
+    display_path,
     unique_strings,
     utc_now,
     write_json,
@@ -49,6 +50,8 @@ DETAIL_LABELS = {
     "Место хранения оригинала",
     "Место хранения оригинала документа на карте",
 }
+# Expand/collapse controls and the empty library-map widget template rendered inside card fields.
+UI_NOISE = {"Еще", "Свернуть", "Еще Свернуть", "Скопировать", "Адрес:", "График работы:", "Участник", "перейти в библиотеку"}
 
 
 class SearchParser(HTMLParser):
@@ -130,7 +133,7 @@ def detail_fields(lines):
             current = line
             collected.setdefault(current, [])
             continue
-        if current and line not in {"Еще", "Свернуть"}:
+        if current and line not in UI_NOISE:
             collected[current].append(line)
     return {key: " ".join(value).strip() for key, value in collected.items() if value}
 
@@ -140,7 +143,7 @@ def bibliographic_description(lines):
         return None
     start = lines.index("Библиографическое описание") + 1
     end = lines.index("Детальная информация", start)
-    parts = [line for line in lines[start:end] if line != "Скопировать"]
+    parts = [line for line in lines[start:end] if line not in UI_NOISE]
     return " ".join(parts).strip() or None
 
 
@@ -265,15 +268,15 @@ def extract(args):
             "delay_seconds": args.delay,
             "proxy": args.proxy,
         },
-        "terms": {"path": str(terms_path), "sha256": hashlib.sha256(terms_path.read_bytes()).hexdigest()},
+        "terms": {"path": display_path(terms_path), "sha256": hashlib.sha256(terms_path.read_bytes()).hexdigest()},
         "counts": {"candidates": candidates, **outputs.counts, "duplicates": duplicates, "card_errors": card_errors},
         "queries": query_stats,
         "http": {"network_requests": client.network_requests, "cache_hits": client.cache_hits},
         "outputs": {
-            "include": str(outputs.paths["include"]),
-            "review": str(outputs.paths["review"]),
-            "audit_sample": str(output_dir / "audit_sample.csv"),
-            "errors": str(errors_path) if errors_path.is_file() else None,
+            "include": display_path(outputs.paths["include"]),
+            "review": display_path(outputs.paths["review"]),
+            "audit_sample": display_path(output_dir / "audit_sample.csv"),
+            "errors": display_path(errors_path) if errors_path.is_file() else None,
         },
         "download_notice": "The NEB user agreement prohibits mass automated downloading of NEB objects. Use only explicit bounded downloads of open documents unless the operator grants permission.",
     }

@@ -4,7 +4,7 @@ archaeology.general,archaeology,archaeology.expeditions,text,археолог|р
 archaeology.prehistory,archaeology,archaeology.prehistory,text,палеолит|мезолит|неолит|энеолит|бронзов(?:ый|ого|ом) век|каменн(?:ый|ого) век,,high
 archaeology.urartu,archaeology,archaeology.urartu,text,урарт|урартск|ванское царство|ванского царства,,high
 archaeology.kingdoms,archaeology,archaeology.ancient_kingdoms,text,армянское царство|армянского царства|арташес|арташи|аршакуни|багратуни|тигран великий,,medium
-archaeology.cities,archaeology,archaeology.historic_cities,findPlace,ани|двин|арташат|гарни|армавир,,medium
+archaeology.cities,archaeology,archaeology.historic_cities,findPlace,ани|двин|арташат|гарни|армавир,коллектор|дата сбора|зоопарк,medium
 archaeology.material,archaeology,archaeology.material_culture,text,пифос|скребок|скребло|древняя керамика|археологическая керамика|каменное орудие|глиняная чаша,,medium
 archaeology.epigraphy,archaeology,archaeology.epigraphy,text,эпиграф|клинопис|древнеармянская надпись|армянская эпиграфика,,medium
 history.ancient,history,history.ancient_medieval,text,армянское царство|армянского царства|артакс|арташес|аршакуни|багратуни|тигран великий,,medium
@@ -38,7 +38,7 @@ maps.cities,maps_geography,maps_geography.city_plans,text,план города 
 maps.expeditions,maps_geography,maps_geography.expeditions,text,географическая экспедиция|географической экспедиции|картографическая экспедиция|маршрут экспедиции,,medium
 maps.travel,maps_geography,maps_geography.travel,text,путешествие по армении|путешествия по армении|путевые заметки об армении|виды армении|альбом видов армении|достопримечательности армении,,medium
 maps.cartographers,maps_geography,maps_geography.cartographers,text,картограф|географ|землемер,,low
-architecture.museum,architecture,architecture.collections,museum.name,музей архитектуры,,high
+architecture.museum,architecture,architecture.collections,museum.name,музей архитектуры,,medium
 architecture.general,architecture,architecture.collections,text,архитектурный памятник|архитектурного памятника|архитектурный ансамбль|архитектурного ансамбля|архитектурный чертеж|архитектурного чертежа|архитектура армении|архитектуры армении,,high
 architecture.religious,architecture,architecture.religious,text,армянская церковь|армянской церкви|армянский собор|армянского собора|церковь в армении|церкви в армении|церковь армении|собор армении|храм армении|апсида|алтарная абсида,,high
 architecture.monasteries,architecture,architecture.monasteries,text,монастырский комплекс|монастырского комплекса|монастырский ансамбль|монастырского ансамбля|гегард|ахпат|санаин|нораванк|татев|гандзасар|гошаванк|агарцин|кечарис|одзун,,high
@@ -52,8 +52,8 @@ architecture.lost,architecture,architecture.lost_heritage,text,разрушен�
 art.painting,art,art.painting,typology.name,живопись,,high
 art.graphics,art,art.graphics,typology.name,графика,,high
 art.sculpture,art,art.sculpture,typology.name,скульптура,,high
-art.aivazovsky,art,art.marine,armenia_matched_entities,person[.]hovhannes_aivazovsky,,high
-art.saryan,art,art.landscape,armenia_matched_entities,person[.]martiros_saryan,,high
+art.aivazovsky,art,art.marine,text,айвазовск[а-я]*(?=.*(?:мор[еяюо]|морск|корабл|шторм|бур[яиюе]|волн|залив|бухт|фрегат|парус|прибой|штил|девятый вал|маринист|рейд|флот|гаван|пристан|маяк))|(?:мор[еяюо]|морск|корабл|шторм|бур[яиюе]|волн|залив|бухт|фрегат|парус|прибой|штил|девятый вал|маринист|рейд|флот|гаван|пристан|маяк)[а-я]*(?=.*айвазовск),,high
+art.saryan,art,art.landscape,text,сарь?ян[а-я]*(?=.*(?:пейзаж|горы|горах|горн|арарат|арагац|долин|ущель|озер|севан|природ|весенн|осенн|летн|зимн|холм|ландшафт|дворик))|(?:пейзаж|горы|горах|горн|арарат|арагац|долин|ущель|озер|севан|природ|весенн|осенн|летн|зимн|холм|ландшафт|дворик)[а-я]*(?=.*сарь?ян),,high
 art.roslin,art,art.miniature,armenia_matched_entities,person[.]toros_roslin,,high
 art.miniature,art,art.miniature,text,армянская миниатюра|армянской миниатюры|торос рослин|тороса рослина|иллюминированная рукопись,,high
 art.landscape,art,art.landscape,text,армянский пейзаж|армянского пейзажа|армянская художественная школа|армянской художественной школы|пейзаж армении|пейзажи армении,,medium
@@ -70,7 +70,7 @@ photography.ermakov,photography,photography.photographers,text,ермаков д
 photography.ethnographic,photography,photography.ethnographic,text,этнографическая фотография|этнографической фотографии|этнографический фотопортрет|фотография типы армян|фотографии типы армян,,medium
 photography.portrait,photography,photography.portrait,text,семейный фотоальбом|семейного фотоальбома|семейная фотография|семейной фотографии|групповой фотопортрет|группового фотопортрета,,medium
 photography.events,photography,photography.events,text,документальная фотография|документальной фотографии|фотография исторического события|фотохроника|фотолетопись,,medium
-music.museum,music,music.collections,museum.name,национальный музей музыки|музей музыкальной культуры|музей музыки,,high
+music.museum,music,music.collections,museum.name,национальный музей музыки|музей музыкальной культуры|музей музыки,,medium
 music.general,music,music.classical,text,армянская музыка|армянской музыки|армянская музыкальная культура|армянской музыкальной культуры|армянский композитор|армянского композитора|симфоническая музыка|камерная музыка|консерватория,,high
 music.sacred,music,music.sacred,text,шаракан|шараканы|духовная музыка армян|духовной музыки армян|армянская нотация|армянской нотации|армянские духовные песнопения,,high
 music.folk,music,music.folk,text,армянская народная музыка|армянской народной музыки|армянская народная песня|армянской народной песни|армянские народные песни|армянских народных песен|музыкальный фольклор армении,,high
@@ -79,13 +79,13 @@ music.opera,music,music.opera_ballet,text,армянская опера|армя
 music.instruments,music,music.instruments,text,дудук|зурна|кяманча|каманча|дхол|армянский тар|армянского тара|народные музыкальные инструменты|народных музыкальных инструментов,,high
 music.khachaturian,music,music.composers,armenia_matched_entities,person[.]aram_khachaturian,,high
 music.komitas,music,music.composers,armenia_matched_entities,person[.]komitas,,high
-music.composers,music,music.composers,text,комитас|хачатурян|спендиаров|спендиарян|бабаджанян|экимян|тигран мансурян|тиграна мансуряна,,high
+music.composers,music,music.composers,text,комитас|спендиаров|спендиарян|бабаджанян|экимян|тигран мансурян|тиграна мансуряна,,high
 music.performers,music,music.performers,text,армянский певец|армянского певца|армянская певица|армянской певицы|армянский дирижер|армянского дирижера|армянский скрипач|армянского скрипача,,medium
 music.musicology,music,music.musicology,text,музыковедение|музыковедения|музыкальная критика|музыкальной критики|сольфеджио|музыкальное образование|музыкального образования,,medium
 music.recordings,music,music.recordings,text,грампластинка|грампластинки|виниловая пластинка|виниловой пластинки|звукозапись|звукозаписи|нотное издание|нотного издания,,high
 music.sayat,music,music.ashugh,armenia_matched_entities,person[.]sayat_nova,,high
-performing.theatre_museum,performing_audiovisual,performing_audiovisual.drama_theatre,museum.name,театральный музей,,high
-performing.cinema_museum,performing_audiovisual,performing_audiovisual.cinema,museum.name,музей кино,,high
+performing.theatre_museum,performing_audiovisual,performing_audiovisual.drama_theatre,museum.name,театральный музей,,medium
+performing.cinema_museum,performing_audiovisual,performing_audiovisual.cinema,museum.name,музей кино,,medium
 performing.theatre,performing_audiovisual,performing_audiovisual.drama_theatre,text,армянский театр|армянского театра|драматический театр|драматического театра|ереванский театр|ереванского театра|театр драмы|театра драмы|театр оперы|театра оперы|театр сундукяна|театра сундукяна|театральная постановка|театральной постановки,,high
 performing.actors,performing_audiovisual,performing_audiovisual.actors_directors,text,армянский актер|армянского актера|армянская актриса|армянской актрисы|армянский режиссер|армянского режиссера|папазян|аджемян|сундукян|нерсисян,,medium
 performing.stage,performing_audiovisual,performing_audiovisual.stage_design,text,эскиз декорации|эскиза декорации|эскиз костюма|эскиза костюма|сценический костюм|сценического костюма|сценография|сценографии,,high
@@ -122,7 +122,7 @@ literature.spiritual,language_literature,language_literature.spiritual_poetry,te
 literature.tumanyan,language_literature,language_literature.poetry,armenia_matched_entities,person[.]hovhannes_tumanyan,,high
 literature.charents,language_literature,language_literature.poetry,armenia_matched_entities,person[.]yeghishe_charents,,high
 literature.sevak,language_literature,language_literature.poetry,armenia_matched_entities,person[.]paruyr_sevak,,high
-literature.poetry,language_literature,language_literature.poetry,text,туманян|чаренц|исаакян|паруйр севак|паруйра севака|ованес шираз|армянский поэт|армянского поэта|армянская поэтесса|армянская поэзия|армянской поэзии,,high
+literature.poetry,language_literature,language_literature.poetry,text,чаренц|исаакян|паруйр севак|паруйра севака|ованес шираз|армянский поэт|армянского поэта|армянская поэтесса|армянская поэзия|армянской поэзии,,high
 literature.prose,language_literature,language_literature.prose_drama,text,армянский писатель|армянского писателя|армянская писательница|армянская проза|армянской прозы|армянская драматургия|армянской драматургии|аксел бакунц|аксела бакунца|ширванзаде|раффи|хачатур абовян|хачатура абовяна|сароян,,high
 literature.diaspora,language_literature,language_literature.diaspora_literature,text,литература армянской диаспоры|литературы армянской диаспоры|писатель армянской диаспоры|армянский писатель диаспоры|западноармянская литература|западноармянской литературы,,medium
 literature.epic,language_literature,language_literature.david_sassoun,text,давид сасунский|давида сасунского|сасна црер|сасунский эпос|сасунского эпоса|армянский народный эпос|армянского народного эпоса,,high

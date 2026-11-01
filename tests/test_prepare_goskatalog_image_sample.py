@@ -67,5 +67,9 @@ def test_prepare_refreshes_images_caps_sample_and_reuses_api_cache(tmp_path, mon
     assert {row["requested_id"]: row["http_status"] for row in cache}["103"] == 403
     assert len(calls) == 3
     resumed = preparation.prepare(args)
-    assert len(calls) == 3
-    assert resumed["counts"]["api_records_fetched_this_run"] == 0
+    assert calls[3:] == ["103"]
+    assert resumed["counts"]["api_records_fetched_this_run"] == 1
+    capped = preparation.prepare(argparse.Namespace(**dict(vars(args), max_images=2)))
+    assert capped["counts"]["selected_images"] == 1
+    assert capped["counts"]["records_over_cap"] == 1
+    assert capped["counts"]["api_records_considered"] == 2

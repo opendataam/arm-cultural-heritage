@@ -133,3 +133,31 @@ def test_neb_requires_explicit_bound_and_downloads_only_open_document(tmp_path):
     finally:
         server.shutdown()
         server.server_close()
+
+
+def test_open_rights_accepts_only_unrestricted_statements():
+    from source_common import is_open_rights
+
+    for value in (
+        "http://creativecommons.org/publicdomain/mark/1.0/",
+        "http://creativecommons.org/publicdomain/zero/1.0/",
+        "http://creativecommons.org/licenses/by/4.0/",
+        "http://creativecommons.org/licenses/by-sa/3.0/de/",
+    ):
+        assert is_open_rights([value]), value
+    for value in (
+        "http://rightsstatements.org/vocab/NoC-NC/1.0/",
+        "http://rightsstatements.org/vocab/NoC-OKLR/1.0/",
+        "http://rightsstatements.org/vocab/NoC-CR/1.0/",
+        "http://rightsstatements.org/vocab/NoC-US/1.0/",
+        "http://rightsstatements.org/vocab/InC/1.0/",
+        "http://creativecommons.org/licenses/by-nc/4.0/",
+        "http://creativecommons.org/licenses/by-nd/4.0/",
+        "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+    ):
+        assert not is_open_rights([value]), value
+    assert not is_open_rights([])
+    assert not is_open_rights([
+        "http://creativecommons.org/licenses/by/4.0/",
+        "http://rightsstatements.org/vocab/InC/1.0/",
+    ])

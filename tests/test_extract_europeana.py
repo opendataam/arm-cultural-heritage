@@ -149,3 +149,14 @@ def test_europeana_end_to_end_cursor_records_and_resume(tmp_path):
     finally:
         server.shutdown()
         server.server_close()
+
+
+def test_source_query_does_not_rescue_negated_records(matcher):
+    from source_common import classify_candidate
+
+    base = {"title": "Вокзал", "description": None, "authors": [], "subjects": [], "provider": None, "type": None}
+    negated = classify_candidate(dict(base, places=["Армавир, Краснодарский край"]), matcher, "Армавир")
+    assert negated.decision == "exclude"
+    query_only = classify_candidate(dict(base, places=["Москва"]), matcher, "Армения")
+    assert query_only.decision == "review"
+    assert query_only.reasons == ["source_query_only"]

@@ -12,7 +12,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import datetime, timezone
-from http.client import HTTPException
+from http.client import HTTPException, IncompleteRead
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.parse import unquote, urlsplit, urlunsplit
@@ -27,6 +27,14 @@ MANIFEST_NAME = "image_manifest.jsonl"
 DOWNLOAD_REPORT_NAME = "image_download_report.json"
 ESTIMATE_REPORT_NAME = "image_estimate.json"
 CHUNK_SIZE = 1024 * 1024
+IMAGE_SIGNATURES = (
+    (b"\xff\xd8\xff", ".jpg"),
+    (b"\x89PNG\r\n\x1a\n", ".png"),
+    (b"GIF87a", ".gif"),
+    (b"GIF89a", ".gif"),
+    (b"II*\x00", ".tif"),
+    (b"MM\x00*", ".tif"),
+)
 
 
 @dataclass(frozen=True)
@@ -107,11 +115,28 @@ def image_extension(headers):
     return mimetypes.guess_extension(content_type) or ".bin"
 
 
-def destination_for(asset, headers, output_dir):
+def sniffed_extension(head):
+    for signature, suffix in IMAGE_SIGNATURES:
+        if head.startswith(signature):
+            return suffix
+    if head[:4] == b"RIFF" and head[8:12] == b"WEBP":
+        return ".webp"
+    return None
+
+
+def destination_stem(asset, output_dir):
     url_name = Path(urlsplit(asset.url).path).name
     image_id = safe_component(unquote(url_name))
-    filename = "{:03d}_{}{}".format(asset.image_index, image_id, image_extension(headers))
-    return output_dir / safe_component(asset.record_id) / filename
+    return output_dir / safe_component(asset.record_id) / "{:03d}_{}".format(asset.image_index, image_id)
+
+
+def expected_length(headers):
+    if headers.get("Content-Encoding"):
+        return None
+    try:
+        return int(headers.get("Content-Length"))
+    except (TypeError, ValueError):
+        return None
 
 
 def should_retry(error):
@@ -131,20 +156,23 @@ def fetch(asset, output_dir, timeout, retries):
                 if not content_type.startswith("image/"):
                     raise ValueError("Expected an image, received {}".format(content_type or "unknown content type"))
                 if output_dir is not None:
-                    destination = destination_for(asset, response.headers, output_dir)
-                    destination.parent.mkdir(parents=True, exist_ok=True)
-                    part_path = destination.with_name(destination.name + ".part")
+                    stem = destination_stem(asset, output_dir)
+                    stem.parent.mkdir(parents=True, exist_ok=True)
+                    part_path = stem.with_name(stem.name + ".part")
                     handle = part_path.open("wb")
                 else:
-                    destination = None
+                    stem = None
                     handle = None
                 digest = hashlib.sha256()
                 size = 0
+                head = b""
                 try:
                     while True:
                         chunk = response.read(CHUNK_SIZE)
                         if not chunk:
                             break
+                        if not head:
+                            head = chunk[:16]
                         size += len(chunk)
                         digest.update(chunk)
                         if handle is not None:
@@ -154,7 +182,13 @@ def fetch(asset, output_dir, timeout, retries):
                         handle.close()
                 if size == 0:
                     raise ValueError("Empty image response")
+                # http.client returns a short body without an error when the connection closes early.
+                expected = expected_length(response.headers)
+                if expected is not None and size != expected:
+                    raise IncompleteRead(b"", expected - size)
+                destination = None
                 if part_path is not None:
+                    destination = stem.with_name(stem.name + (sniffed_extension(head) or image_extension(response.headers)))
                     part_path.replace(destination)
                 result.update({
                     "status": "ok",
@@ -181,7 +215,8 @@ def run_fetches(assets, output_dir, timeout, retries, workers):
     results = []
     started = time.monotonic()
     last_progress = started
-    with ThreadPoolExecutor(max_workers=workers) as executor:
+    executor = ThreadPoolExecutor(max_workers=workers)
+    try:
         futures = [executor.submit(fetch, asset, output_dir, timeout, retries) for asset in assets]
         for completed, future in enumerate(as_completed(futures), 1):
             result = future.result()
@@ -194,6 +229,9 @@ def run_fetches(assets, output_dir, timeout, retries, workers):
                     completed, len(assets), failed, now - started
                 ), flush=True)
                 last_progress = now
+    finally:
+        # On interruption, drop queued downloads instead of finishing them without recording them in the manifest.
+        executor.shutdown(wait=True, cancel_futures=True)
 
 
 def write_json(path, payload):
@@ -202,7 +240,15 @@ def write_json(path, payload):
     temporary.replace(path)
 
 
-def load_manifest(path, output_dir):
+def file_sha256(path):
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(CHUNK_SIZE), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def load_manifest(path, output_dir, verify_hashes=False):
     previous = {}
     if not path.is_file():
         return previous
@@ -214,8 +260,11 @@ def load_manifest(path, output_dir):
                 raise ValueError("Invalid manifest line {}: {}".format(line_number, error))
             if result.get("status") == "ok" and result.get("path"):
                 downloaded_path = output_dir / result["path"]
-                if downloaded_path.is_file() and downloaded_path.stat().st_size == result.get("bytes"):
-                    previous[result_key(result)] = result
+                if not downloaded_path.is_file() or downloaded_path.stat().st_size != result.get("bytes"):
+                    continue
+                if verify_hashes and file_sha256(downloaded_path) != result.get("sha256"):
+                    continue
+                previous[result_key(result)] = result
     return previous
 
 
@@ -229,6 +278,7 @@ def report_base(args, input_path, inventory, started_at, started):
             "workers": args.workers,
             "timeout_seconds": args.timeout,
             "retries": args.retries,
+            "verify_hashes": args.verify_hashes,
         },
     }
 
@@ -237,7 +287,7 @@ def download(args, input_path, assets, inventory, started_at, started):
     output_dir = args.output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     manifest_path = output_dir / MANIFEST_NAME
-    previous = load_manifest(manifest_path, output_dir)
+    previous = load_manifest(manifest_path, output_dir, args.verify_hashes)
     pending = []
     skipped = []
     for asset in assets:
@@ -367,6 +417,7 @@ def parse_args():
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--timeout", type=int, default=60)
     parser.add_argument("--retries", type=int, default=2)
+    parser.add_argument("--verify-hashes", action="store_true", help="Recompute SHA-256 of completed files before skipping them")
     args = parser.parse_args()
     if args.sample_size < 1 or args.workers < 1 or args.timeout < 1 or args.retries < 0:
         parser.error("sample-size, workers and timeout must be positive; retries must be non-negative")

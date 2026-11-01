@@ -7,17 +7,17 @@
     "record_errors": 0,
     "review": 0
   },
-  "duration_seconds": 0.158,
-  "finished_at": "2026-10-31T21:19:51.695564+00:00",
+  "duration_seconds": 0.145,
+  "finished_at": "2026-11-01T07:15:42.005806+00:00",
   "http": {
     "cache_hits": 4,
     "network_requests": 0
   },
   "outputs": {
-    "audit_sample": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/output/europeana_metadata_pilot/audit_sample.csv",
+    "audit_sample": "output/europeana_metadata_pilot/audit_sample.csv",
     "errors": null,
-    "include": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/output/europeana_metadata_pilot/armenia_records.parquet",
-    "review": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/output/europeana_metadata_pilot/armenia_review.parquet"
+    "include": "output/europeana_metadata_pilot/armenia_records.parquet",
+    "review": "output/europeana_metadata_pilot/armenia_review.parquet"
   },
   "queries": [
     {
@@ -31,7 +31,7 @@
     "delay_seconds": 1.0,
     "max_records": 3,
     "media": true,
-    "proxy": "http://127.0.0.1:7070",
+    "proxy": null,
     "queries": [
       "Armenia"
     ],
@@ -39,9 +39,9 @@
     "rows": 3
   },
   "source": "europeana",
-  "started_at": "2026-10-31T21:19:51.537220+00:00",
+  "started_at": "2026-11-01T07:15:41.860344+00:00",
   "terms": {
-    "path": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/data/terms.csv",
+    "path": "data/terms.csv",
     "sha256": "8908712940ea1d76b3726056d23cb47f5609703459ebf35ace7eeefab76e579d"
   }
 }

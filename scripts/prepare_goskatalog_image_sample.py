@@ -21,6 +21,8 @@ API_CACHE_NAME = "api_records.jsonl"
 SAMPLE_NAME = "image_sample.parquet"
 REPORT_NAME = "image_sample_report.json"
 API_CHUNK_SIZE = 100
+# Only answers that describe the record itself are reused; 403, 429, 5xx and network errors are refetched on rerun.
+FINAL_API_STATUSES = {200, 404, 410}
 
 
 def utc_now():
@@ -104,7 +106,7 @@ def prepare(args):
     with cache_path.open("a", encoding="utf-8") as cache_handle, ThreadPoolExecutor(max_workers=args.workers) as executor:
         for offset in range(0, len(candidates), API_CHUNK_SIZE):
             chunk = candidates[offset:offset + API_CHUNK_SIZE]
-            pending = [row for row in chunk if str(row["id"]) not in cache or cache[str(row["id"])].get("http_status") is None]
+            pending = [row for row in chunk if cache.get(str(row["id"]), {}).get("http_status") not in FINAL_API_STATUSES]
             if pending:
                 results = list(executor.map(
                     lambda row: fetch_api_record(str(row["id"]), args.timeout, args.retries), pending
@@ -127,8 +129,10 @@ def prepare(args):
                         empty_records += 1
                     continue
                 if selected_count + len(images) > args.max_images:
+                    # Stop instead of skipping ahead: skipping biases the tail towards small records
+                    # and can query the API for every remaining candidate.
                     over_cap_records += 1
-                    continue
+                    break
                 row["images"] = images
                 selected.append(row)
                 selected_count += len(images)
@@ -140,7 +144,7 @@ def prepare(args):
                     len(considered), selected_count, args.max_images, now - started
                 ), flush=True)
                 last_progress = now
-            if selected_count == args.max_images:
+            if selected_count == args.max_images or over_cap_records:
                 break
     selected_count = sum(len(item["images"]) for item in selected)
     if not selected:

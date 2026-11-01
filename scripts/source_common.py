@@ -15,7 +15,8 @@ from urllib.request import ProxyHandler, Request, build_opener
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-USER_AGENT = "arm-cultural-heritage-source-importer/1.0"
+ROOT = Path(__file__).resolve().parent.parent
+USER_AGENT = "arm-cultural-heritage-source-importer/1.0 (+https://github.com/opendataam/arm-cultural-heritage)"
 ASSET_TYPE = pa.struct([
     pa.field("url", pa.string(), nullable=False),
     pa.field("role", pa.string(), nullable=False),
@@ -56,6 +57,14 @@ SENSITIVE_PARAMS = {"wskey", "apikey", "api_key", "key", "utm_campaign"}
 
 def utc_now():
     return datetime.now(timezone.utc).isoformat()
+
+
+def display_path(path):
+    path = Path(path)
+    try:
+        return path.relative_to(ROOT).as_posix()
+    except ValueError:
+        return str(path)
 
 
 def unique_strings(values):
@@ -259,7 +268,8 @@ def matcher_record(record):
 
 def classify_candidate(record, matcher, query):
     match = matcher.classify(matcher_record(record))
-    if match.decision == "exclude" and matcher.classify({"name": query}).decision != "exclude":
+    # A term suppressed by its negative context is evidence against relevance, so the query must not rescue it.
+    if match.decision == "exclude" and not match.negated and matcher.classify({"name": query}).decision != "exclude":
         match.decision = "review"
         match.confidence = "review"
         match.strength = "source_query_only"
@@ -267,16 +277,19 @@ def classify_candidate(record, matcher, query):
     return match
 
 
+OPEN_RIGHTS = re.compile(r"creativecommons\.org/(?:publicdomain/(?:mark|zero)|licenses/(?:by|by-sa))/")
+# NoC-NC, NoC-OKLR and NoC-CR are "no copyright" statements that still restrict reuse; NoC-US applies only in the US.
+RESTRICTED_RIGHTS = re.compile(
+    r"rightsstatements\.org/vocab/(?:inc|noc-nc|noc-oklr|noc-cr|noc-us|cne|und|nkc)"
+    r"|creativecommons\.org/licenses/[a-z-]*(?:nc|nd)"
+)
+
+
 def is_open_rights(rights):
-    for value in rights or []:
-        right = value.lower()
-        if "creativecommons.org/publicdomain/" in right:
-            return True
-        if re.search(r"creativecommons\.org/licenses/(?:by|by-sa)/", right):
-            return True
-        if "rightsstatements.org/vocab/noc" in right:
-            return True
-    return False
+    values = [value.lower() for value in rights or []]
+    if any(RESTRICTED_RIGHTS.search(value) for value in values):
+        return False
+    return any(OPEN_RIGHTS.search(value) for value in values)
 
 
 def base_record(record_id, source, record_url, query, retrieved_at):

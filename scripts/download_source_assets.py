@@ -12,7 +12,7 @@ from urllib.parse import unquote, urlsplit
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from source_common import HttpClient, is_open_rights, utc_now, write_json
+from source_common import HttpClient, display_path, is_open_rights, utc_now, write_json
 
 MANIFEST_NAME = "asset_manifest.jsonl"
 REPORT_NAME = "asset_download_report.json"
@@ -156,7 +156,7 @@ def run(args):
         "started_at": started_at,
         "finished_at": utc_now(),
         "duration_seconds": round(time.monotonic() - started, 3),
-        "input": {"path": str(input_path), **inventory},
+        "input": {"path": display_path(input_path), **inventory},
         "settings": {
             "max_files": args.max_files,
             "include_restricted": args.include_restricted,
@@ -175,7 +175,7 @@ def run(args):
             "downloaded_this_run": sum(result["bytes"] for result in downloaded),
             "available_total": sum((output_dir / result["path"]).stat().st_size for result in skipped + downloaded),
         },
-        "manifest": str(manifest_path),
+        "manifest": display_path(manifest_path),
         "errors": failed,
     }
     if args.source == "neb":

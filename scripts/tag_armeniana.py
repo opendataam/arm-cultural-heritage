@@ -17,7 +17,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 
 from matcher import flatten
-from terms import normalize_text
+from terms import normalize_text, read_terms
 
 ROOT = Path(__file__).resolve().parent.parent
 TAGGING_VERSION = "1.0.0"
@@ -40,6 +40,8 @@ TEXT_FIELDS = (
     "typology.name",
 )
 FIELD_NAMES = TEXT_FIELDS + ("museum.name", "armenia_matched_entities")
+# Rules limited to these fields describe the holding collection or object class, not the subject of the record.
+STRUCTURAL_FIELDS = {"typology.name", "museum.name"}
 CONFIDENCE_RANK = {"low": 1, "medium": 2, "high": 3}
 TAGGING_SCHEMA = pa.schema([
     pa.field("armeniana_zone_ids", pa.list_(pa.string()), nullable=False),
@@ -207,7 +209,24 @@ def load_taxonomy(themes_path, subthemes_path, persons_path, rules_path):
     return themes, subthemes, persons, rules
 
 
-def record_fields(record):
+def display_path(path):
+    try:
+        return path.relative_to(ROOT).as_posix()
+    except ValueError:
+        return str(path)
+
+
+def strong_person_terms(terms):
+    strong = {}
+    for term in terms:
+        if term.category == "person":
+            strong.setdefault(term.entity_id, set())
+            if term.match_strength == "strong":
+                strong[term.entity_id].add("{}:{}".format(term.lang, term.value))
+    return strong
+
+
+def record_fields(record, entities):
     values = {}
     for name in TEXT_FIELDS:
         if "." in name:
@@ -218,18 +237,30 @@ def record_fields(record):
         values[name] = normalize_text(flatten(value))
     museum = record.get("museum")
     values["museum.name"] = normalize_text(flatten(museum.get("name") if isinstance(museum, dict) else None))
-    values["armenia_matched_entities"] = normalize_text(flatten(record.get("armenia_matched_entities")))
+    values["armenia_matched_entities"] = normalize_text(flatten(entities))
     return values
 
 
 class ThemeTagger:
-    def __init__(self, themes, persons, rules):
+    def __init__(self, themes, persons, rules, terms):
         self.themes = {theme.theme_id: theme for theme in themes}
         self.person_ids = {person.person_id for person in persons}
         self.rules = rules
+        self.person_terms = strong_person_terms(terms)
+        self.structural_rule_ids = {rule.rule_id for rule in rules if set(rule.fields) <= STRUCTURAL_FIELDS}
+
+    def confirmed_entities(self, record):
+        # A person entity counts only when a strong form matched; a bare surname such as
+        # "хачатурян" is context-only evidence and may refer to another person.
+        matched_terms = set(record.get("armenia_matched_terms") or [])
+        return [
+            entity for entity in record.get("armenia_matched_entities") or []
+            if entity not in self.person_terms or self.person_terms[entity] & matched_terms
+        ]
 
     def tag(self, record):
-        fields = record_fields(record)
+        entities = self.confirmed_entities(record)
+        fields = record_fields(record, entities)
         assignments = {}
         for rule in self.rules:
             selected = " | ".join(fields[name] for name in rule.fields if fields[name])
@@ -256,7 +287,7 @@ class ThemeTagger:
             current["rule_ids"].add(rule.rule_id)
             current["matched_fields"].update(matched_fields)
             current["matched_forms"].update(forms)
-        person_ids = sorted(self.person_ids.intersection(record.get("armenia_matched_entities") or []))
+        person_ids = sorted(self.person_ids.intersection(entities))
         theme_ids = sorted({theme_id for theme_id, _ in assignments})
         zone_ids = sorted({self.themes[theme_id].zone_id for theme_id in theme_ids})
         subtheme_ids = sorted({subtheme_id for _, subtheme_id in assignments if subtheme_id})
@@ -361,7 +392,7 @@ def taxonomy_payload(themes, subthemes, persons):
 
 def write_json(path, payload):
     temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    temporary.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     temporary.replace(path)
 
 
@@ -380,14 +411,15 @@ def tag_records(args):
         "subthemes": args.subthemes.resolve(),
         "persons": args.persons.resolve(),
         "rules": args.rules.resolve(),
+        "terms": args.terms.resolve(),
     }
     themes, subthemes, persons, rules = load_taxonomy(
         paths["themes"], paths["subthemes"], paths["persons"], paths["rules"]
     )
-    tagger = ThemeTagger(themes, persons, rules)
+    tagger = ThemeTagger(themes, persons, rules, read_terms(paths["terms"]))
     connection = duckdb.connect()
     columns = {row[0] for row in connection.execute("DESCRIBE SELECT * FROM read_parquet(?)", [str(input_path)]).fetchall()}
-    required = {"id", "name", "armenia_decision", "armenia_matched_entities"}
+    required = {"id", "name", "armenia_decision", "armenia_matched_entities", "armenia_matched_terms"}
     missing = sorted(required - columns)
     if missing:
         raise ValueError("Input is missing required columns: {}".format(", ".join(missing)))
@@ -405,7 +437,7 @@ def tag_records(args):
     subtheme_counts = Counter()
     person_counts = Counter()
     rule_counts = Counter()
-    samples = AuditSamples()
+    samples = AuditSamples(args.audit_per_theme, args.audit_unclassified)
     seen_ids = set()
     started = time.monotonic()
     started_at = utc_now()
@@ -432,6 +464,11 @@ def tag_records(args):
                     counts["multi_theme_records"] += 1
                 if metadata["armeniana_person_ids"]:
                     counts["records_with_persons"] += 1
+                if assignments:
+                    if any(set(row["rule_ids"]) - tagger.structural_rule_ids for row in assignments):
+                        counts["content_tagged"] += 1
+                    else:
+                        counts["structural_only"] += 1
                 theme_counts.update(metadata["armeniana_theme_ids"])
                 zone_counts.update(metadata["armeniana_zone_ids"])
                 subtheme_counts.update(metadata["armeniana_subtheme_ids"])
@@ -470,15 +507,21 @@ def tag_records(args):
         "duration_seconds": round(time.monotonic() - started, 3),
         "tagging_version": TAGGING_VERSION,
         "method": "deterministic_field_aware_rules",
-        "input": {"path": str(input_path), "rows": source_rows, "sha256": sha256(input_path)},
+        "input": {"path": display_path(input_path), "rows": source_rows, "sha256": sha256(input_path)},
         "taxonomy": {
-            name: {"path": str(path), "sha256": sha256(path)}
+            name: {"path": display_path(path), "sha256": sha256(path)}
             for name, path in sorted(paths.items())
         },
-        "settings": {"batch_size": args.batch_size},
+        "settings": {
+            "batch_size": args.batch_size,
+            "audit_per_theme": args.audit_per_theme,
+            "audit_unclassified": args.audit_unclassified,
+        },
         "counts": {
             "source_rows": counts["source_rows"],
             "tagged": counts["tagged"],
+            "content_tagged": counts["content_tagged"],
+            "structural_only": counts["structural_only"],
             "unclassified": counts["unclassified"],
             "multi_theme_records": counts["multi_theme_records"],
             "records_with_persons": counts["records_with_persons"],
@@ -489,17 +532,19 @@ def tag_records(args):
         "subthemes": dict(subtheme_counts.most_common()),
         "persons": dict(person_counts.most_common()),
         "rules": dict(rule_counts.most_common()),
+        "structural_rules": sorted(tagger.structural_rule_ids),
         "outputs": {
-            "records": {"path": str(records_path), "rows": counts["source_rows"], "bytes": records_path.stat().st_size},
-            "assignments": {"path": str(assignments_path), "rows": counts["assignments"], "bytes": assignments_path.stat().st_size},
-            "taxonomy": str(taxonomy_path),
-            "audit_sample": str(audit_path),
+            "records": {"path": display_path(records_path), "rows": counts["source_rows"], "bytes": records_path.stat().st_size},
+            "assignments": {"path": display_path(assignments_path), "rows": counts["assignments"], "bytes": assignments_path.stat().st_size},
+            "taxonomy": display_path(taxonomy_path),
+            "audit_sample": display_path(audit_path),
         },
     }
     report_path = output_dir / "report.json"
     write_json(report_path, report)
-    print("Done in {:.1f}s: {:,} tagged; {:,} unclassified; {:,} assignments".format(
-        report["duration_seconds"], counts["tagged"], counts["unclassified"], counts["assignments"]
+    print("Done in {:.1f}s: {:,} tagged ({:,} by content, {:,} by typology or museum only); {:,} unclassified; {:,} assignments".format(
+        report["duration_seconds"], counts["tagged"], counts["content_tagged"], counts["structural_only"],
+        counts["unclassified"], counts["assignments"]
     ))
     print("Records:", records_path)
     print("Assignments:", assignments_path)
@@ -515,10 +560,13 @@ def parse_args():
     parser.add_argument("--subthemes", type=Path, default=ROOT / "data" / "armeniana_subthemes.csv")
     parser.add_argument("--persons", type=Path, default=ROOT / "data" / "armeniana_persons.csv")
     parser.add_argument("--rules", type=Path, default=ROOT / "data" / "armeniana_tagging_rules.csv")
+    parser.add_argument("--terms", type=Path, default=ROOT / "data" / "terms.csv", help="Registry used to confirm person IDs by strong forms")
     parser.add_argument("--batch-size", type=int, default=2048)
+    parser.add_argument("--audit-per-theme", type=int, default=30)
+    parser.add_argument("--audit-unclassified", type=int, default=50)
     args = parser.parse_args()
-    if args.batch_size < 1:
-        parser.error("batch-size must be positive")
+    if args.batch_size < 1 or args.audit_per_theme < 1 or args.audit_unclassified < 1:
+        parser.error("batch-size and audit sample sizes must be positive")
     return args
 
 

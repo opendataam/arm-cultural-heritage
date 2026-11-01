@@ -34,6 +34,8 @@ class ImageHandler(BaseHTTPRequestHandler):
     }
     requests = []
     unavailable = set()
+    truncated = set()
+    disposition = "museum.jpg"
 
     def do_GET(self):
         type(self).requests.append(self.path)
@@ -46,7 +48,9 @@ class ImageHandler(BaseHTTPRequestHandler):
         payload = self.payloads[self.path]
         self.send_response(200)
         self.send_header("Content-Type", "image/jpeg")
-        self.send_header("Content-Disposition", 'attachment;filename="museum.jpg"')
+        self.send_header("Content-Disposition", 'attachment;filename="{}"'.format(type(self).disposition))
+        if self.path in type(self).truncated:
+            self.send_header("Content-Length", str(len(payload) + 100))
         self.end_headers()
         self.wfile.write(payload)
 
@@ -57,6 +61,8 @@ class ImageHandler(BaseHTTPRequestHandler):
 def run_server():
     ImageHandler.requests = []
     ImageHandler.unavailable = set()
+    ImageHandler.truncated = set()
+    ImageHandler.disposition = "museum.jpg"
     server = ThreadingHTTPServer(("127.0.0.1", 0), ImageHandler)
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
@@ -151,5 +157,35 @@ def test_estimate_accounts_for_unavailable_images(tmp_path):
         assert report["estimated_total_bytes"] == len(b"first-image") + len(b"third")
         assert len(report["errors"]) == 1
     finally:
+        server.shutdown()
+        server.server_close()
+
+
+def test_rejects_truncated_body_and_names_files_by_signature(tmp_path):
+    source = tmp_path / "input.parquet"
+    output = tmp_path / "images"
+    server = run_server()
+    make_input(source, server.server_port)
+    ImageHandler.truncated.add("/images/second")
+    ImageHandler.disposition = "museum.tif"
+    original = dict(ImageHandler.payloads)
+    ImageHandler.payloads["/images/first"] = b"\x89PNG\r\n\x1a\nrest-of-png"
+    try:
+        completed = run_cli(source, output)
+        assert completed.returncode == 1
+        assert (output / "101" / "001_first.png").read_bytes() == ImageHandler.payloads["/images/first"]
+        assert (output / "102" / "001_third.tif").read_bytes() == b"third"
+        assert not list((output / "101").glob("002_second*"))
+        report = json.loads((output / "image_download_report.json").read_text(encoding="utf-8"))
+        assert report["counts"]["failed"] == 1
+        assert report["errors"][0]["image_index"] == 2
+        ImageHandler.truncated.clear()
+        resumed = run_cli(source, output, "--verify-hashes")
+        assert resumed.returncode == 0, resumed.stdout + resumed.stderr
+        report = json.loads((output / "image_download_report.json").read_text(encoding="utf-8"))
+        assert report["counts"] == {"requested": 3, "downloaded": 1, "skipped": 2, "failed": 0}
+    finally:
+        ImageHandler.payloads.clear()
+        ImageHandler.payloads.update(original)
         server.shutdown()
         server.server_close()

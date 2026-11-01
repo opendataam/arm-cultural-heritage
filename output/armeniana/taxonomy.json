@@ -1,84 +1,4 @@
 {
-  "persons": [
-    {
-      "id": "person.hovhannes_aivazovsky",
-      "name_en": "Hovhannes Aivazovsky",
-      "name_ru": "Иван Оганесович Айвазовский",
-      "primary_theme_id": "art"
-    },
-    {
-      "id": "person.aram_khachaturian",
-      "name_en": "Aram Khachaturian",
-      "name_ru": "Арам Хачатурян",
-      "primary_theme_id": "music"
-    },
-    {
-      "id": "person.martiros_saryan",
-      "name_en": "Martiros Saryan",
-      "name_ru": "Мартирос Сарьян",
-      "primary_theme_id": "art"
-    },
-    {
-      "id": "person.komitas",
-      "name_en": "Komitas",
-      "name_ru": "Комитас",
-      "primary_theme_id": "music"
-    },
-    {
-      "id": "person.sayat_nova",
-      "name_en": "Sayat-Nova",
-      "name_ru": "Саят-Нова",
-      "primary_theme_id": "language_literature"
-    },
-    {
-      "id": "person.hovhannes_tumanyan",
-      "name_en": "Hovhannes Tumanyan",
-      "name_ru": "Ованес Туманян",
-      "primary_theme_id": "language_literature"
-    },
-    {
-      "id": "person.sergei_parajanov",
-      "name_en": "Sergei Parajanov",
-      "name_ru": "Сергей Параджанов",
-      "primary_theme_id": "performing_audiovisual"
-    },
-    {
-      "id": "person.mesrop_mashtots",
-      "name_en": "Mesrop Mashtots",
-      "name_ru": "Месроп Маштоц",
-      "primary_theme_id": "manuscripts_books"
-    },
-    {
-      "id": "person.yeghishe_charents",
-      "name_en": "Yeghishe Charents",
-      "name_ru": "Егише Чаренц",
-      "primary_theme_id": "language_literature"
-    },
-    {
-      "id": "person.grigor_narekatsi",
-      "name_en": "Grigor Narekatsi",
-      "name_ru": "Григор Нарекаци",
-      "primary_theme_id": "language_literature"
-    },
-    {
-      "id": "person.movses_khorenatsi",
-      "name_en": "Movses Khorenatsi",
-      "name_ru": "Мовсес Хоренаци",
-      "primary_theme_id": "language_literature"
-    },
-    {
-      "id": "person.paruyr_sevak",
-      "name_en": "Paruyr Sevak",
-      "name_ru": "Паруйр Севак",
-      "primary_theme_id": "language_literature"
-    },
-    {
-      "id": "person.toros_roslin",
-      "name_en": "Toros Roslin",
-      "name_ru": "Торос Рослин",
-      "primary_theme_id": "manuscripts_books"
-    }
-  ],
   "version": "1.0.0",
   "zones": [
     {
@@ -86,9 +6,9 @@
       "name_ru": "История, пространство и память",
       "themes": [
         {
-          "europeana_theme": "Archaeology",
           "id": "archaeology",
           "name_ru": "Археология и древняя Армения",
+          "europeana_theme": "Archaeology",
           "subthemes": [
             {
               "id": "archaeology.prehistory",
@@ -125,9 +45,9 @@
           ]
         },
         {
-          "europeana_theme": "World War I",
           "id": "history",
           "name_ru": "История Армении, войны и общественная жизнь",
+          "europeana_theme": "World War I",
           "subthemes": [
             {
               "id": "history.ancient_medieval",
@@ -180,9 +100,9 @@
           ]
         },
         {
-          "europeana_theme": null,
           "id": "genocide",
           "name_ru": "Геноцид армян: свидетельства и память",
+          "europeana_theme": null,
           "subthemes": [
             {
               "id": "genocide.events_1915",
@@ -211,9 +131,9 @@
           ]
         },
         {
-          "europeana_theme": "Migration",
           "id": "diaspora",
           "name_ru": "Диаспора и миграция",
+          "europeana_theme": "Migration",
           "subthemes": [
             {
               "id": "diaspora.migration_routes",
@@ -254,9 +174,9 @@
           ]
         },
         {
-          "europeana_theme": "Maps and Geography",
           "id": "maps_geography",
           "name_ru": "Карты, историческая география и путешествия",
+          "europeana_theme": "Maps and Geography",
           "subthemes": [
             {
               "id": "maps_geography.historical_maps",
@@ -291,9 +211,9 @@
       "name_ru": "Искусство, архитектура и аудиовизуальное наследие",
       "themes": [
         {
-          "europeana_theme": null,
           "id": "architecture",
           "name_ru": "Архитектура и памятники",
+          "europeana_theme": null,
           "subthemes": [
             {
               "id": "architecture.religious",
@@ -346,9 +266,9 @@
           ]
         },
         {
-          "europeana_theme": "Art",
           "id": "art",
           "name_ru": "Изобразительное искусство",
+          "europeana_theme": "Art",
           "subthemes": [
             {
               "id": "art.painting",
@@ -401,9 +321,9 @@
           ]
         },
         {
-          "europeana_theme": "Photography",
           "id": "photography",
           "name_ru": "Фотография",
+          "europeana_theme": "Photography",
           "subthemes": [
             {
               "id": "photography.early",
@@ -444,9 +364,9 @@
           ]
         },
         {
-          "europeana_theme": "Music",
           "id": "music",
           "name_ru": "Музыка",
+          "europeana_theme": "Music",
           "subthemes": [
             {
               "id": "music.sacred",
@@ -495,9 +415,9 @@
           ]
         },
         {
-          "europeana_theme": "Audiovisual Heritage",
           "id": "performing_audiovisual",
           "name_ru": "Театр, кино, танец и аудиовизуальное наследие",
+          "europeana_theme": "Audiovisual Heritage",
           "subthemes": [
             {
               "id": "performing_audiovisual.drama_theatre",
@@ -552,9 +472,9 @@
       "name_ru": "Книга, слово и документальное наследие",
       "themes": [
         {
-          "europeana_theme": "Manuscripts",
           "id": "manuscripts_books",
           "name_ru": "Рукописи, книга и армянская письменность",
+          "europeana_theme": "Manuscripts",
           "subthemes": [
             {
               "id": "manuscripts_books.alphabet",
@@ -603,9 +523,9 @@
           ]
         },
         {
-          "europeana_theme": null,
           "id": "language_literature",
           "name_ru": "Армянский язык, литература и фольклор",
+          "europeana_theme": null,
           "subthemes": [
             {
               "id": "language_literature.armenian_text",
@@ -670,9 +590,9 @@
           ]
         },
         {
-          "europeana_theme": "Newspapers",
           "id": "press_archives",
           "name_ru": "Пресса, архивы и документальное наследие",
+          "europeana_theme": "Newspapers",
           "subthemes": [
             {
               "id": "press_archives.newspapers",
@@ -719,9 +639,9 @@
       "name_ru": "Религия, традиции и повседневная жизнь",
       "themes": [
         {
-          "europeana_theme": null,
           "id": "religion",
           "name_ru": "Армянская церковь и религиозное наследие",
+          "europeana_theme": null,
           "subthemes": [
             {
               "id": "religion.christianization",
@@ -774,9 +694,9 @@
           ]
         },
         {
-          "europeana_theme": "Fashion",
           "id": "traditional_culture",
           "name_ru": "Народная культура, костюм и быт",
+          "europeana_theme": "Fashion",
           "subthemes": [
             {
               "id": "traditional_culture.taraz",
@@ -837,9 +757,9 @@
           ]
         },
         {
-          "europeana_theme": "Sport",
           "id": "sport",
           "name_ru": "Спорт и традиционные игры",
+          "europeana_theme": "Sport",
           "subthemes": [
             {
               "id": "sport.chess",
@@ -894,9 +814,9 @@
       "name_ru": "Предметные коллекции, природа и знания",
       "themes": [
         {
-          "europeana_theme": null,
           "id": "numismatics_philately",
           "name_ru": "Нумизматика, филателия и историческая символика",
+          "europeana_theme": null,
           "subthemes": [
             {
               "id": "numismatics_philately.coins",
@@ -957,9 +877,9 @@
           ]
         },
         {
-          "europeana_theme": "Natural History",
           "id": "natural_history",
           "name_ru": "Природа и естественная история",
+          "europeana_theme": "Natural History",
           "subthemes": [
             {
               "id": "natural_history.flora",
@@ -1016,9 +936,9 @@
           ]
         },
         {
-          "europeana_theme": "Industrial Heritage",
           "id": "science_industry",
           "name_ru": "Наука, образование, промышленность и техника",
+          "europeana_theme": "Industrial Heritage",
           "subthemes": [
             {
               "id": "science_industry.education",
@@ -1083,6 +1003,86 @@
           ]
         }
       ]
+    }
+  ],
+  "persons": [
+    {
+      "id": "person.hovhannes_aivazovsky",
+      "name_ru": "Иван Оганесович Айвазовский",
+      "name_en": "Hovhannes Aivazovsky",
+      "primary_theme_id": "art"
+    },
+    {
+      "id": "person.aram_khachaturian",
+      "name_ru": "Арам Хачатурян",
+      "name_en": "Aram Khachaturian",
+      "primary_theme_id": "music"
+    },
+    {
+      "id": "person.martiros_saryan",
+      "name_ru": "Мартирос Сарьян",
+      "name_en": "Martiros Saryan",
+      "primary_theme_id": "art"
+    },
+    {
+      "id": "person.komitas",
+      "name_ru": "Комитас",
+      "name_en": "Komitas",
+      "primary_theme_id": "music"
+    },
+    {
+      "id": "person.sayat_nova",
+      "name_ru": "Саят-Нова",
+      "name_en": "Sayat-Nova",
+      "primary_theme_id": "language_literature"
+    },
+    {
+      "id": "person.hovhannes_tumanyan",
+      "name_ru": "Ованес Туманян",
+      "name_en": "Hovhannes Tumanyan",
+      "primary_theme_id": "language_literature"
+    },
+    {
+      "id": "person.sergei_parajanov",
+      "name_ru": "Сергей Параджанов",
+      "name_en": "Sergei Parajanov",
+      "primary_theme_id": "performing_audiovisual"
+    },
+    {
+      "id": "person.mesrop_mashtots",
+      "name_ru": "Месроп Маштоц",
+      "name_en": "Mesrop Mashtots",
+      "primary_theme_id": "manuscripts_books"
+    },
+    {
+      "id": "person.yeghishe_charents",
+      "name_ru": "Егише Чаренц",
+      "name_en": "Yeghishe Charents",
+      "primary_theme_id": "language_literature"
+    },
+    {
+      "id": "person.grigor_narekatsi",
+      "name_ru": "Григор Нарекаци",
+      "name_en": "Grigor Narekatsi",
+      "primary_theme_id": "language_literature"
+    },
+    {
+      "id": "person.movses_khorenatsi",
+      "name_ru": "Мовсес Хоренаци",
+      "name_en": "Movses Khorenatsi",
+      "primary_theme_id": "language_literature"
+    },
+    {
+      "id": "person.paruyr_sevak",
+      "name_ru": "Паруйр Севак",
+      "name_en": "Paruyr Sevak",
+      "primary_theme_id": "language_literature"
+    },
+    {
+      "id": "person.toros_roslin",
+      "name_ru": "Торос Рослин",
+      "name_en": "Toros Roslin",
+      "primary_theme_id": "manuscripts_books"
     }
   ]
 }

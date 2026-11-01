@@ -23,9 +23,9 @@ def taxonomy():
 
 
 @pytest.fixture(scope="module")
-def tagger(taxonomy):
+def tagger(taxonomy, terms):
     themes, _, persons, rules = taxonomy
-    return ThemeTagger(themes, persons, rules)
+    return ThemeTagger(themes, persons, rules, terms)
 
 
 def test_taxonomy_has_complete_structure(taxonomy):
@@ -58,13 +58,39 @@ def test_tagger_uses_person_ids_without_treating_them_as_text(tagger):
     metadata, assignments = tagger.tag({
         "id": 2,
         "name": "Морской пейзаж",
+        "authors": ["Айвазовский Иван Константинович"],
         "typology": {"name": "живопись"},
         "armenia_matched_entities": ["person.hovhannes_aivazovsky", "person.unknown"],
+        "armenia_matched_terms": ["ru:иван айвазовский"],
     })
     assert metadata["armeniana_person_ids"] == ["person.hovhannes_aivazovsky"]
     assert "art.marine" in metadata["armeniana_subtheme_ids"]
     person_rule = next(row for row in assignments if "art.aivazovsky" in row["rule_ids"])
-    assert person_rule["matched_fields"] == ["armenia_matched_entities"]
+    assert person_rule["matched_fields"] == ["name"]
+
+
+def test_tagger_requires_subject_evidence_for_person_subthemes(tagger):
+    metadata, _ = tagger.tag({
+        "id": 7,
+        "name": "Отпечаток фотомеханический. Портрет художника И.К. Айвазовского",
+        "typology": {"name": "фотографии и негативы"},
+        "armenia_matched_entities": ["person.hovhannes_aivazovsky"],
+        "armenia_matched_terms": ["ru:иван айвазовский"],
+    })
+    assert metadata["armeniana_person_ids"] == ["person.hovhannes_aivazovsky"]
+    assert "art.marine" not in metadata["armeniana_subtheme_ids"]
+
+
+def test_tagger_ignores_person_entities_matched_only_by_surname(tagger):
+    metadata, _ = tagger.tag({
+        "id": 8,
+        "name": "Отдельный оттиск. Население армянской колонии в Астрахани. Хачатурян В.",
+        "typology": {"name": "предметы печатной продукции"},
+        "armenia_matched_entities": ["concept.armenian", "person.aram_khachaturian"],
+        "armenia_matched_terms": ["ru:армянский", "ru:хачатурян"],
+    })
+    assert metadata["armeniana_person_ids"] == []
+    assert "music.composers" not in metadata["armeniana_subtheme_ids"]
 
 
 def test_tagger_leaves_generic_records_unclassified(tagger):
@@ -119,7 +145,7 @@ def make_input(path, decisions=None):
         "Кредитный билет Армянской республики 100 рублей",
         "Эскиз декорации. Армянский театр",
         "Открытка. Армения",
-        "Морской пейзаж",
+        "Айвазовский И.К. Морской пейзаж",
         "Без вины виноватые",
     ]
     typologies = [
@@ -147,6 +173,7 @@ def make_input(path, decisions=None):
         "museum": pa.array([None] * len(names), pa.struct([pa.field("name", pa.string())])),
         "armenia_decision": pa.array(decisions, pa.string()),
         "armenia_matched_entities": pa.array(entities, pa.list_(pa.string())),
+        "armenia_matched_terms": pa.array([["ru:иван айвазовский"] if values else [] for values in entities], pa.list_(pa.string())),
     })
     pq.write_table(table, path)
 
@@ -177,7 +204,9 @@ def test_cli_end_to_end_writes_tagged_records_and_audit(tmp_path):
     report = json.loads((output / "report.json").read_text(encoding="utf-8"))
     assert report["counts"]["source_rows"] == 6
     assert report["counts"]["tagged"] == 4
+    assert report["counts"]["content_tagged"] + report["counts"]["structural_only"] == 4
     assert report["counts"]["unclassified"] == 2
+    assert report["input"]["path"] == str(source)
     assert report["counts"]["assignments"] == assignments.num_rows
     taxonomy = json.loads((output / "taxonomy.json").read_text(encoding="utf-8"))
     assert len(taxonomy["zones"]) == 5
@@ -199,3 +228,14 @@ def test_cli_rejects_unconfirmed_records(tmp_path):
     assert "Only confirmed include records" in completed.stderr
     assert not (output / "records.parquet").exists()
     assert not list(output.glob("*.tmp"))
+
+
+def test_tagger_ignores_natural_history_collection_places(tagger):
+    metadata, _ = tagger.tag({
+        "id": 9,
+        "name": "Тушка. Розовый скворец",
+        "findPlace": "Армения, Армавир обл., г. Армавир, зоопарк. Коллектор: Татевосян Т. Дата сбора: 05.06.2014",
+        "typology": {"name": "естественнонаучной коллекции"},
+        "armenia_matched_entities": [],
+    })
+    assert "archaeology.historic_cities" not in metadata["armeniana_subtheme_ids"]
