@@ -1,0 +1,45 @@
+{
+  "counts": {
+    "candidates": 3,
+    "card_errors": 0,
+    "duplicates": 0,
+    "exclude": 0,
+    "include": 3,
+    "review": 0
+  },
+  "download_notice": "The NEB user agreement prohibits mass automated downloading of NEB objects. Use only explicit bounded downloads of open documents unless the operator grants permission.",
+  "duration_seconds": 0.16,
+  "finished_at": "2026-11-01T07:15:24.987984+00:00",
+  "http": {
+    "cache_hits": 4,
+    "network_requests": 0
+  },
+  "outputs": {
+    "audit_sample": "output/neb_metadata_pilot/audit_sample.csv",
+    "errors": null,
+    "include": "output/neb_metadata_pilot/armenia_records.parquet",
+    "review": "output/neb_metadata_pilot/armenia_review.parquet"
+  },
+  "queries": [
+    {
+      "inspected": 3,
+      "query": "Армянский вопрос",
+      "total_results": 40
+    }
+  ],
+  "settings": {
+    "access": "open",
+    "delay_seconds": 1.0,
+    "max_records_per_query": 3,
+    "proxy": null,
+    "queries": [
+      "Армянский вопрос"
+    ]
+  },
+  "source": "neb",
+  "started_at": "2026-11-01T07:15:24.827627+00:00",
+  "terms": {
+    "path": "data/terms.csv",
+    "sha256": "8908712940ea1d76b3726056d23cb47f5609703459ebf35ace7eeefab76e579d"
+  }
+}

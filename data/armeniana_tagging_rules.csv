@@ -1,0 +1,225 @@
+rule_id,theme_id,subtheme_id,fields,pattern,negative_pattern,confidence
+archaeology.typology,archaeology,archaeology.collections,typology.name,предметы археологии,,high
+archaeology.general,archaeology,archaeology.expeditions,text,археолог|раскопк|археологическая экспедиция,,medium
+archaeology.prehistory,archaeology,archaeology.prehistory,text,палеолит|мезолит|неолит|энеолит|бронзов(?:ый|ого|ом) век|каменн(?:ый|ого) век,,high
+archaeology.urartu,archaeology,archaeology.urartu,text,урарт|урартск|ванское царство|ванского царства,,high
+archaeology.kingdoms,archaeology,archaeology.ancient_kingdoms,text,армянское царство|армянского царства|арташес|арташи|аршакуни|багратуни|тигран великий,,medium
+archaeology.cities,archaeology,archaeology.historic_cities,findPlace,ани|двин|арташат|гарни|армавир,коллектор|дата сбора|зоопарк,medium
+archaeology.material,archaeology,archaeology.material_culture,text,пифос|скребок|скребло|древняя керамика|археологическая керамика|каменное орудие|глиняная чаша,,medium
+archaeology.epigraphy,archaeology,archaeology.epigraphy,text,эпиграф|клинопис|древнеармянская надпись|армянская эпиграфика,,medium
+history.ancient,history,history.ancient_medieval,text,армянское царство|армянского царства|артакс|арташес|аршакуни|багратуни|тигран великий,,medium
+history.cilicia,history,history.cilicia,text,килики|киликийск,,high
+history.imperial,history,history.imperial_period,text,османская империя|османской империи|российская империя|российской империи|эриванская губерния|эриванской губернии|елизаветпольская губерния,,medium
+history.wwi,history,history.wwi,text,первая мировая война|первой мировой войны|кавказский фронт|кавказского фронта,,high
+history.first_republic,history,history.first_republic,text,первая республика армения|первой республики армения|армянская республика|армянской республики,,high
+history.soviet,history,history.soviet_armenia,text,армянская сср|армянской сср|армянская советская|армянской советской|советская армения|советской армении|сср армении,,high
+history.wwii,history,history.wwii,text,великая отечественная война|великой отечественной войны|вторая мировая война|второй мировой войны,,high
+history.independence,history,history.independence,text,независимая армения|независимой армении|независимость армении|республика армения|республики армения,,medium
+history.karabakh,history,history.karabakh,text,нагорный карабах|нагорного карабаха|арцах|карабах|шуши|шуша,,medium
+history.earthquake,history,history.earthquake_1988,text,землетрясение в армении|землетрясения в армении|спитакское землетрясение|спитакского землетрясения|пострадавшим от землетрясения|зона землетрясения,,high
+history.public,history,history.public_life,text,общественная организация|общественной организации|политическая история|съезд писателей|съезда писателей|делегат|министерство просвещения,,low
+history.weapons,history,history.military_heritage,typology.name,оружие,,high
+genocide.events,genocide,genocide.events_1915,text,геноцид армян|геноцида армян|геноциде армян|мец егерн|медз егерн|великое злодеяние,,high
+genocide.memorial,genocide,genocide.memorials,text,цицернакаберд|мемориал в память геноцида|мемориала в память геноцида|памятник жертвам геноцида|памятника жертвам геноцида,,high
+genocide.refugees,genocide,genocide.refugees_relief,text,беженцам армянам|беженцев армян|беженцы армяне|армянам в годину испытания|армянам в год испытаний,,high
+genocide.commemoration,genocide,genocide.commemoration,text,100-летия геноцида|100-летие геноцида|столетия геноцида|столетие геноцида|цветок незабудки,,high
+diaspora.general,diaspora,diaspora.culture,text,армянская диаспора|армянской диаспоры|армяне диаспоры|диаспора армян,,high
+diaspora.migration,diaspora,diaspora.migration_routes,text,переселение армян|переселении армян|переселенцы армяне|армянские переселенцы|армянская эмиграция|армянской эмиграции|армянская иммиграция,,high
+diaspora.refugees,diaspora,diaspora.forced_migration,text,беженцам армянам|беженцев армян|беженцы армяне|армянские беженцы|армянских беженцев,,high
+diaspora.russia,diaspora,diaspora.communities_russia,text,нахичевань-на-дону|нахичевань на дону|армяне на дону|армянская община ростова|армяне крыма|армян из крыма,,medium
+diaspora.georgia,diaspora,diaspora.communities_georgia,text,армяне тбилиси|армяне тифлиса|армянская община тбилиси|армянская община тифлиса|армяне грузии|армян грузии,,medium
+diaspora.iran,diaspora,diaspora.communities_iran,text,нор джуга|новая джульфа|армяне ирана|армянская община исфахана|армяне персии|армян персии,,medium
+diaspora.world,diaspora,diaspora.communities_world,text,армянская колония|армянской колонии|армянские колонии|армянская община|армянской общины|армянские общины,,medium
+diaspora.institutions,diaspora,diaspora.institutions,text,армянская общественная организация|армянской общественной организации|армянская культурная организация|армянского культурного центра|армянская школа диаспоры,,medium
+diaspora.return,diaspora,diaspora.return_memory,text,возвращение армян|возвращении армян|репатриация армян|репатриации армян|семейная память армян,,medium
+maps.maps,maps_geography,maps_geography.historical_maps,text,географическая карта|географической карты|историческая карта|исторической карты|атлас карт|атлас к книге|картографический|карта армении|карты армении,игральн|колода,high
+maps.regions,maps_geography,maps_geography.historical_regions,text,исторические области армении|исторических областей армении|топонимия армении|топонимики армении|историческая география армении,,medium
+maps.cities,maps_geography,maps_geography.city_plans,text,план города еревана|план города гюмри|генеральный план еревана|генерального плана еревана|кадастровая карта|кадастровой карты,,high
+maps.expeditions,maps_geography,maps_geography.expeditions,text,географическая экспедиция|географической экспедиции|картографическая экспедиция|маршрут экспедиции,,medium
+maps.travel,maps_geography,maps_geography.travel,text,путешествие по армении|путешествия по армении|путевые заметки об армении|виды армении|альбом видов армении|достопримечательности армении,,medium
+maps.cartographers,maps_geography,maps_geography.cartographers,text,картограф|географ|землемер,,low
+architecture.museum,architecture,architecture.collections,museum.name,музей архитектуры,,medium
+architecture.general,architecture,architecture.collections,text,архитектурный памятник|архитектурного памятника|архитектурный ансамбль|архитектурного ансамбля|архитектурный чертеж|архитектурного чертежа|архитектура армении|архитектуры армении,,high
+architecture.religious,architecture,architecture.religious,text,армянская церковь|армянской церкви|армянский собор|армянского собора|церковь в армении|церкви в армении|церковь армении|собор армении|храм армении|апсида|алтарная абсида,,high
+architecture.monasteries,architecture,architecture.monasteries,text,монастырский комплекс|монастырского комплекса|монастырский ансамбль|монастырского ансамбля|гегард|ахпат|санаин|нораванк|татев|гандзасар|гошаванк|агарцин|кечарис|одзун,,high
+architecture.khachkars,architecture,architecture.khachkars,text,хачкар|хачкаров,,high
+architecture.civic,architecture,architecture.civic,text,административное здание|административного здания|жилой дом|жилого дома|жилые дома|здание вычислительного центра|дом камерной музыки|драматический театр им|гостиница армения|павильон армянская сср,,medium
+architecture.urban,architecture,architecture.urban,text,градостроительство|генеральный план|генерального плана|жилой район|жилого района|городская застройка|городской застройки|новая площадь|проспект ленина,,medium
+architecture.modernism,architecture,architecture.soviet_modernism,text,советский модернизм|советского модернизма|каркасно-рамный|каркасно-рамного|панельный жилой дом|типовое здание|типового здания|подъемки этажей|подъемкиэтажей,,medium
+architecture.restoration,architecture,architecture.restoration,text,реставрация памятника|реставрации памятника|реставрация собора|реставрации собора|реставрация монастыря|реставрации монастыря|архитектурные обмеры|архитектурных обмеров|реконструкция памятника,,medium
+architecture.architects,architecture,architecture.architects,text,александр таманян|александра таманяна|торос тороманян|тороса тороманяна|архитектор таманян|архитектора таманяна,,high
+architecture.lost,architecture,architecture.lost_heritage,text,разрушенный памятник|разрушенного памятника|утраченный памятник|утраченного памятника|разрушенная церковь|разрушенной церкви|уничтожение хачкаров|уничтожения хачкаров,,medium
+art.painting,art,art.painting,typology.name,живопись,,high
+art.graphics,art,art.graphics,typology.name,графика,,high
+art.sculpture,art,art.sculpture,typology.name,скульптура,,high
+art.aivazovsky,art,art.marine,text,айвазовск[а-я]*(?=.*(?:мор[еяюо]|морск|корабл|шторм|бур[яиюе]|волн|залив|бухт|фрегат|парус|прибой|штил|девятый вал|маринист|рейд|флот|гаван|пристан|маяк))|(?:мор[еяюо]|морск|корабл|шторм|бур[яиюе]|волн|залив|бухт|фрегат|парус|прибой|штил|девятый вал|маринист|рейд|флот|гаван|пристан|маяк)[а-я]*(?=.*айвазовск),,high
+art.saryan,art,art.landscape,text,сарь?ян[а-я]*(?=.*(?:пейзаж|горы|горах|горн|арарат|арагац|долин|ущель|озер|севан|природ|весенн|осенн|летн|зимн|холм|ландшафт|дворик))|(?:пейзаж|горы|горах|горн|арарат|арагац|долин|ущель|озер|севан|природ|весенн|осенн|летн|зимн|холм|ландшафт|дворик)[а-я]*(?=.*сарь?ян),,high
+art.roslin,art,art.miniature,armenia_matched_entities,person[.]toros_roslin,,high
+art.miniature,art,art.miniature,text,армянская миниатюра|армянской миниатюры|торос рослин|тороса рослина|иллюминированная рукопись,,high
+art.landscape,art,art.landscape,text,армянский пейзаж|армянского пейзажа|армянская художественная школа|армянской художественной школы|пейзаж армении|пейзажи армении,,medium
+art.portrait,art,art.portrait,text,художественный портрет|художественного портрета|жанровая сцена|жанровой сцены|портрет маслом|портрета маслом,,medium
+art.modernism,art,art.modernism,text,армянский авангард|армянского авангарда|армянский модернизм|армянского модернизма|аршиле горки|аршил горки|сюрреализм армян,,medium
+art.posters,art,art.posters,text,плакат|афиша|карикатура|литографский плакат,,medium
+art.book_graphics,art,art.book_graphics,text,экслибрис|книжная графика|книжной графики|иллюстрация к книге|иллюстрации к книге,,medium
+art.stage,art,art.stage_design,text,эскиз декорации|эскиза декорации|эскиз костюма|эскиза костюма|сценография|сценографии,,high
+art.general,art,art.movements,text,художественная выставка|художественной выставки|союз художников армении|союза художников армении|армянский художник|армянского художника|армянская художница,,medium
+photography.typology,photography,photography.collections,typology.name,фотографии и негативы,,high
+photography.general,photography,photography.collections,text,фотография|фотографии|фотопортрет|фотоальбом|фотоподборка|фотонегатив|стеклянный негатив,,medium
+photography.early,photography,photography.early,text,фотоателье|фотографическое ателье|ранняя фотография армян|армянский фотограф xix|армянского фотографа xix,,medium
+photography.ermakov,photography,photography.photographers,text,ермаков д|ермакова д|дмитрий ермаков|дмитрия ермакова,,high
+photography.ethnographic,photography,photography.ethnographic,text,этнографическая фотография|этнографической фотографии|этнографический фотопортрет|фотография типы армян|фотографии типы армян,,medium
+photography.portrait,photography,photography.portrait,text,семейный фотоальбом|семейного фотоальбома|семейная фотография|семейной фотографии|групповой фотопортрет|группового фотопортрета,,medium
+photography.events,photography,photography.events,text,документальная фотография|документальной фотографии|фотография исторического события|фотохроника|фотолетопись,,medium
+music.museum,music,music.collections,museum.name,национальный музей музыки|музей музыкальной культуры|музей музыки,,medium
+music.general,music,music.classical,text,армянская музыка|армянской музыки|армянская музыкальная культура|армянской музыкальной культуры|армянский композитор|армянского композитора|симфоническая музыка|камерная музыка|консерватория,,high
+music.sacred,music,music.sacred,text,шаракан|шараканы|духовная музыка армян|духовной музыки армян|армянская нотация|армянской нотации|армянские духовные песнопения,,high
+music.folk,music,music.folk,text,армянская народная музыка|армянской народной музыки|армянская народная песня|армянской народной песни|армянские народные песни|армянских народных песен|музыкальный фольклор армении,,high
+music.ashugh,music,music.ashugh,text,ашуг|ашуги|ашух|ашуги армян|армянские ашуги|саят-нова|шара тальян,,high
+music.opera,music,music.opera_ballet,text,армянская опера|армянской оперы|армянский балет|армянского балета|театр оперы и балета|оперный театр|балет спартак|балета спартак,,high
+music.instruments,music,music.instruments,text,дудук|зурна|кяманча|каманча|дхол|армянский тар|армянского тара|народные музыкальные инструменты|народных музыкальных инструментов,,high
+music.khachaturian,music,music.composers,armenia_matched_entities,person[.]aram_khachaturian,,high
+music.komitas,music,music.composers,armenia_matched_entities,person[.]komitas,,high
+music.composers,music,music.composers,text,комитас|спендиаров|спендиарян|бабаджанян|экимян|тигран мансурян|тиграна мансуряна,,high
+music.performers,music,music.performers,text,армянский певец|армянского певца|армянская певица|армянской певицы|армянский дирижер|армянского дирижера|армянский скрипач|армянского скрипача,,medium
+music.musicology,music,music.musicology,text,музыковедение|музыковедения|музыкальная критика|музыкальной критики|сольфеджио|музыкальное образование|музыкального образования,,medium
+music.recordings,music,music.recordings,text,грампластинка|грампластинки|виниловая пластинка|виниловой пластинки|звукозапись|звукозаписи|нотное издание|нотного издания,,high
+music.sayat,music,music.ashugh,armenia_matched_entities,person[.]sayat_nova,,high
+performing.theatre_museum,performing_audiovisual,performing_audiovisual.drama_theatre,museum.name,театральный музей,,medium
+performing.cinema_museum,performing_audiovisual,performing_audiovisual.cinema,museum.name,музей кино,,medium
+performing.theatre,performing_audiovisual,performing_audiovisual.drama_theatre,text,армянский театр|армянского театра|драматический театр|драматического театра|ереванский театр|ереванского театра|театр драмы|театра драмы|театр оперы|театра оперы|театр сундукяна|театра сундукяна|театральная постановка|театральной постановки,,high
+performing.actors,performing_audiovisual,performing_audiovisual.actors_directors,text,армянский актер|армянского актера|армянская актриса|армянской актрисы|армянский режиссер|армянского режиссера|папазян|аджемян|сундукян|нерсисян,,medium
+performing.stage,performing_audiovisual,performing_audiovisual.stage_design,text,эскиз декорации|эскиза декорации|эскиз костюма|эскиза костюма|сценический костюм|сценического костюма|сценография|сценографии,,high
+performing.opera,performing_audiovisual,performing_audiovisual.opera_ballet,text,театр оперы и балета|театра оперы и балета|оперный спектакль|оперного спектакля|балетный спектакль|балетного спектакля|балет антуни|балета антуни|опера алмаст|оперы алмаст,,high
+performing.cinema,performing_audiovisual,performing_audiovisual.cinema,text,армянское кино|армянского кино|армянский фильм|армянского фильма|армянский кинематограф|армянского кинематографа|кинофильм|кинорежиссер,,high
+performing.armenfilm,performing_audiovisual,performing_audiovisual.armenfilm,text,арменфильм|арменфильма|ереванская киностудия|ереванской киностудии,,high
+performing.parajanov,performing_audiovisual,performing_audiovisual.parajanov,armenia_matched_entities,person[.]sergei_parajanov,,high
+performing.animation,performing_audiovisual,performing_audiovisual.animation,text,армянская анимация|армянской анимации|армянский мультфильм|армянского мультфильма|армянская мультипликация|армянской мультипликации,,medium
+performing.radio,performing_audiovisual,performing_audiovisual.radio_tv,text,армянское телевидение|армянского телевидения|армянское радио|армянского радио|радио ереван|телевидение армении|телевидения армении,,medium
+performing.dance,performing_audiovisual,performing_audiovisual.dance,text,армянский танец|армянского танца|армянские танцы|армянских танцев|армянский народный танец|армянского народного танца|хореографический ансамбль армении,,high
+performing.oral,performing_audiovisual,performing_audiovisual.oral_history,text,устная история армян|устной истории армян|видеосвидетельство|видеосвидетельства|аудиосвидетельство|аудиосвидетельства|видеоинтервью|аудиоинтервью,,medium
+manuscripts.typology,manuscripts_books,manuscripts_books.collections,typology.name,редкие книги,,high
+manuscripts.general,manuscripts_books,manuscripts_books.manuscript_books,text,армянская рукопись|армянской рукописи|армянские рукописи|армянских рукописей|рукописная книга|рукописной книги|книга рукописная|книги рукописной|манускрипт|кодекс|палимпсест,,high
+manuscripts.fragments,manuscripts_books,manuscripts_books.fragments,text,фрагмент армянской рукописи|фрагмента армянской рукописи|лист армянской рукописи|листа армянской рукописи|фрагмент рукописного евангелия,,high
+manuscripts.alphabet,manuscripts_books,manuscripts_books.alphabet,text,месроп маштоц|месропа маштоца|армянский алфавит|армянского алфавита|армянская письменность|армянской письменности|создание армянской письменности,,high
+manuscripts.mashtots,manuscripts_books,manuscripts_books.alphabet,armenia_matched_entities,person[.]mesrop_mashtots,,high
+manuscripts.gospels,manuscripts_books,manuscripts_books.gospels_liturgical,text,евангелие|евангелия|псалтырь|псалтыри|молитвенник|молитвенника|часослов|часослова|богослужебная книга|богослужебной книги|литургическая книга,,high
+manuscripts.illumination,manuscripts_books,manuscripts_books.illumination,text,миниатюра рукописи|миниатюры рукописи|иллюминированная рукопись|иллюминированной рукописи|книжное убранство|книжного убранства|торос рослин|тороса рослина,,high
+manuscripts.roslin,manuscripts_books,manuscripts_books.illumination,armenia_matched_entities,person[.]toros_roslin,,high
+manuscripts.matenadaran,manuscripts_books,manuscripts_books.matenadaran,text,матенадаран|матенадарана,,high
+manuscripts.paleography,manuscripts_books,manuscripts_books.paleography_restoration,text,палеография|палеографии|реставрация рукописи|реставрации рукописи|реставрация рукописной книги|реставрации рукописной книги,,medium
+manuscripts.printing,manuscripts_books,manuscripts_books.early_printing,text,армянское книгопечатание|армянского книгопечатания|армянский первопечатник|армянского первопечатника|первая армянская печатная книга|первой армянской печатной книги|армянская типография|армянской типографии,,high
+manuscripts.publishing,manuscripts_books,manuscripts_books.publishing_diaspora,text,армянское издательство|армянского издательства|армянские издательства|армянских издательств|издательство айастан|издательства айастан|советакан грох|айпетрат,,medium
+manuscripts.design,manuscripts_books,manuscripts_books.book_design,text,книжный переплет|книжного переплета|переплет рукописи|переплета рукописи|экслибрис|книжная иллюстрация|книжной иллюстрации|книжный дизайн,,medium
+literature.armenian_text,language_literature,language_literature.armenian_text,text,армянский язык|армянского языка|армянском языке,,high
+literature.language,language_literature,language_literature.language_history,text,история армянского языка|истории армянского языка|армянская грамматика|армянской грамматики|древнеармянский язык|древнеармянского языка|грабар|ашхарабар,,high
+literature.variants,language_literature,language_literature.eastern_western,text,восточноармянский|восточноармянского|западноармянский|западноармянского|восточный вариант армянского|западный вариант армянского,,high
+literature.dialects,language_literature,language_literature.dialects,text,армянский диалект|армянского диалекта|армянские диалекты|армянских диалектов|диалекты армении|диалектов армении,,medium
+literature.khorenatsi,language_literature,language_literature.historiography,armenia_matched_entities,person[.]movses_khorenatsi,,high
+literature.narekatsi,language_literature,language_literature.spiritual_poetry,armenia_matched_entities,person[.]grigor_narekatsi,,high
+literature.historiography,language_literature,language_literature.historiography,text,мовсес хоренаци|мовсеса хоренаци|армянская историография|армянской историографии|история армении мовсеса|армянский историограф,,high
+literature.medieval,language_literature,language_literature.medieval_literature,text,армянская средневековая литература|армянской средневековой литературы|древнеармянская литература|древнеармянской литературы|средневековый армянский поэт,,medium
+literature.spiritual,language_literature,language_literature.spiritual_poetry,text,григор нарекаци|григора нарекаци|книга скорбных песнопений|книги скорбных песнопений|армянская духовная поэзия|армянской духовной поэзии,,high
+literature.tumanyan,language_literature,language_literature.poetry,armenia_matched_entities,person[.]hovhannes_tumanyan,,high
+literature.charents,language_literature,language_literature.poetry,armenia_matched_entities,person[.]yeghishe_charents,,high
+literature.sevak,language_literature,language_literature.poetry,armenia_matched_entities,person[.]paruyr_sevak,,high
+literature.poetry,language_literature,language_literature.poetry,text,чаренц|исаакян|паруйр севак|паруйра севака|ованес шираз|армянский поэт|армянского поэта|армянская поэтесса|армянская поэзия|армянской поэзии,,high
+literature.prose,language_literature,language_literature.prose_drama,text,армянский писатель|армянского писателя|армянская писательница|армянская проза|армянской прозы|армянская драматургия|армянской драматургии|аксел бакунц|аксела бакунца|ширванзаде|раффи|хачатур абовян|хачатура абовяна|сароян,,high
+literature.diaspora,language_literature,language_literature.diaspora_literature,text,литература армянской диаспоры|литературы армянской диаспоры|писатель армянской диаспоры|армянский писатель диаспоры|западноармянская литература|западноармянской литературы,,medium
+literature.epic,language_literature,language_literature.david_sassoun,text,давид сасунский|давида сасунского|сасна црер|сасунский эпос|сасунского эпоса|армянский народный эпос|армянского народного эпоса,,high
+literature.folktales,language_literature,language_literature.folk_tales,text,армянские сказки|армянских сказок|армянская сказка|армянской сказки|армянские легенды|армянских легенд|армянские пословицы|армянских пословиц|армянский фольклор|армянского фольклора,,high
+literature.sayat,language_literature,language_literature.ashugh_poetry,armenia_matched_entities,person[.]sayat_nova,,high
+literature.ashugh,language_literature,language_literature.ashugh_poetry,text,ашугская поэзия|ашугской поэзии|армянский ашуг|армянского ашуга|армянские ашуги|армянских ашугов|саят-нова,,high
+literature.translations,language_literature,language_literature.translations,text,перевод с армянского|перевода с армянского|перевод на армянский|перевода на армянский|армянский переводчик|армянского переводчика|переводы армянской поэзии,,medium
+literature.studies,language_literature,language_literature.literary_studies,text,армянское литературоведение|армянского литературоведения|армянская литературная критика|армянской литературной критики|история армянской литературы|истории армянской литературы,,medium
+press.typology,press_archives,press_archives.collections,typology.name,документы,,high
+press.newspapers,press_archives,press_archives.newspapers,text,армянская газета|армянской газеты|армянские газеты|армянских газет|газета на армянском|газеты на армянском|газета коммунист|газеты коммунист|газета айастан|периодическая печать армении,,high
+press.journals,press_archives,press_archives.journals,text,армянский журнал|армянского журнала|армянские журналы|армянских журналов|журнал на армянском|журнала на армянском|армянский альманах|армянского альманаха|научный бюллетень еревана,,medium
+press.diaspora,press_archives,press_archives.diaspora_press,text,газета армянской диаспоры|газеты армянской диаспоры|пресса армянской диаспоры|прессы армянской диаспоры|армянская газета диаспоры|армянский журнал диаспоры,,high
+press.personal,press_archives,press_archives.personal_archives,text,личный фонд|личного фонда|семейный архив|семейного архива|личный архив|личного архива|дневник армянского|дневника армянского,,high
+press.correspondence,press_archives,press_archives.correspondence,text,письмо|письма|переписка|переписки|телеграмма|телеграммы|дневник|дневника,,medium
+press.institutional,press_archives,press_archives.institutional_archives,text,архив учреждения|архива учреждения|архив организации|архива организации|фонд музея|фонда музея|делопроизводство|документы организации|документов организации,,medium
+press.official,press_archives,press_archives.official_documents,text,удостоверение|удостоверения|официальный документ|официального документа|приказ|приказа|протокол|протокола|диплом|диплома|свидетельство|свидетельства|мандат,,medium
+press.ephemera,press_archives,press_archives.ephemera,text,программа спектакля|программы спектакля|программа театра|программы театра|программа ереванского театра|программы ереванского театра|программа концерта|программы концерта|программа вечера|программы вечера|театральная афиша|театральной афиши|листовка|листовки|брошюра|брошюры|пригласительный билет|пригласительного билета,,medium
+religion.apostolic,religion,religion.apostolic_church,text,армянская апостольская церковь|армянской апостольской церкви|армянская церковь|армянской церкви|армянский собор|армянского собора,,high
+religion.sites,religion,religion.monasteries_education,text,армянский монастырь|армянского монастыря|монастырь армении|монастыря армении|монастырь в армении|монастыря в армении|эчмиадзинский монастырь|эчмиадзинского монастыря|гегард|ахпат|санаин|нораванк|татев|гандзасар|гошаванк|агарцин|кечарис|одзун,,high
+religion.christianization,religion,religion.christianization,text,григорий просветитель|григория просветителя|григор просветитель|григора просветителя|принятие христианства арменией|принятия христианства арменией|крещение армении|крещения армении,,high
+religion.etchmiadzin,religion,religion.etchmiadzin,text,эчмиадзин|эчмиадзина|эчмиадзинский католикосат|эчмиадзинского католикосата|первопрестольный святой эчмиадзин,,high
+religion.catholicoi,religion,religion.catholicoi,text,католикос|католикоса|католикос всех армян|католикоса всех армян|вазген i|вазгена i|гарегин i|гарегина i,,high
+religion.dioceses,religion,religion.dioceses,text,армянская епархия|армянской епархии|армянские епархии|армянских епархий|армянский приход|армянского прихода|армянская церковная община,,medium
+religion.catholic,religion,religion.catholic_evangelical,text,армянская католическая церковь|армянской католической церкви|армяно-католическая|армяно-католической|армянская евангельская церковь|армянской евангельской церкви|армяно-евангельская|армяно-евангельской,,high
+religion.objects,religion,religion.liturgical_objects,text,потир|потира|кадило|кадила|церковная утварь|церковной утвари|реликварий|реликвария|осеняльный крест|осеняльного креста|богослужебный крест|богослужебного креста,,high
+religion.vestments,religion,religion.vestments,text,епитрахиль|епитрахили|церковная мантия|церковной мантии|облачение священника|облачения священника|поручи|церковный платок|церковного платка|архиерейский саккос,,high
+religion.icons,religion,religion.icons_manuscripts,text,армянская икона|армянской иконы|армянские иконы|армянских икон|рукописное евангелие|рукописного евангелия|армянская книжная миниатюра|армянской книжной миниатюры,,high
+religion.rituals,religion,religion.rituals,text,армянское богослужение|армянского богослужения|армянская литургия|армянской литургии|таинство крещения|таинства крещения|вартавар|сурб хач|армянский церковный праздник,,high
+religion.music,religion,religion.sacred_music,text,шаракан|шараканы|армянские духовные песнопения|армянских духовных песнопений|армянская духовная музыка|армянской духовной музыки,,high
+religion.education,religion,religion.monasteries_education,text,монастырская школа|монастырской школы|армянская духовная семинария|армянской духовной семинарии|духовная академия эчмиадзина|монастырский скрипторий,,medium
+traditional.typology,traditional_culture,traditional_culture.collections,typology.name,прикладного искусства|бытовой этнографии|бытовой и этнографии,,high
+traditional.taraz,traditional_culture,traditional_culture.taraz,text,тараз|армянский национальный костюм|армянского национального костюма|армянский традиционный костюм|армянского традиционного костюма,,high
+traditional.clothing,traditional_culture,traditional_culture.clothing,text,армянская рубаха|армянской рубахи|армянское пальто|армянского пальто|армянский платок|армянского платка|армянская шапка|армянской шапки|армянская одежда|армянской одежды|армянская обувь|армянской обуви|национальная одежда армян,,high
+traditional.textiles,traditional_culture,traditional_culture.textiles,text,армянский текстиль|армянского текстиля|армянское ткачество|армянского ткачества|армянская ткань|армянской ткани|армянский войлок|армянского войлока,,medium
+traditional.carpets,traditional_culture,traditional_culture.carpets,text,армянский ковер|армянского ковра|армянские ковры|армянских ковров|карабахский ковер|карабахского ковра|армянский килим|армянского килима,,high
+traditional.embroidery,traditional_culture,traditional_culture.embroidery,text,армянская вышивка|армянской вышивки|армянское кружево|армянского кружева|армянская мережка|армянской мережки,,high
+traditional.jewelry,traditional_culture,traditional_culture.jewelry,text,армянские украшения|армянских украшений|армянское украшение|армянского украшения|армянские серьги|армянских серег|армянское ожерелье|армянского ожерелья|армянский ювелир|армянского ювелира,,high
+traditional.metal,traditional_culture,traditional_culture.metalwork,text,армянская чеканка|армянской чеканки|армянское серебро|армянского серебра|армянская медь|армянской меди|армянский металл|армянского металла,,medium
+traditional.crafts,traditional_culture,traditional_culture.ceramics_wood,text,армянская керамика|армянской керамики|армянская гончарная|армянской гончарной|армянская резьба по дереву|армянской резьбы по дереву|армянские ремесла|армянских ремесел|армянское ремесло|армянского ремесла,,medium
+traditional.household,traditional_culture,traditional_culture.household,text,армянская домашняя утварь|армянской домашней утвари|армянский быт|армянского быта|армянский интерьер|армянского интерьера|армянский мангал|армянского мангала|армянская турка|армянской турки,,medium
+traditional.rituals,traditional_culture,traditional_culture.rituals,text,армянская свадьба|армянской свадьбы|армянские свадебные обряды|армянских свадебных обрядов|армянские народные обряды|армянских народных обрядов|армянский народный праздник|армянского народного праздника|вартавар,,high
+traditional.cuisine,traditional_culture,traditional_culture.cuisine,text,армянская кухня|армянской кухни|лаваш|долма|толма|гата|бастурма|суджук|тонир|армянские сладости|армянских сладостей,,high
+traditional.wine,traditional_culture,traditional_culture.winemaking,text,армянское виноделие|армянского виноделия|армянский коньяк|армянского коньяка|ереванский коньячный завод|ереванского коньячного завода|армянское вино|армянского вина,,high
+traditional.trade,traditional_culture,traditional_culture.crafts_trade,text,армянский купец|армянского купца|армянские купцы|армянских купцов|армянский ремесленник|армянского ремесленника|армянские ремесленники|армянских ремесленников|армянская торговля|армянской торговли,,medium
+sport.general,sport,sport.clubs,text,спорт|спортсмен|олимпи|спартакиад|чемпион|армянский спорт|армянского спорта|спорт в армении|спорта в армении|армянская спортивная|армянской спортивной|спортивный клуб еревана|спортивного клуба еревана,,medium
+sport.chess,sport,sport.chess,text,шахмат|тигран петросян|тиграна петросяна|левон аронян|левона ароняна,,high
+sport.wrestling,sport,sport.wrestling,text,армянская борьба|армянской борьбы|армянский борец|армянского борца|армянские борцы|армянских борцов|борьба самбо|борьбы самбо|греко-римская борьба|греко-римской борьбы,,high
+sport.koh,sport,sport.koh,text,борьба кох|борьбы кох|народная борьба кох|народной борьбы кох,,high
+sport.weight,sport,sport.weightlifting_boxing,text,тяжелая атлетика|тяжелой атлетики|армянский штангист|армянского штангиста|армянский боксер|армянского боксера|юрик варданян|юрика варданяна,,high
+sport.gymnastics,sport,sport.gymnastics,text,армянская гимнастика|армянской гимнастики|армянский гимнаст|армянского гимнаста|армянская гимнастка|армянской гимнастки|спортивная гимнастика армении,,high
+sport.football,sport,sport.football,text,армянский футбол|армянского футбола|футбол в армении|футбола в армении|футбольный клуб арарат|футбольного клуба арарат|сборная армении по футболу|сборной армении по футболу,,high
+sport.olympics,sport,sport.olympics,text,олимпийские игры|олимпийских игр|олимпийский чемпион|олимпийского чемпиона|спартакиада народов ссср|спартакиады народов ссср|спартакиада школьников|спартакиады школьников,,high
+sport.athletes,sport,sport.athletes,text,армянский спортсмен|армянского спортсмена|армянская спортсменка|армянской спортсменки|армянский тренер|армянского тренера|чемпион армении|чемпиона армении,,medium
+sport.memorabilia,sport,sport.memorabilia,text,спортивная марка|спортивной марки|спортивный значок|спортивного значка|спортивный плакат|спортивного плаката|спортивная открытка|спортивной открытки,,medium
+sport.games,sport,sport.games,text,армянские народные игры|армянских народных игр|армянская народная игра|армянской народной игры|традиционные игры армян|традиционных игр армян,,medium
+numismatics.typology,numismatics_philately,numismatics_philately.collections,typology.name,предметы нумизматики,,high
+numismatics.coins,numismatics_philately,numismatics_philately.coins,text,монета|монеты|нумизматика|нумизматики|чеканка монет|чеканки монет|драхма|драхмы|тетрадрахма|тетрадрахмы,,high
+numismatics.ancient,numismatics_philately,numismatics_philately.ancient_coins,text,монета тиграна|монеты тиграна|монета арташеса|монеты арташеса|монета армении|монеты армении|армянская монета|армянской монеты|монета армянского царства|монеты армянского царства,,high
+numismatics.cilicia,numismatics_philately,numismatics_philately.cilician_coins,text,монета киликии|монеты киликии|киликийская монета|киликийской монеты|монета киликийской армении|монеты киликийской армении|киликийский драм|киликийского драма,,high
+numismatics.first_republic,numismatics_philately,numismatics_philately.first_republic_money,text,кредитный билет армянской республики|кредитного билета армянской республики|денежный знак первой республики|денежного знака первой республики|банкнота первой республики|банкноты первой республики,,high
+numismatics.dram,numismatics_philately,numismatics_philately.soviet_modern_money,text,армянский драм|армянского драма|драм республики армения|драма республики армения|монета армении|монеты армении|банкнота армении|банкноты армении,,high
+numismatics.banknotes,numismatics_philately,numismatics_philately.banknotes,text,банкнота|банкноты|кредитный билет|кредитного билета|бумажный денежный знак|бумажного денежного знака|бонистика|бонистики|денежный билет|денежного билета,,high
+numismatics.medals,numismatics_philately,numismatics_philately.medals_tokens,text,памятная медаль|памятной медали|юбилейная медаль|юбилейной медали|памятный жетон|памятного жетона|медаль армении|медали армении,,high
+numismatics.orders,numismatics_philately,numismatics_philately.orders_badges,text,орден|ордена|нагрудный знак|нагрудного знака|памятный значок|памятного значка|значок армянская сср|значка армянская сср|медаль почета|медали почета,,high
+numismatics.seals,numismatics_philately,numismatics_philately.seals,text,сфрагистика|сфрагистики|гербовая печать|гербовой печати|сургучная печать|сургучной печати|печать-матрица|печати-матрицы|армянская печать|армянской печати,,medium
+numismatics.heraldry,numismatics_philately,numismatics_philately.heraldry,text,герб армении|герба армении|герб армянской|герба армянской|армянская геральдика|армянской геральдики|армянский герб|армянского герба|государственный герб армении,,high
+numismatics.stamps,numismatics_philately,numismatics_philately.stamps,text,почтовая марка|почтовой марки|почтовые марки|почтовых марок|марка армении|марки армении|филателия|филателии|филателистический|филателистического,,high
+numismatics.postal,numismatics_philately,numismatics_philately.postal_history,text,почтовый конверт|почтового конверта|почтовый штемпель|почтового штемпеля|почтовая карточка|почтовой карточки|история армянской почты|истории армянской почты|армянская почта|армянской почты,,medium
+natural.typology,natural_history,natural_history.collections,typology.name,естественнонаучной коллекции|минералогической коллекции,,high
+natural.flora,natural_history,natural_history.flora,text,гербарий|гербария|флора армении|флоры армении|армянская флора|армянской флоры|ботанический образец|ботанического образца|полынь армянская|растение армении|растения армении,,high
+natural.fauna,natural_history,natural_history.fauna,text,фауна армении|фауны армении|армянская фауна|армянской фауны|зоологический образец|зоологического образца|яйцо птицы|яйца птицы|насекомое армении|насекомого армении|птица армении|птицы армении,,high
+natural.endemic,natural_history,natural_history.endemic,text,эндемик армении|эндемика армении|эндемичный вид|эндемичного вида|красная книга армении|красной книги армении|редкий вид армении|редкого вида армении,,high
+natural.geology,natural_history,natural_history.geology,text,геология армении|геологии армении|геологический образец|геологического образца|вулканическая порода|вулканической породы|вулкан армении|вулкана армении|вулканический ландшафт армении,,medium
+natural.obsidian,natural_history,natural_history.obsidian,text,обсидиан|обсидиана,,high
+natural.minerals,natural_history,natural_history.minerals,text,минерал|минерала|агат|агата|кварц|кварца|лейцит|лейцита|халькопирит|халькопирита|руда армении|руды армении,,high
+natural.paleontology,natural_history,natural_history.paleontology,text,палеонтология|палеонтологии|палеонтологический образец|палеонтологического образца|ископаемое растение|ископаемого растения|ископаемое животное|ископаемого животного,,high
+natural.ararat,natural_history,natural_history.ararat,text,гора арарат|горы арарат|араратская гора|араратской горы|большой арарат|большого арарата|малый арарат|малого арарата,,medium
+natural.sevan,natural_history,natural_history.sevan,text,озеро севан|озера севан|севанский бассейн|севанского бассейна|севанская форель|севанской форели,,high
+natural.landscapes,natural_history,natural_history.landscapes,text,природа армении|природы армении|природный ландшафт армении|природного ландшафта армении|заповедник армении|заповедника армении|национальный парк армении|национального парка армении,,medium
+natural.expeditions,natural_history,natural_history.expeditions,text,ботаническая экспедиция|ботанической экспедиции|зоологическая экспедиция|зоологической экспедиции|геологическая экспедиция|геологической экспедиции|естественнонаучная экспедиция|натуралист|натуралиста,,medium
+natural.resources,natural_history,natural_history.natural_resources,text,полезные ископаемые армении|полезных ископаемых армении|природные ресурсы армении|природных ресурсов армении|минеральные ресурсы армении|минеральных ресурсов армении|водные ресурсы армении|водных ресурсов армении,,medium
+science.typology,science_industry,science_industry.instruments,typology.name,предметы техники,,high
+science.research_general,science_industry,science_industry.academy,text,научно-исследовательский институт|научно-исследовательского института|научные сотрудники|научных сотрудников|научные труды|научных трудов,,medium
+science.conferences_general,science_industry,science_industry.conferences,text,научный симпозиум|научного симпозиума|научная конференция|научной конференции|международный симпозиум|международного симпозиума,,medium
+science.factories_general,science_industry,science_industry.factories,text,завод|завода|фабрика|фабрики,,medium
+science.education,science_industry,science_industry.education,text,армянское просвещение|армянского просвещения|министерство просвещения армении|министерства просвещения армении|ереванский университет|ереванского университета|армянский педагогический институт|армянского педагогического института|педагогический институт имени абовяна|школа в армении|школы в армении,,medium
+science.academy,science_industry,science_industry.academy,text,академия наук армении|академии наук армении|академия наук армянской сср|академии наук армянской сср|ан армянской сср|научно-исследовательский институт армении|научно-исследовательского института армении|институт академии наук армении,,high
+science.byurakan,science_industry,science_industry.byurakan,text,бюраканская обсерватория|бюраканской обсерватории|бюраканская астрофизическая|бюраканской астрофизической,,high
+science.astronomy,science_industry,science_industry.astronomy,text,астрономия армении|астрономии армении|армянский астроном|армянского астронома|виктор амбарцумян|виктора амбарцумяна|обсерватория армении|обсерватории армении|астрофизика армении|астрофизики армении,,high
+science.physics,science_industry,science_industry.physics_mathematics,text,армянский физик|армянского физика|ереванский физический институт|ереванского физического института|артем алиханьян|артема алиханьяна|абрам аликханов|абрама аликханова|армянский математик|армянского математика|физика в армении|математика в армении,,high
+science.medicine,science_industry,science_industry.medicine,text,армянская медицина|армянской медицины|армянский врач|армянского врача|медицинский институт еревана|медицинского института еревана|здравоохранение армении|здравоохранения армении|армянский биолог|армянского биолога|медицинское общество армении,,medium
+science.scientists,science_industry,science_industry.scientists,text,армянский ученый|армянского ученого|армянская ученая|армянской ученой|армянский изобретатель|армянского изобретателя|армянские ученые|армянских ученых,,medium
+science.industry,science_industry,science_industry.industrialization,text,промышленность армении|промышленности армении|индустриализация армении|индустриализации армении|армянская промышленность|армянской промышленности|промышленное развитие армении,,medium
+science.energy,science_industry,science_industry.energy,text,энергетика армении|энергетики армении|армянская гэс|армянской гэс|севанская гэс|севанской гэс|армянская аэс|армянской аэс|электростанция армении|электростанции армении|электрификация армении,,high
+science.transport,science_industry,science_industry.transport,text,армянская железная дорога|армянской железной дороги|железная дорога армении|железной дороги армении|транспорт армении|транспорта армении|ереванский метрополитен|ереванского метрополитена|армянский аэропорт|армянского аэропорта,,medium
+science.communications,science_industry,science_industry.communications,text,связь армении|связи армении|армянская связь|армянской связи|ереванский телеграф|ереванского телеграфа|армянский телеграф|армянского телеграфа|радиосвязь армении|радиосвязи армении,,medium
+science.factories,science_industry,science_industry.factories,text,ереванский завод|ереванского завода|завод в армении|завода в армении|фабрика в армении|фабрики в армении|армянский часовой завод|армянского часового завода|ереванский часовой завод|ереванского часового завода|наири|севани,,medium
+science.computing,science_industry,science_industry.computing,text,вычислительный центр еревана|вычислительного центра еревана|вычислительная техника армении|вычислительной техники армении|армянская электроника|армянской электроники|наири|ереванский институт вычислительной техники,,medium
+science.instruments,science_industry,science_industry.instruments,text,научный прибор|научного прибора|армянский прибор|армянского прибора|часы наири|часов наири|часы sevani|армянская техника|армянской техники|механические часы ереван,,medium
+science.conferences,science_industry,science_industry.conferences,text,научный симпозиум в ереване|научного симпозиума в ереване|международный симпозиум в ереване|международного симпозиума в ереване|научная конференция в ереване|научной конференции в ереване|съезд ученых армении|съезда ученых армении|научные труды армении|научных трудов армении,,medium

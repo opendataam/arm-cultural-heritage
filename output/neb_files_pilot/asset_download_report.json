@@ -1,0 +1,35 @@
+{
+  "bytes": {
+    "available_total": 20444515,
+    "downloaded_this_run": 20444515
+  },
+  "counts": {
+    "downloaded": 1,
+    "failed": 0,
+    "requested": 1,
+    "skipped": 0
+  },
+  "download_notice": "NEB downloads must remain explicitly bounded. The NEB user agreement prohibits mass automated downloading of NEB objects without operator permission.",
+  "duration_seconds": 4.176,
+  "errors": [],
+  "finished_at": "2026-10-31T21:09:58.507461+00:00",
+  "input": {
+    "eligible_asset_links": 3,
+    "path": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/output/neb_metadata_pilot/armenia_records.parquet",
+    "records": 3,
+    "records_with_assets": 3,
+    "rights_or_access_skipped": 0
+  },
+  "manifest": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/output/neb_files_pilot/asset_manifest.jsonl",
+  "mode": "download",
+  "settings": {
+    "delay_seconds": 3.0,
+    "include_restricted": false,
+    "max_files": 1,
+    "proxy": null,
+    "retries": 2,
+    "timeout_seconds": 120
+  },
+  "source": "neb",
+  "started_at": "2026-10-31T21:09:54.331891+00:00"
+}

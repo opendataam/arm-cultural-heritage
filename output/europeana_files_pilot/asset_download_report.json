@@ -1,0 +1,46 @@
+{
+  "bytes": {
+    "available_total": 67808,
+    "downloaded_this_run": 67808
+  },
+  "counts": {
+    "downloaded": 1,
+    "failed": 1,
+    "requested": 2,
+    "skipped": 0
+  },
+  "duration_seconds": 2.218,
+  "errors": [
+    {
+      "asset_index": 1,
+      "error": "Request failed: http://diglit.ub.uni-heidelberg.de/image/bononcini1710/00a.jpg/full/full/0/default.jpg (Remote end closed connection without response)",
+      "expected_bytes": 920289,
+      "record_id": "/07931/diglit_bononcini1710",
+      "record_url": "https://www.europeana.eu/item/07931/diglit_bononcini1710",
+      "role": "object",
+      "source": "europeana",
+      "source_url": "http://diglit.ub.uni-heidelberg.de/image/bononcini1710/00a.jpg/full/full/0/default.jpg",
+      "status": "error"
+    }
+  ],
+  "finished_at": "2026-10-31T21:14:48.036259+00:00",
+  "input": {
+    "eligible_asset_links": 6,
+    "path": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/output/europeana_metadata_pilot/armenia_records.parquet",
+    "records": 3,
+    "records_with_assets": 3,
+    "rights_or_access_skipped": 0
+  },
+  "manifest": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/output/europeana_files_pilot/asset_manifest.jsonl",
+  "mode": "download",
+  "settings": {
+    "delay_seconds": 1.0,
+    "include_restricted": false,
+    "max_files": 2,
+    "proxy": "http://127.0.0.1:7070",
+    "retries": 0,
+    "timeout_seconds": 120
+  },
+  "source": "europeana",
+  "started_at": "2026-10-31T21:14:45.817927+00:00"
+}

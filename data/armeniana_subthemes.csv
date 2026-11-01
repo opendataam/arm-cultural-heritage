@@ -1,0 +1,211 @@
+theme_id,subtheme_id,subtheme_name_ru
+archaeology,archaeology.prehistory,Первобытная археология
+archaeology,archaeology.urartu,Урарту и армянское нагорье
+archaeology,archaeology.ancient_kingdoms,Армянское царство и династии
+archaeology,archaeology.historic_cities,Исторические города и поселения
+archaeology,archaeology.material_culture,Материальная культура
+archaeology,archaeology.epigraphy,Эпиграфика и надписи
+archaeology,archaeology.expeditions,Археологические экспедиции
+archaeology,archaeology.collections,Археологические коллекции
+history,history.ancient_medieval,Древние и средневековые государства
+history,history.cilicia,Киликийское армянское царство
+history,history.imperial_period,Армяне в Османской и Российской империях
+history,history.wwi,Первая мировая война и Кавказский фронт
+history,history.first_republic,Первая Республика Армения
+history,history.soviet_armenia,Советская Армения
+history,history.wwii,Вторая мировая война
+history,history.independence,Независимая Армения
+history,history.karabakh,История Арцаха и Карабаха
+history,history.earthquake_1988,Землетрясение 1988 года
+history,history.public_life,Общественная и политическая жизнь
+history,history.military_heritage,Военная история и оружие
+genocide,genocide.events_1915,События 1915 года
+genocide,genocide.testimonies,Документы и свидетельства
+genocide,genocide.refugees_relief,Беженцы и гуманитарная помощь
+genocide,genocide.memorials,Мемориалы и памятники
+genocide,genocide.commemoration,Памятные события и предметы
+genocide,genocide.oral_history,Устная история и семейная память
+diaspora,diaspora.migration_routes,Миграционные пути и переселения
+diaspora,diaspora.forced_migration,Вынужденная миграция и беженцы
+diaspora,diaspora.communities_russia,Общины России
+diaspora,diaspora.communities_georgia,Общины Грузии
+diaspora,diaspora.communities_iran,Общины Ирана
+diaspora,diaspora.communities_world,Армянские общины мира
+diaspora,diaspora.institutions,"Церкви, школы и организации"
+diaspora,diaspora.culture,Культура диаспоры
+diaspora,diaspora.return_memory,Возвращение и семейная память
+maps_geography,maps_geography.historical_maps,Исторические карты и атласы
+maps_geography,maps_geography.historical_regions,Исторические области и топонимия
+maps_geography,maps_geography.city_plans,Планы городов
+maps_geography,maps_geography.expeditions,Экспедиции и маршруты
+maps_geography,maps_geography.travel,"Путешествия, виды и открытки"
+maps_geography,maps_geography.cartographers,Картографы и географы
+architecture,architecture.religious,Храмовая и церковная архитектура
+architecture,architecture.monasteries,Монастыри и монастырские ансамбли
+architecture,architecture.khachkars,Хачкары и мемориальная пластика
+architecture,architecture.civic,Гражданская и общественная архитектура
+architecture,architecture.vernacular,Жилая и народная архитектура
+architecture,architecture.urban,Градостроительство и городские ансамбли
+architecture,architecture.soviet_modernism,Советский модернизм
+architecture,architecture.diaspora,Архитектура диаспоры
+architecture,architecture.restoration,"Реставрация, обмеры и реконструкция"
+architecture,architecture.architects,Архитекторы и зодчие
+architecture,architecture.lost_heritage,Утраченное и уязвимое наследие
+architecture,architecture.collections,Архитектурные коллекции
+art,art.painting,Живопись
+art,art.graphics,Графика
+art,art.sculpture,Скульптура
+art,art.miniature,Средневековая миниатюра
+art,art.landscape,Пейзаж и армянская художественная школа
+art,art.marine,Маринистика
+art,art.portrait,Портрет и жанровая сцена
+art,art.modernism,Модернизм и искусство диаспоры
+art,art.posters,"Плакат, афиша и карикатура"
+art,art.book_graphics,"Экслибрис и книжная графика"
+art,art.stage_design,Сценография и эскизы костюмов
+art,art.movements,"Художественные направления, объединения и выставки"
+photography,photography.early,Ранняя фотография и фотоателье
+photography,photography.photographers,Фотографы
+photography,photography.ethnographic,Этнографическая фотография
+photography,photography.architecture,Архитектура и памятники
+photography,photography.cities,Города и сельская среда
+photography,photography.portrait,Портреты и семейные альбомы
+photography,photography.events,Исторические события и общественная жизнь
+photography,photography.soviet,Фотолетопись советской Армении
+photography,photography.collections,"Негативы, альбомы и фотоколлекции"
+music,music.sacred,Духовная музыка и армянская нотация
+music,music.folk,Народная музыка и песня
+music,music.ashugh,Ашугское искусство
+music,music.classical,Классическая музыка
+music,music.opera_ballet,Опера и балет
+music,music.instruments,Музыкальные инструменты
+music,music.composers,Композиторы
+music,music.performers,Исполнители и дирижёры
+music,music.musicology,Музыковедение и образование
+music,music.recordings,"Ноты, грампластинки и звукозаписи"
+music,music.collections,Музыкальные коллекции
+performing_audiovisual,performing_audiovisual.drama_theatre,Драматический театр
+performing_audiovisual,performing_audiovisual.actors_directors,"Актёры, режиссёры и сценографы"
+performing_audiovisual,performing_audiovisual.stage_design,"Декорации, костюмы и афиши"
+performing_audiovisual,performing_audiovisual.opera_ballet,Опера и балет
+performing_audiovisual,performing_audiovisual.cinema,Армянское кино
+performing_audiovisual,performing_audiovisual.armenfilm,Арменфильм и киностудии
+performing_audiovisual,performing_audiovisual.parajanov,Сергей Параджанов
+performing_audiovisual,performing_audiovisual.animation,Анимация
+performing_audiovisual,performing_audiovisual.radio_tv,Радио и телевидение
+performing_audiovisual,performing_audiovisual.dance,Народный и сценический танец
+performing_audiovisual,performing_audiovisual.oral_history,Аудио- и видеосвидетельства
+manuscripts_books,manuscripts_books.alphabet,Армянский алфавит и Месроп Маштоц
+manuscripts_books,manuscripts_books.manuscript_books,Рукописные книги
+manuscripts_books,manuscripts_books.fragments,Фрагменты рукописей
+manuscripts_books,manuscripts_books.gospels_liturgical,Евангелия и богослужебные книги
+manuscripts_books,manuscripts_books.illumination,Миниатюра и книжное убранство
+manuscripts_books,manuscripts_books.matenadaran,Матенадаран и рукописные собрания
+manuscripts_books,manuscripts_books.paleography_restoration,Палеография и реставрация
+manuscripts_books,manuscripts_books.early_printing,Раннее книгопечатание
+manuscripts_books,manuscripts_books.publishing_diaspora,Издательства и книга диаспоры
+manuscripts_books,manuscripts_books.book_design,"Переплёт, иллюстрация и экслибрис"
+manuscripts_books,manuscripts_books.collections,Книжные коллекции
+language_literature,language_literature.armenian_text,Материалы на армянском языке
+language_literature,language_literature.language_history,История армянского языка
+language_literature,language_literature.eastern_western,Восточный и западный варианты
+language_literature,language_literature.dialects,Диалекты
+language_literature,language_literature.medieval_literature,Средневековая литература
+language_literature,language_literature.historiography,Историография
+language_literature,language_literature.spiritual_poetry,Духовная поэзия
+language_literature,language_literature.poetry,Поэзия
+language_literature,language_literature.prose_drama,Проза и драматургия
+language_literature,language_literature.diaspora_literature,Литература диаспоры
+language_literature,language_literature.david_sassoun,Эпос Давид Сасунский
+language_literature,language_literature.folk_tales,"Сказки, легенды и пословицы"
+language_literature,language_literature.ashugh_poetry,Ашугская поэзия
+language_literature,language_literature.translations,Переводы и переводчики
+language_literature,language_literature.literary_studies,Литературоведение и критика
+press_archives,press_archives.newspapers,Газеты
+press_archives,press_archives.journals,"Журналы, бюллетени и альманахи"
+press_archives,press_archives.diaspora_press,Пресса диаспоры
+press_archives,press_archives.personal_archives,Личные и семейные архивы
+press_archives,press_archives.correspondence,"Письма, дневники и телеграммы"
+press_archives,press_archives.institutional_archives,Архивы учреждений и общин
+press_archives,press_archives.official_documents,Официальные документы
+press_archives,press_archives.ephemera,"Афиши, программы и листовки"
+press_archives,press_archives.collections,Документальные коллекции
+religion,religion.christianization,Принятие христианства
+religion,religion.apostolic_church,Армянская Апостольская Церковь
+religion,religion.etchmiadzin,Эчмиадзин
+religion,religion.catholicoi,Католикосы и церковные иерархи
+religion,religion.dioceses,Епархии и общины
+religion,religion.catholic_evangelical,Католическая и евангельская традиции
+religion,religion.liturgical_objects,Церковная утварь и реликварии
+religion,religion.vestments,Облачения и церковный текстиль
+religion,religion.icons_manuscripts,"Иконы, миниатюры и рукописи"
+religion,religion.rituals,Богослужение и обряды
+religion,religion.sacred_music,Духовная музыка
+religion,religion.monasteries_education,Монастыри и образование
+traditional_culture,traditional_culture.taraz,Региональный костюм тараз
+traditional_culture,traditional_culture.clothing,Одежда и аксессуары
+traditional_culture,traditional_culture.textiles,Текстиль и ткачество
+traditional_culture,traditional_culture.carpets,Ковры и килимы
+traditional_culture,traditional_culture.embroidery,Вышивка и кружево
+traditional_culture,traditional_culture.jewelry,Ювелирные украшения
+traditional_culture,traditional_culture.metalwork,Металл и чеканка
+traditional_culture,traditional_culture.ceramics_wood,"Керамика, дерево и ремёсла"
+traditional_culture,traditional_culture.household,Домашняя утварь и интерьер
+traditional_culture,traditional_culture.rituals,Семейные и календарные обряды
+traditional_culture,traditional_culture.cuisine,Армянская кухня
+traditional_culture,traditional_culture.winemaking,Виноделие и коньяк
+traditional_culture,traditional_culture.crafts_trade,"Ремёсла, труд и торговля"
+traditional_culture,traditional_culture.collections,Этнографические коллекции
+sport,sport.chess,Шахматы
+sport,sport.wrestling,Борьба
+sport,sport.koh,Традиционная борьба кох
+sport,sport.weightlifting_boxing,Тяжёлая атлетика и бокс
+sport,sport.gymnastics,Гимнастика
+sport,sport.football,Футбол
+sport,sport.olympics,Олимпийские игры и спартакиады
+sport,sport.athletes,Спортсмены и тренеры
+sport,sport.clubs,Клубы и соревнования
+sport,sport.memorabilia,"Спортивные марки, значки и плакаты"
+sport,sport.games,Народные игры
+numismatics_philately,numismatics_philately.coins,Монеты
+numismatics_philately,numismatics_philately.ancient_coins,Монеты армянских царств
+numismatics_philately,numismatics_philately.cilician_coins,Монеты Киликии
+numismatics_philately,numismatics_philately.first_republic_money,Денежные знаки Первой Республики
+numismatics_philately,numismatics_philately.soviet_modern_money,Советский период и армянский драм
+numismatics_philately,numismatics_philately.banknotes,Банкноты и бонистика
+numismatics_philately,numismatics_philately.medals_tokens,Медали и жетоны
+numismatics_philately,numismatics_philately.orders_badges,"Ордена, награды и значки"
+numismatics_philately,numismatics_philately.seals,Печати и сфрагистика
+numismatics_philately,numismatics_philately.heraldry,Гербы и геральдика
+numismatics_philately,numismatics_philately.stamps,Почтовые марки и филателия
+numismatics_philately,numismatics_philately.postal_history,История почты
+numismatics_philately,numismatics_philately.international_images,Армения на деньгах и марках мира
+numismatics_philately,numismatics_philately.collections,Нумизматические и филателистические коллекции
+natural_history,natural_history.flora,Флора и гербарии
+natural_history,natural_history.fauna,Фауна
+natural_history,natural_history.endemic,Эндемичные и редкие виды
+natural_history,natural_history.geology,Геология и вулканические ландшафты
+natural_history,natural_history.obsidian,Обсидиан
+natural_history,natural_history.minerals,Минералы и руды
+natural_history,natural_history.paleontology,Палеонтология
+natural_history,natural_history.ararat,Арарат
+natural_history,natural_history.sevan,Севан
+natural_history,natural_history.landscapes,Природные ландшафты
+natural_history,natural_history.expeditions,Экспедиции и натуралисты
+natural_history,natural_history.natural_resources,Природные ресурсы
+natural_history,natural_history.collections,Естественнонаучные коллекции
+science_industry,science_industry.education,Образование и просвещение
+science_industry,science_industry.academy,Академия наук и институты
+science_industry,science_industry.byurakan,Бюраканская обсерватория
+science_industry,science_industry.astronomy,Астрономия
+science_industry,science_industry.physics_mathematics,Физика и математика
+science_industry,science_industry.medicine,Медицина и биология
+science_industry,science_industry.scientists,Учёные и изобретатели
+science_industry,science_industry.industrialization,Индустриализация
+science_industry,science_industry.energy,Энергетика
+science_industry,science_industry.transport,Транспорт
+science_industry,science_industry.communications,Связь
+science_industry,science_industry.factories,Заводы и производства
+science_industry,science_industry.computing,Вычислительная техника и электроника
+science_industry,science_industry.instruments,"Приборы, машины и часы"
+science_industry,science_industry.conferences,Научные съезды и публикации

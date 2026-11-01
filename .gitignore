@@ -3,3 +3,10 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 *.tmp
+
+# Downloaded third-party files and HTTP caches: keep manifests and reports only
+output/goskatalog_images*/*/
+output/goskatalog_images*/api_records.jsonl
+output/*_files*/files/
+output/*/cache/
+*.part
