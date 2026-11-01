@@ -1,0 +1,22 @@
+# Source registry (ТЗ 6.1). Each source is a separate orchestrator partition (ТЗ 5.5, item 3):
+# adding a source here does not require changes to the orchestration code.
+
+[[source]]
+id = "goskatalog"
+connector = "goskatalog_parquet"
+input = "output/goskatalog/armenia_records.parquet"
+# Candidates ("review") are not published automatically (ТЗ 6.3, item 8).
+review_input = "output/goskatalog/armenia_review.parquet"
+homepage = "https://goskatalog.ru/portal/"
+record_url = "https://goskatalog.ru/portal/#/collections?id={id}"
+id_prefix = "gk"
+# The export carries no rights statements, so records get "Copyright Not Evaluated" (ТЗ 6.5).
+rights = "http://rightsstatements.org/vocab/CNE/1.0/"
+schedule = "0 3 1 * *"
+
+[source.name]
+hy = "Ռուսաստանի Դաշնության թանգարանային ֆոնդի պետական կատալոգ"
+ru = "Госкаталог Музейного фонда Российской Федерации"
+en = "State Catalogue of the Museum Fund of the Russian Federation"
+fr = "Catalogue d’État du fonds muséal de la Fédération de Russie"
+es = "Catálogo Estatal del Fondo de Museos de la Federación de Rusia"

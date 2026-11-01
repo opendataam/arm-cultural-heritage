@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% import "_macros.html" as m with context %}
+{% block header_search %}{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="wrap hero-inner">
+    <h1>{{ t("home.hero_title") }}</h1>
+    <p class="hero-text">{{ t("home.hero_text") }}</p>
+    {% with compact=false, query=none %}{% include "_searchbox.html" %}{% endwith %}
+    <p class="examples">{{ t("home.examples") }}
+      {% for example in examples %}
+      <a href="{{ v.url('/search') }}?q={{ example|urlencode }}" dir="auto">{{ example }}</a>
+      {% endfor %}
+    </p>
+  </div>
+</section>
+
+<section class="stats wrap" aria-label="{{ t('site.name') }}">
+  {% set stats = [
+    (meta.records|int, "home.stats.records"),
+    (meta.with_media|int, "home.stats.with_media"),
+    (meta.institutions|int, "home.stats.institutions"),
+    (meta.entities|int, "home.stats.entities"),
+  ] %}
+  {% for value, key in stats %}
+  <div class="stat"><span class="stat-value">{{ v.number(value) }}</span> <span class="stat-label">{{ t.plural(key, value) }}</span></div>
+  {% endfor %}
+</section>
+
+<section class="wrap section" id="collections">
+  <h2>{{ t("home.collections") }}</h2>
+  <ul class="collections">
+    {% for collection in collections %}
+    <li>
+      <a class="collection" href="{{ v.url('/collection/' ~ collection.slug) }}">
+        <div class="collection-media">
+          {% if collection.cover %}<img src="{{ collection.cover.thumbnail }}" alt="" loading="lazy" referrerpolicy="no-referrer" data-fallback>{% endif %}
+          <span class="card-placeholder" aria-hidden="true"></span>
+        </div>
+        <div class="collection-body">
+          <h3>{{ collection.title[lang] }}</h3>
+          <p>{{ t.plural("collection.objects", collection.total) }}</p>
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% if featured %}
+<section class="wrap section featured">
+  <h2>{{ t("home.featured") }}</h2>
+  <a class="featured-card" href="{{ v.url('/item/' ~ featured.id) }}">
+    <div class="featured-media">
+      <img src="{{ featured.media[0].url }}" alt="" referrerpolicy="no-referrer" data-fallback>
+      <span class="card-placeholder" aria-hidden="true">{{ t("typology." ~ featured.object_type.id, default=t("media." ~ featured.media_type)) }}</span>
+    </div>
+    <div class="featured-body">
+      <h3 lang="{{ featured.metadata_lang }}">{{ featured.title.value }}</h3>
+      {% if featured.creators %}<p lang="{{ featured.metadata_lang }}">{{ featured.creators[0].name }}</p>{% endif %}
+      {% if featured.date.display %}<p lang="{{ featured.metadata_lang }}">{{ featured.date.display }}</p>{% endif %}
+      <p class="muted" lang="{{ featured.metadata_lang }}">{{ featured.institution.short_name }}</p>
+      {% if featured.description %}<p class="featured-description" lang="{{ featured.metadata_lang }}">{{ featured.description|truncate(320) }}</p>{% endif %}
+    </div>
+  </a>
+</section>
+{% endif %}
+
+<section class="wrap section explore">
+  {% for field, heading in [("type", "home.types"), ("place", "home.places"), ("person", "home.people")] %}
+  <div>
+    <h2>{{ t(heading) }}</h2>
+    <ul class="chip-list">
+      {% for value, count in overview.facets.get(field, []) %}
+      <li><a class="chip" href="{% if field == 'type' %}{{ v.url('/search') }}?f.type={{ value }}{% else %}{{ v.url('/entity/' ~ value) }}{% endif %}">
+        <span lang="{{ v.facet_lang(field, value) or lang }}">{{ v.facet_label(field, value) }}</span>
+        <span class="chip-count">{{ v.number(count) }}</span></a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+  <p><a class="button" href="{{ v.url('/search') }}">{{ t("home.explore_all") }} →</a></p>
+</section>
+{% endblock %}

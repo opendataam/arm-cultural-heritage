@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}{{ t("about.title") }} · {{ t("site.name") }}{% endblock %}
+
+{% block content %}
+<article class="wrap prose">
+  <h1>{{ t("about.title") }}</h1>
+  <p>{{ t("about.p1") }}</p>
+  <p>{{ t("about.p2", records=v.number(stats.records|int), candidates=v.number(candidates)) }}</p>
+  <p>{{ t("about.p3") }}</p>
+  <p class="note">{{ t("about.p4") }}</p>
+
+  <h2>{{ t("about.data_title") }}</h2>
+  <ul>
+    <li><a href="/docs">{{ t("about.api") }}</a> — <code>/api/v1/search</code>, <code>/api/v1/records/{id}?format=edm</code>, <code>/iiif/3/{id}/manifest</code></li>
+    <li>{{ t("about.dumps") }}: <a href="/dumps/records.jsonl.gz">JSON Lines</a>, <a href="/dumps/records.parquet">Parquet</a></li>
+    <li><a href="/api/v1/report">{{ t("about.report") }}</a></li>
+  </ul>
+
+  <h2>{{ t("facet.source") }}</h2>
+  <ul>
+    {% for source in sources %}
+    <li><a href="{{ source.homepage }}" rel="noopener">{{ source.label(lang) }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <h2>{{ t("about.not_included_title") }}</h2>
+  <p>{{ t("about.not_included") }}</p>
+</article>
+{% endblock %}
