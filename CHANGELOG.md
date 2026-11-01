@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Draft technical specification (in Russian) for a multilingual Armenian cultural heritage portal modelled on Europeana: [`docs/tz-heritage-portal.md`](docs/tz-heritage-portal.md). Version 0.2 adopts a component-based architecture around a custom core and adds pipeline orchestration requirements.
+
 ## [1.0.0] - 2026-10-31
 
 ### Added
