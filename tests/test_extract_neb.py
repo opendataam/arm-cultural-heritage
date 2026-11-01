@@ -148,3 +148,12 @@ def test_neb_end_to_end_cards_assets_and_resume(tmp_path):
     finally:
         server.shutdown()
         server.server_close()
+
+
+def test_neb_rejects_cards_without_detail_block():
+    import pytest
+    from extract_neb_armenia import normalize_card
+
+    with pytest.raises(ValueError, match="no recognizable detail fields"):
+        normalize_card("<html><head><meta property=\"og:title\" content=\"Армения\"></head><body>Новый макет</body></html>",
+                       "https://rusneb.ru/catalog/x/", "Армения", "2026-11-01T00:00:00+00:00")

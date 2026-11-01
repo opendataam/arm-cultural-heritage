@@ -161,3 +161,20 @@ def test_open_rights_accepts_only_unrestricted_statements():
         "http://creativecommons.org/licenses/by/4.0/",
         "http://rightsstatements.org/vocab/InC/1.0/",
     ])
+
+
+def test_download_aborts_files_over_size_limit(tmp_path):
+    source = tmp_path / "records.parquet"
+    output = tmp_path / "europeana_files"
+    server = run_server()
+    make_input(source, server.server_port)
+    try:
+        completed = run_cli(source, output, "europeana", "--max-bytes", "5")
+        assert completed.returncode == 1
+        report = json.loads((output / "asset_download_report.json").read_text(encoding="utf-8"))
+        assert report["counts"]["failed"] == 1
+        assert "exceeds 5 bytes" in report["errors"][0]["error"]
+        assert not list(output.glob("files/*/*"))
+    finally:
+        server.shutdown()
+        server.server_close()

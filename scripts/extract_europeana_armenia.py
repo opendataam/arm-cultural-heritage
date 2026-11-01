@@ -205,6 +205,7 @@ def extract(args):
                         raise ValueError("Europeana search item has no id")
                     if record_id in seen:
                         duplicates += 1
+                        outputs.add_query(record_id, query)
                         continue
                     seen.add(record_id)
                     retrieved_at = utc_now()

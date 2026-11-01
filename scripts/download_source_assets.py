@@ -39,6 +39,7 @@ def read_inventory(input_path, source, include_restricted):
     table = pq.read_table(input_path, columns=["id", "source", "record_url", "rights", "access", "assets"])
     assets = []
     rights_skipped = 0
+    invalid_urls = 0
     records = 0
     records_with_assets = 0
     for row in table.to_pylist():
@@ -56,7 +57,7 @@ def read_inventory(input_path, source, include_restricted):
                 rights_skipped += 1
                 continue
             if not asset.get("url", "").startswith(("http://", "https://")):
-                rights_skipped += 1
+                invalid_urls += 1
                 continue
             assets.append({
                 "record_id": str(row["id"]),
@@ -72,6 +73,7 @@ def read_inventory(input_path, source, include_restricted):
         "records_with_assets": records_with_assets,
         "eligible_asset_links": len(assets),
         "rights_or_access_skipped": rights_skipped,
+        "invalid_url_skipped": invalid_urls,
     }
     return assets, inventory
 
@@ -139,7 +141,7 @@ def run(args):
             }
             destination = output_dir / "files" / safe_record_id(asset["record_id"]) / ("{:03d}{}".format(asset["asset_index"], extension(asset)))
             try:
-                downloaded = client.download(asset["url"], destination)
+                downloaded = client.download(asset["url"], destination, args.max_bytes)
                 result.update(downloaded)
                 result.update({"status": "ok", "path": destination.relative_to(output_dir).as_posix()})
             except ValueError as error:
@@ -159,6 +161,7 @@ def run(args):
         "input": {"path": display_path(input_path), **inventory},
         "settings": {
             "max_files": args.max_files,
+            "max_bytes": args.max_bytes,
             "include_restricted": args.include_restricted,
             "delay_seconds": delay,
             "timeout_seconds": args.timeout,
@@ -193,6 +196,7 @@ def parse_args():
     parser.add_argument("--source", choices=("europeana", "neb"), required=True)
     parser.add_argument("--max-files", type=int, help="Required for NEB; optional cap for Europeana")
     parser.add_argument("--include-restricted", action="store_true", help="Europeana only: allow assets without an open rights statement")
+    parser.add_argument("--max-bytes", type=int, default=2 * 1024 ** 3, help="Abort a file larger than this many bytes")
     parser.add_argument("--proxy")
     parser.add_argument("--delay", type=float)
     parser.add_argument("--timeout", type=int, default=120)
@@ -200,6 +204,8 @@ def parse_args():
     args = parser.parse_args()
     if args.max_files is not None and args.max_files < 1:
         parser.error("max-files must be positive")
+    if args.max_bytes < 1:
+        parser.error("max-bytes must be positive")
     if args.source == "neb" and args.max_files is None:
         parser.error("--max-files is required for NEB to prevent an unbounded automated download")
     if args.source == "neb" and args.include_restricted:

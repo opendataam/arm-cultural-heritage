@@ -151,7 +151,7 @@ Pass `--proxy http://proxy.example:3128` when the direct route to a source is un
 
 A record that matches no registry term but was returned by an Armenia-related search query goes to review as `source_query_only`. A record whose only match is suppressed by a negative context stays excluded even if the query was Armenia-related.
 
-The shared asset downloader writes resumable manifests and SHA-256 hashes. Europeana downloads are limited by default to the Public Domain Mark, CC0, CC BY, and CC BY-SA. A record is skipped if any of its rights statements is restrictive, including InC, NoC-NC, NoC-OKLR, NoC-CR, NoC-US, and CC licenses with NC or ND. NEB requires an explicit `--max-files` bound for every download run: its user agreement prohibits mass automated downloading of NEB objects. The bound applies to one run, so repeated runs must stay within what the operator permits.
+The shared asset downloader writes resumable manifests and SHA-256 hashes. Europeana downloads are limited by default to the Public Domain Mark, CC0, CC BY, and CC BY-SA. A record is skipped if any of its rights statements is restrictive, including InC, NoC-NC, NoC-OKLR, NoC-CR, NoC-US, and CC licenses with NC or ND. NEB requires an explicit `--max-files` bound for every download run: its user agreement prohibits mass automated downloading of NEB objects. The bound applies to one run, so repeated runs must stay within what the operator permits. Files larger than `--max-bytes` (2 GiB by default) are aborted and reported as failures.
 
 ```bash
 python3 scripts/download_source_assets.py \

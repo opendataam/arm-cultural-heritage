@@ -239,3 +239,12 @@ def test_tagger_ignores_natural_history_collection_places(tagger):
         "armenia_matched_entities": [],
     })
     assert "archaeology.historic_cities" not in metadata["armeniana_subtheme_ids"]
+
+
+def test_rule_patterns_keep_uppercase_escapes():
+    from tag_armeniana import compile_rule_pattern
+
+    compiled = compile_rule_pattern(r"Армянск\S*\Wпейзаж|Ёлка")
+    assert compiled.pattern == r"(?<!\w)(?:армянск\S*\Wпейзаж|елка)(?!\w)"
+    assert compiled.search("армянский, пейзаж")
+    assert not compiled.search("армянский_пейзаж")

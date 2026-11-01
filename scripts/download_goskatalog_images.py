@@ -21,7 +21,7 @@ from urllib.request import Request, urlopen
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-USER_AGENT = "arm-cultural-heritage-image-downloader/1.0"
+USER_AGENT = "arm-cultural-heritage-image-downloader/1.0 (+https://github.com/opendataam/arm-cultural-heritage)"
 REFERER = "https://goskatalog.ru/portal/"
 MANIFEST_NAME = "image_manifest.jsonl"
 DOWNLOAD_REPORT_NAME = "image_download_report.json"

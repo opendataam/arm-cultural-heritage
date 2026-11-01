@@ -160,3 +160,31 @@ def test_source_query_does_not_rescue_negated_records(matcher):
     query_only = classify_candidate(dict(base, places=["Москва"]), matcher, "Армения")
     assert query_only.decision == "review"
     assert query_only.reasons == ["source_query_only"]
+
+
+def test_europeana_merges_queries_of_duplicate_records(tmp_path):
+    output = tmp_path / "europeana"
+    server = run_server()
+    env = dict(os.environ, EUROPEANA_API_KEY="test-key")
+    try:
+        completed = subprocess.run([
+            sys.executable, str(SCRIPT),
+            "--output-dir", str(output),
+            "--query", "Armenia",
+            "--query", "Armenian",
+            "--max-records", "3",
+            "--rows", "2",
+            "--batch-size", "1",
+            "--delay", "0",
+            "--api-base", "http://127.0.0.1:{}/record/v2".format(server.server_port),
+        ], cwd=ROOT, env=env, text=True, capture_output=True)
+        assert completed.returncode == 0, completed.stdout + completed.stderr
+        rows = pq.read_table(output / "armenia_records.parquet").to_pylist() + pq.read_table(output / "armenia_review.parquet").to_pylist()
+        assert sorted(row["id"] for row in rows) == ["/1/armenia", "/2/other", "/3/review"]
+        assert all(row["source_queries"] == ["Armenia", "Armenian"] for row in rows)
+        report = json.loads((output / "report.json").read_text(encoding="utf-8"))
+        assert report["counts"]["duplicates"] == 3
+        assert not list(output.glob("*.tmp"))
+    finally:
+        server.shutdown()
+        server.server_close()

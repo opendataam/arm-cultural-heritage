@@ -209,7 +209,7 @@ class HttpClient:
         temporary.replace(path)
         return body.decode("utf-8", "replace")
 
-    def download(self, url, destination):
+    def download(self, url, destination, max_bytes=None):
         part_path = destination.with_name(destination.name + ".part")
         last_error = None
         for attempt in range(self.retries + 1):
@@ -218,8 +218,8 @@ class HttpClient:
                 request = Request(quote(url, safe=":/?#[]@!$&'()*+,;=%"), headers={"User-Agent": USER_AGENT, "Accept-Encoding": "identity"})
                 with self.opener.open(request, timeout=self.timeout) as response:
                     content_type = response.headers.get("Content-Type", "").split(";", 1)[0].strip().lower()
-                    if content_type == "text/html":
-                        raise ValueError("Expected a file, received text/html: {}".format(clean_url(url)))
+                    if content_type in {"text/html", "application/xhtml+xml"}:
+                        raise ValueError("Expected a file, received {}: {}".format(content_type, clean_url(url)))
                     destination.parent.mkdir(parents=True, exist_ok=True)
                     digest = hashlib.sha256()
                     size = 0
@@ -231,6 +231,8 @@ class HttpClient:
                             handle.write(chunk)
                             digest.update(chunk)
                             size += len(chunk)
+                            if max_bytes is not None and size > max_bytes:
+                                raise ValueError("File exceeds {} bytes: {}".format(max_bytes, clean_url(url)))
                 if size == 0:
                     raise ValueError("Empty file: {}".format(clean_url(url)))
                 part_path.replace(destination)
@@ -363,6 +365,11 @@ class ParquetOutputs:
         self.buffers = {"include": [], "review": []}
         self.counts = {"include": 0, "review": 0, "exclude": 0}
         self.samples = AuditSamples()
+        self.extra_queries = {}
+
+    def add_query(self, record_id, query):
+        # A record found again by a later query keeps one row; the query is merged into it on close.
+        self.extra_queries.setdefault(str(record_id), []).append(query)
 
     def add(self, record, match):
         metadata = match.metadata()
@@ -385,10 +392,29 @@ class ParquetOutputs:
         self.writers[decision].write_table(table)
         self.buffers[decision] = []
 
+    def _merge_queries(self, decision):
+        path = self.temporary[decision]
+        merged = path.with_suffix(".merged.tmp")
+        writer = pq.ParquetWriter(str(merged), RECORD_SCHEMA, compression="zstd")
+        try:
+            for batch in pq.ParquetFile(str(path)).iter_batches(batch_size=self.batch_size):
+                rows = batch.to_pylist()
+                for row in rows:
+                    row["source_queries"] = unique_strings(row["source_queries"] + self.extra_queries.get(row["id"], []))
+                writer.write_table(pa.Table.from_pylist(rows, schema=RECORD_SCHEMA))
+        except Exception:
+            writer.close()
+            merged.unlink(missing_ok=True)
+            raise
+        writer.close()
+        merged.replace(path)
+
     def close(self):
         for decision in ("include", "review"):
             self._flush(decision)
             self.writers[decision].close()
+            if self.extra_queries:
+                self._merge_queries(decision)
             if pq.ParquetFile(str(self.temporary[decision])).metadata.num_rows != self.counts[decision]:
                 raise ValueError("Output row count verification failed for {}".format(decision))
             self.temporary[decision].replace(self.paths[decision])

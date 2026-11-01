@@ -152,6 +152,9 @@ def normalize_card(html, url, query, retrieved_at):
     parser.feed(html)
     lines = parser.lines()
     fields = detail_fields(lines)
+    if not fields:
+        # A missing detail block means the card layout changed; report it instead of saving an empty record.
+        raise ValueError("NEB card has no recognizable detail fields: {}".format(url))
     canonical_url = parser.meta.get("og:url") or url
     path_id = unquote(urlsplit(canonical_url).path.rstrip("/").rsplit("/", 1)[-1])
     record_id = fields.get("Код документа в НЭБ") or path_id
@@ -208,12 +211,13 @@ def extract(args):
     candidates = 0
     duplicates = 0
     card_errors = 0
-    seen = set()
+    seen = {}
     query_stats = []
     queries = args.query or DEFAULT_QUERIES
     try:
         for query in queries:
             page = 1
+            page_size = None
             query_candidates = 0
             total_results = None
             while True:
@@ -228,14 +232,17 @@ def extract(args):
                 urls, total_results = parse_search(client.get_text(search_url), args.base_url)
                 if not urls:
                     break
+                page_size = page_size or len(urls)
                 for url in urls:
                     if args.max_records_per_query and query_candidates >= args.max_records_per_query:
                         break
                     record_id = unquote(urlsplit(url).path.rstrip("/").rsplit("/", 1)[-1])
                     if record_id in seen:
                         duplicates += 1
+                        if seen[record_id] is not None:
+                            outputs.add_query(seen[record_id], query)
                         continue
-                    seen.add(record_id)
+                    seen[record_id] = None
                     candidates += 1
                     query_candidates += 1
                     try:
@@ -245,11 +252,13 @@ def extract(args):
                         card_errors += 1
                         append_jsonl(errors_path, {"id": record_id, "url": url, "query": query, "error": str(error)})
                         continue
+                    # The card's own document code can differ from the ID in the search URL.
+                    seen[record_id] = record["id"]
                     outputs.add(record, classify_candidate(record, matcher, query))
                 page += 1
-                if total_results is not None and (page - 1) * 15 >= total_results:
+                if total_results is not None and (page - 1) * page_size >= total_results:
                     break
-                if len(urls) < 15:
+                if len(urls) < page_size:
                     break
             query_stats.append({"query": query, "total_results": total_results, "inspected": query_candidates})
         outputs.close()

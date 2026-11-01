@@ -7,6 +7,7 @@ import json
 import re
 import sys
 import time
+import unicodedata
 from collections import Counter
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -17,7 +18,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 
 from matcher import flatten
-from terms import normalize_text, read_terms
+from terms import DASHES, normalize_text, read_terms
 
 ROOT = Path(__file__).resolve().parent.parent
 TAGGING_VERSION = "1.0.0"
@@ -141,8 +142,20 @@ def expand_fields(value):
     return tuple(dict.fromkeys(names))
 
 
+def normalize_pattern(pattern):
+    # Normalize literals like record text, but keep escapes: casefolding would turn \W, \S or \D into \w, \s or \d.
+    parts = []
+    for part in re.split(r"(\\.)", pattern):
+        if len(part) == 2 and part.startswith("\\"):
+            parts.append(part)
+        else:
+            literal = unicodedata.normalize("NFKC", part).casefold().translate(DASHES).replace("ё", "е")
+            parts.append(re.sub(r"\s+", " ", literal))
+    return "".join(parts).strip()
+
+
 def compile_rule_pattern(pattern):
-    normalized = normalize_text(pattern)
+    normalized = normalize_pattern(pattern)
     compiled = re.compile(r"(?<!\w)(?:{})(?!\w)".format(normalized))
     if compiled.groups:
         raise ValueError("Tagging regex must use non-capturing groups only: {}".format(pattern))
@@ -424,7 +437,9 @@ def tag_records(args):
     if missing:
         raise ValueError("Input is missing required columns: {}".format(", ".join(missing)))
     source_rows = pq.ParquetFile(str(input_path)).metadata.num_rows
-    reader = connection.execute("SELECT * FROM read_parquet(?)", [str(input_path)]).fetch_record_batch(args.batch_size)
+    result = connection.execute("SELECT * FROM read_parquet(?)", [str(input_path)])
+    # to_arrow_reader replaces the deprecated fetch_record_batch in newer DuckDB releases.
+    reader = result.to_arrow_reader(args.batch_size) if hasattr(result, "to_arrow_reader") else result.fetch_record_batch(args.batch_size)
     input_schema = reader.schema
     output_schema = pa.schema(list(input_schema) + list(TAGGING_SCHEMA))
     records_tmp = records_path.with_suffix(".parquet.tmp")
@@ -491,10 +506,14 @@ def tag_records(args):
         raise
     records_writer.close()
     assignments_writer.close()
-    if pq.ParquetFile(str(records_tmp)).metadata.num_rows != counts["source_rows"]:
+    verified = (
+        pq.ParquetFile(str(records_tmp)).metadata.num_rows == counts["source_rows"]
+        and pq.ParquetFile(str(assignments_tmp)).metadata.num_rows == counts["assignments"]
+    )
+    if not verified:
+        records_tmp.unlink(missing_ok=True)
+        assignments_tmp.unlink(missing_ok=True)
         raise ValueError("Tagged output row count verification failed")
-    if pq.ParquetFile(str(assignments_tmp)).metadata.num_rows != counts["assignments"]:
-        raise ValueError("Assignment output row count verification failed")
     records_tmp.replace(records_path)
     assignments_tmp.replace(assignments_path)
     audit_path = output_dir / "audit_sample.csv"
