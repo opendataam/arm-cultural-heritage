@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ t("error.not_found") if status_code == 404 else t("site.name") }}{% endblock %}
+
+{% block content %}
+<article class="wrap prose error-page">
+  <h1>{{ t("error.not_found") if message_key == "error.not_found_text" else t("site.name") }}</h1>
+  <p>{{ t(message_key) }}</p>
+  <p><a class="button" href="{{ v.url('/') }}">{{ t("error.back_home") }}</a></p>
+</article>
+{% endblock %}

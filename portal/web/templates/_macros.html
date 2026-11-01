@@ -1,0 +1,38 @@
+{% macro card(item) -%}
+<li class="card">
+  <a href="{{ v.url('/item/' ~ item.id) }}">
+    <div class="card-media media-{{ item.media_type|lower }}">
+      {% if item.thumbnail %}
+      <img src="{{ item.thumbnail }}" alt="" loading="lazy" referrerpolicy="no-referrer" data-fallback>
+      {% endif %}
+      <span class="card-placeholder" aria-hidden="true">{{ t("typology." ~ item.type_id, default=t("media." ~ item.media_type)) }}</span>
+      {% if item.media_count > 1 %}<span class="card-count">{{ t.plural("item.images", item.media_count) }}</span>{% endif %}
+    </div>
+    <div class="card-body">
+      <h3 class="card-title" lang="{{ item.title.lang }}" dir="auto">{{ item.title.value }}</h3>
+      {% if item.creator %}<p class="card-meta" lang="{{ item.metadata_lang }}">{{ item.creator }}</p>{% endif %}
+      {% if item.date %}<p class="card-meta" lang="{{ item.metadata_lang }}">{{ item.date }}</p>{% endif %}
+      <p class="card-meta card-institution" lang="{{ item.metadata_lang }}">{{ item.institution }}</p>
+      <p class="card-badges">
+        <span class="badge">{{ t("media." ~ item.media_type) }}</span>
+      </p>
+    </div>
+  </a>
+</li>
+{%- endmacro %}
+
+{% macro grid(items) -%}
+<ul class="grid">
+  {% for item in items %}{{ card(item) }}{% endfor %}
+</ul>
+{%- endmacro %}
+
+{% macro pagination(result, link) -%}
+{% if result.pages > 1 %}
+<nav class="pagination" aria-label="{{ t('pagination.label') }}">
+  {% if result.page > 1 %}<a rel="prev" href="{{ link(page=result.page - 1) }}">← {{ t("pagination.prev") }}</a>{% endif %}
+  <span>{{ t("pagination.page", page=result.page, pages=result.pages) }}</span>
+  {% if result.page < result.pages %}<a rel="next" href="{{ link(page=result.page + 1) }}">{{ t("pagination.next") }} →</a>{% endif %}
+</nav>
+{% endif %}
+{%- endmacro %}
