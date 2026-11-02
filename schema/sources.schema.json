@@ -1,0 +1,452 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Armenian heritage source registry row",
+  "description": "Схема одной строки data/sources.csv после чтения CSV в объект. Все значения CSV являются строками; списки разделяются точкой с запятой.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "name_local",
+    "url",
+    "country",
+    "institution_type",
+    "scope",
+    "integration",
+    "content_types",
+    "languages",
+    "est_armenian_items",
+    "count_note",
+    "access_methods",
+    "endpoint",
+    "auth",
+    "metadata_format",
+    "metadata_license",
+    "content_rights",
+    "commercial_use",
+    "attribution_required",
+    "automated_access",
+    "terms_url",
+    "terms_summary",
+    "priority",
+    "status",
+    "verified_at",
+    "notes"
+  ],
+  "x-csv": {
+    "encoding": "UTF-8",
+    "delimiter": ",",
+    "quotechar": "\"",
+    "header": true,
+    "list_separator": ";",
+    "columns": [
+      "id",
+      "name",
+      "name_local",
+      "url",
+      "country",
+      "institution_type",
+      "scope",
+      "integration",
+      "content_types",
+      "languages",
+      "est_armenian_items",
+      "count_note",
+      "access_methods",
+      "endpoint",
+      "auth",
+      "metadata_format",
+      "metadata_license",
+      "content_rights",
+      "commercial_use",
+      "attribution_required",
+      "automated_access",
+      "terms_url",
+      "terms_summary",
+      "priority",
+      "status",
+      "verified_at",
+      "notes"
+    ]
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Стабильный идентификатор источника: префикс страны (ISO 3166-1 alpha-2 в нижнем регистре) или int/eu, точка, короткое имя.",
+      "pattern": "^[a-z]{2,3}\\.[a-z0-9][a-z0-9-]*$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Официальное название на английском.",
+      "minLength": 1
+    },
+    "name_local": {
+      "type": "string",
+      "description": "Название на языке и в письменности учреждения; пусто, если совпадает с name."
+    },
+    "url": {
+      "type": "string",
+      "description": "Главная страница источника.",
+      "pattern": "^https?://\\S+$"
+    },
+    "country": {
+      "type": "string",
+      "description": "Страна юридического местонахождения учреждения, ISO 3166-1 alpha-2.",
+      "pattern": "^[A-Z]{2}$"
+    },
+    "institution_type": {
+      "type": "string",
+      "description": "Тип учреждения или ресурса.",
+      "enum": [
+        "aggregator",
+        "archive",
+        "authority",
+        "digital_library",
+        "foundation",
+        "library",
+        "media",
+        "museum",
+        "portal",
+        "registry",
+        "religious",
+        "research_institute"
+      ]
+    },
+    "scope": {
+      "type": "string",
+      "description": "dedicated — армянский профильный источник; mixed — общий фонд с армянскими записями; reference — справочник, список или authority.",
+      "enum": [
+        "dedicated",
+        "mixed",
+        "reference"
+      ]
+    },
+    "integration": {
+      "type": "string",
+      "description": "harvest — забирать все записи; filter — отбирать армянские записи matcher-ом; link — использовать для связывания и ссылок; none — не источник метаданных.",
+      "enum": [
+        "filter",
+        "harvest",
+        "link",
+        "none"
+      ]
+    },
+    "content_types": {
+      "type": "string",
+      "description": "Типы материалов, разделённые точкой с запятой.",
+      "pattern": "^(?:archives|articles|artworks|audio|authority|books|ephemera|manuscripts|maps|monuments|objects|oral_history|periodicals|photographs|texts|video)(?:;(?:archives|articles|artworks|audio|authority|books|ephemera|manuscripts|maps|monuments|objects|oral_history|periodicals|photographs|texts|video))*$",
+      "x-list": {
+        "separator": ";",
+        "enum": [
+          "archives",
+          "articles",
+          "artworks",
+          "audio",
+          "authority",
+          "books",
+          "ephemera",
+          "manuscripts",
+          "maps",
+          "monuments",
+          "objects",
+          "oral_history",
+          "periodicals",
+          "photographs",
+          "texts",
+          "video"
+        ]
+      }
+    },
+    "languages": {
+      "type": "string",
+      "description": "Языки метаданных, коды ISO 639 через точку с запятой.",
+      "pattern": "^[a-z]{2,3}(?:;[a-z]{2,3})*$"
+    },
+    "est_armenian_items": {
+      "type": "string",
+      "description": "Оценка числа армянских записей; пусто, если неизвестно.",
+      "pattern": "^[0-9]*$"
+    },
+    "count_note": {
+      "type": "string",
+      "description": "Что и где посчитано, с датой. Обязательно при est_armenian_items."
+    },
+    "access_methods": {
+      "type": "string",
+      "description": "Способы машинного доступа через точку с запятой; none — доступа нет.",
+      "pattern": "^(?:api|bulk|iiif|none|oai\\-pmh|sparql|sru|web|z39\\.50)(?:;(?:api|bulk|iiif|none|oai\\-pmh|sparql|sru|web|z39\\.50))*$",
+      "x-list": {
+        "separator": ";",
+        "enum": [
+          "api",
+          "bulk",
+          "iiif",
+          "none",
+          "oai-pmh",
+          "sparql",
+          "sru",
+          "web",
+          "z39.50"
+        ]
+      }
+    },
+    "endpoint": {
+      "type": "string",
+      "description": "Лучшая машинная точка доступа: API, OAI-PMH base URL, IIIF collection, дамп.",
+      "pattern": "^(?:https?://\\S+)?$"
+    },
+    "auth": {
+      "type": "string",
+      "description": "Требования к доступу: none, key (API-ключ), registration (учётная запись), restricted (по договору или на месте).",
+      "enum": [
+        "key",
+        "none",
+        "registration",
+        "restricted"
+      ]
+    },
+    "metadata_format": {
+      "type": "string",
+      "description": "Форматы метаданных через точку с запятой.",
+      "pattern": "^(?:csv|dc|ead|edm|html|iiif|json|lido|marc|mets|mods|other|qdc|rdf)(?:;(?:csv|dc|ead|edm|html|iiif|json|lido|marc|mets|mods|other|qdc|rdf))*$",
+      "x-list": {
+        "separator": ";",
+        "enum": [
+          "csv",
+          "dc",
+          "ead",
+          "edm",
+          "html",
+          "iiif",
+          "json",
+          "lido",
+          "marc",
+          "mets",
+          "mods",
+          "other",
+          "qdc",
+          "rdf"
+        ]
+      }
+    },
+    "metadata_license": {
+      "type": "string",
+      "description": "Лицензия метаданных: SPDX-идентификатор либо public-domain, custom, all-rights-reserved, unknown. Любое значение кроме unknown требует terms_url.",
+      "enum": [
+        "CC-BY-3.0",
+        "CC-BY-4.0",
+        "CC-BY-NC-4.0",
+        "CC-BY-NC-ND-4.0",
+        "CC-BY-NC-SA-4.0",
+        "CC-BY-SA-3.0",
+        "CC-BY-SA-4.0",
+        "CC0-1.0",
+        "ODC-By-1.0",
+        "ODbL-1.0",
+        "PDDL-1.0",
+        "all-rights-reserved",
+        "custom",
+        "etalab-2.0",
+        "public-domain",
+        "unknown"
+      ]
+    },
+    "content_rights": {
+      "type": "string",
+      "description": "Права на цифровые объекты (изображения, тексты, записи) в целом по источнику.",
+      "enum": [
+        "all-rights-reserved",
+        "mixed",
+        "open",
+        "public-domain",
+        "restricted",
+        "unknown"
+      ]
+    },
+    "commercial_use": {
+      "type": "string",
+      "description": "Допускается ли коммерческое использование метаданных и контента.",
+      "enum": [
+        "conditional",
+        "no",
+        "unknown",
+        "yes"
+      ]
+    },
+    "attribution_required": {
+      "type": "string",
+      "description": "Требуется ли указание источника.",
+      "enum": [
+        "no",
+        "unknown",
+        "yes"
+      ]
+    },
+    "automated_access": {
+      "type": "string",
+      "description": "Допустимость автоматического сбора: allowed, api-only (только через API), restricted (с ограничениями или по запросу), prohibited, unknown.",
+      "enum": [
+        "allowed",
+        "api-only",
+        "prohibited",
+        "restricted",
+        "unknown"
+      ]
+    },
+    "terms_url": {
+      "type": "string",
+      "description": "Страница условий использования, лицензии или прав.",
+      "pattern": "^(?:https?://\\S+)?$"
+    },
+    "terms_summary": {
+      "type": "string",
+      "description": "Краткое изложение условий использования на английском.",
+      "minLength": 1
+    },
+    "priority": {
+      "type": "string",
+      "description": "Приоритет интеграции: 1 — MVP, 2 — ближайшая очередь, 3 — требует переговоров или скрейпинга, 4 — справочно или без интеграции.",
+      "enum": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "description": "Состояние интеграции.",
+      "enum": [
+        "blocked",
+        "candidate",
+        "integrated",
+        "not-applicable",
+        "planned"
+      ]
+    },
+    "verified_at": {
+      "type": "string",
+      "description": "Дата последней проверки сведений, YYYY-MM-DD.",
+      "format": "date",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Технические заметки: платформа, блокеры, пересечения с другими источниками."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "metadata_license": {
+            "not": {
+              "const": "unknown"
+            }
+          }
+        },
+        "required": [
+          "metadata_license"
+        ]
+      },
+      "then": {
+        "properties": {
+          "terms_url": {
+            "minLength": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "est_armenian_items": {
+            "minLength": 1
+          }
+        },
+        "required": [
+          "est_armenian_items"
+        ]
+      },
+      "then": {
+        "properties": {
+          "count_note": {
+            "minLength": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "integrated"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "integration": {
+            "enum": [
+              "filter",
+              "harvest"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "integration": {
+            "const": "none"
+          }
+        },
+        "required": [
+          "integration"
+        ]
+      },
+      "then": {
+        "properties": {
+          "status": {
+            "const": "not-applicable"
+          }
+        }
+      }
+    }
+  ],
+  "examples": [
+    {
+      "id": "am.arar",
+      "name": "Pan-Armenian Digital Library (ARAR)",
+      "name_local": "Համահայկական թուանշային գրադարան",
+      "url": "https://arar.sci.am",
+      "country": "AM",
+      "institution_type": "digital_library",
+      "scope": "dedicated",
+      "integration": "harvest",
+      "content_types": "books;articles;periodicals;manuscripts;maps;audio;ephemera",
+      "languages": "hy;en;ru",
+      "est_armenian_items": "327032",
+      "count_note": "Homepage counter: 'contains 327 032 digital objects' (2026-11-02). OAI-PMH ListIdentifiers (oai_dc) reports completeListSize=309,205 on the same date. Mostly Armenian-language or Armenia-related, but includes NAS RA science publications.",
+      "access_methods": "oai-pmh;web",
+      "endpoint": "https://arar.sci.am/oai-pmh-repository.xml",
+      "auth": "none",
+      "metadata_format": "dc;qdc;mets;other",
+      "metadata_license": "unknown",
+      "content_rights": "mixed",
+      "commercial_use": "unknown",
+      "attribution_required": "unknown",
+      "automated_access": "api-only",
+      "terms_url": "",
+      "terms_summary": "No terms of use or licence page exists (the dLibra 'polityka' page is undefined). The OAI records carry no dc:rights, and the Rights/License/Access-rights fields shown on item pages are empty. Some items are restricted to privileged accounts. The 'About' page states an open-science mission only, so Armenian Law on Copyright and Related Rights (2006) applies by default.",
+      "priority": "2",
+      "status": "candidate",
+      "verified_at": "2026-11-02",
+      "notes": "dLibra 6.2.12 (PSNC Poznań). OAI formats: oai_dc, oai_qdc, mets, dlibra_avs, oai_etdms. Sets include books1, Articles, periodicals1, Mekhitaristcongregation(+books), armenian_and_armenogram_turkish_publications, institute_of_arts, pubios, IGS, InstLit, IAE, digital (repatriation), Audio, Maps, Posters, exhibition. robots.txt disallows /Content/*/download*, zip and search-result pages, so harvest metadata over OAI and avoid bulk file download. No IIIF manifest found. Hosts digitized Etchmiadzin journal (publication 369886) and IAE publications (set IAE, 580 records)."
+    }
+  ]
+}

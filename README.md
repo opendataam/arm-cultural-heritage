@@ -87,11 +87,18 @@ python3 scripts/evaluate_goskatalog.py \
 
 Labels use `id,label,note`, where `label` is `relevant`, `nonrelevant`, or `review`. The included evaluation report covers 93 manually reviewed records and must not be generalized to the entire source dataset.
 
+## Source registry
+
+[`data/sources.csv`](data/sources.csv) lists 112 institutions and online resources holding Armenian heritage materials, with access methods, metadata licences, content rights, automated-access rules and an integration decision for each. The format is documented in [`docs/sources.md`](docs/sources.md) and validated against [`schema/sources.schema.json`](schema/sources.schema.json). The human-readable description of the same sources, verified on 2026-11-02, is [`docs/armenian_data_sources.md`](docs/armenian_data_sources.md), and the plan for extending the published data beyond Goskatalog is [`docs/mvp-plan.md`](docs/mvp-plan.md).
+
+Source-level terms summarise what each institution publishes; they do not replace item-level rights statements and must be re-checked before a source is integrated.
+
 ## Validation
 
 ```bash
 python3 -m pip install -r requirements-dev.txt
 python3 scripts/terms.py data/terms.csv
+python3 scripts/sources.py data/sources.csv
 python3 -m pytest -q
 ```
 

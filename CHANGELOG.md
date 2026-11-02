@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Machine-readable registry of 112 Armenian heritage data sources (`data/sources.csv`) with access methods, terms of use, integration decisions and priorities, plus its validator (`scripts/sources.py`), JSON Schema and format documentation.
+- Updated description of Armenian heritage data sources (`docs/armenian_data_sources.md`, v2.0, verified 2026-11-02), correcting the earlier source list and adding terms of use for every source.
+- MVP plan for publishing records from several sources in several languages (`docs/mvp-plan.md`).
+
 ## [1.0.0] - 2026-10-31
 
 ### Added
