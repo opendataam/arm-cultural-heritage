@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Thematic collection builder `scripts/extract_collection.py` with `confirmed` and `candidate` tiers, regional museum candidate rules, manual labels, and a review listing.
+- Hamshen Armenians collection: 14 multilingual terms, 78 manual labels, and a full-corpus result with 63 confirmed and 155 candidate records.
+- Collection format documentation in `docs/collections.md` and end-to-end collection tests.
+
 ## [1.0.0] - 2026-10-31
 
 ### Added

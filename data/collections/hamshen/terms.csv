@@ -1,0 +1,15 @@
+entity_id,value,lang,script,category,pattern,match_strength,negative_pattern,source,review_status
+place.hamshen,Համշեն,hy,Armn,geoname,համշեն(?:ի|ում|ից|ը|ն)?,strong,,manual/hamshen-v1,approved
+people.hamshen_armenians,համշենցիներ,hy,Armn,keyword,համշենցի(?:ներ|ները|ների|ներին|ն)?|համշենահայ(?:եր|երը|երի|երին|ություն|ության|ությունը)?|հոմշեցի(?:ներ|ները|ների|ներին)?,strong,,manual/hamshen-v1,approved
+place.hamshen,Hamshen,en,Latn,geoname,hamshen|hamşen,strong,,manual/hamshen-v1,approved
+people.hamshen_armenians,Hamshenis,en,Latn,keyword,hamsheni(?:s|an|ans)?|hamshentsi(?:s|ner)?|homshe(?:tsi|ntsi)(?:s|ner)?,strong,,manual/hamshen-v1,approved
+people.hemshin,Hemshin,en,Latn,keyword,hemshin(?:li|lis)?,strong,,manual/hamshen-v1,approved
+language.homshetsma,Homshetsma,en,Latn,language,homshetsma,strong,,manual/hamshen-v1,approved
+place.hamshen,Амшен,ru,Cyrl,geoname,амшен(?:а|у|ом|е|и|ъ)?|хамшен(?:а|у|ом|е|и|ъ)?,strong,,manual/hamshen-v1,approved
+people.hamshen_armenians,амшенцы,ru,Cyrl,keyword,амшен(?:ец|ца|цу|цем|це|цы|цев|цам|цами|цах|ка|ки|ке|ку|кой|ок|кам|ками|ках)|хамшен(?:ец|ца|цу|цем|це|цы|цев|цам|цами|цах|ка|ки),strong,,manual/hamshen-v1,approved
+concept.hamshen,амшенский,ru,Cyrl,keyword,амшенск(?:ий|ая|ое|ие|ого|ой|ую|ом|им|их|ими|ому|ою)|хамшенск(?:ий|ая|ое|ие|ого|ой|ую|ом|им|их|ими|ому|ою),strong,,manual/hamshen-v1,approved
+people.hemshin,хемшины,ru,Cyrl,keyword,хемшин(?:ы|ов|ам|ами|ах|ец|цы|цев|цам|цами|цах|ка|ки)?|хемшил(?:ы|ов|ам|ами|ах|ка|ки)?,strong,,manual/hamshen-v1,approved
+concept.hemshin,хемшинский,ru,Cyrl,keyword,хемшинск(?:ий|ая|ое|ие|ого|ой|ую|ом|им|их|ими|ому|ою),strong,,manual/hamshen-v1,approved
+people.hopa_armenians,хопские армяне,ru,Cyrl,keyword,хопск(?:ие|их|им|ими)\s+армян(?:е|ам|ами|ах)?|армян(?:е|ам|ами|ах)?\s+хопск(?:ие|их|им|ими),strong,,manual/hamshen-v1,approved
+language.homshetsma,хомшецма,ru,Cyrl,language,хомшець?ма|хомшеци,strong,,manual/hamshen-v1,approved
+people.hemshin,Hemşinli,tr,Latn,keyword,hemşin(?:li|liler|lilerin|lileri)?|hamşenli(?:ler)?,strong,,manual/hamshen-v1,approved
