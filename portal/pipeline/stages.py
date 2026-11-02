@@ -21,12 +21,17 @@ import duckdb
 import pyarrow.parquet as pq
 
 from portal import __version__, store
-from portal.pipeline import RULES_VERSION, goskatalog
+from portal.pipeline import RULES_VERSION, bina, goskatalog, iarm, wikidata
 from portal.pipeline.entities import Entity, load_entities
 from portal.settings import TERMS_PATH, Source, load_entity_labels
 from portal.text import fold, index_text
 
-CONNECTORS = {"goskatalog_parquet": goskatalog}
+CONNECTORS = {
+    "goskatalog_parquet": goskatalog,
+    "wikidata_parquet": wikidata,
+    "bina_parquet": bina,
+    "iarm_parquet": iarm,
+}
 LEADING_PUNCTUATION = re.compile(r"^[\W_]+")
 # Publication is blocked when a source shrinks by more than this share (ТЗ 5.5, item 7).
 MAX_VOLUME_DROP = 0.30
@@ -211,11 +216,12 @@ def search_columns(record: dict) -> tuple:
         record["fund"],
         record["object_type"]["label"],
         " ".join(record["techniques"]),
+        *record.get("descriptions", {}).values(),
     ]
     places = [record["production_place"], record["find_place"]]
     ids = [record["id"], record["source"]["record_id"], *record["identifiers"].values()]
     return (
-        index_text(record["title"]["value"]),
+        index_text(" ".join([record["title"]["value"], *record.get("titles", {}).values()])),
         index_text(" ".join(filter(None, body))),
         index_text(" ".join(c["name"] for c in record["creators"])),
         index_text(" ".join(filter(None, places))),

@@ -154,6 +154,22 @@ class View:
                 return entity["labels"][code], code
         return next(iter(entity["labels"].items()), (entity_id, self.lang))
 
+    def title(self, record: dict) -> dict:
+        """Title in the interface language when the source provides one (ТЗ 8.2)."""
+        titles = record.get("titles") or {}
+        if titles.get(self.lang):
+            return {"value": titles[self.lang], "lang": self.lang}
+        return record["title"]
+
+    def description(self, record: dict) -> dict:
+        descriptions = record.get("descriptions") or {}
+        if descriptions.get(self.lang):
+            return {"value": descriptions[self.lang], "lang": self.lang}
+        return {"value": record.get("description"), "lang": record["metadata_lang"]}
+
+    def rights(self, uri: str) -> str:
+        return formats.rights_key(uri)
+
     def entity_label(self, entity_id: str) -> str:
         return self._entity_name(entity_id)[0]
 
@@ -176,7 +192,7 @@ class View:
         if name == "criteria":
             return t(f"criteria.{value}")
         if name == "rights":
-            return t("rights.CNE") if value == formats.CNE else value
+            return t(f"rights.{formats.rights_key(value)}")
         if name == "source":
             return get_source(value).label(self.lang)
         return value

@@ -1,4 +1,5 @@
 {% macro card(item) -%}
+{% set title = v.title(item) %}
 <li class="card">
   <a href="{{ v.url('/item/' ~ item.id) }}">
     <div class="card-media media-{{ item.media_type|lower }}">
@@ -9,10 +10,10 @@
       {% if item.media_count > 1 %}<span class="card-count">{{ t.plural("item.images", item.media_count) }}</span>{% endif %}
     </div>
     <div class="card-body">
-      <h3 class="card-title" lang="{{ item.title.lang }}" dir="auto">{{ item.title.value }}</h3>
+      <h3 class="card-title" lang="{{ title.lang }}" dir="auto">{{ title.value }}</h3>
       {% if item.creator %}<p class="card-meta" lang="{{ item.metadata_lang }}">{{ item.creator }}</p>{% endif %}
       {% if item.date %}<p class="card-meta" lang="{{ item.metadata_lang }}">{{ item.date }}</p>{% endif %}
-      <p class="card-meta card-institution" lang="{{ item.metadata_lang }}">{{ item.institution }}</p>
+      {% if item.institution %}<p class="card-meta card-institution" lang="{{ item.metadata_lang }}">{{ item.institution }}</p>{% endif %}
       <p class="card-badges">
         <span class="badge">{{ t("media." ~ item.media_type) }}</span>
       </p>

@@ -101,12 +101,15 @@ def transform(row: dict, source: Source, snapshot: dict, entity_categories: dict
         "id": f"{source.id_prefix}-{source_id}",
         "source": {"id": source.id, "record_id": source_id, "url": record_url},
         "title": {"value": title, "lang": "ru"},
+        "titles": {},
         "description": _text(row.get("description")),
+        "descriptions": {},
         "metadata_lang": "ru",
         "creators": creators,
         "date": period.as_dict(),
         "production_place": _text(row.get("productionPlace")),
         "find_place": _text(row.get("findPlace")),
+        "coordinates": None,
         "object_type": {
             "id": str(typology_id) if typology_id is not None else None,
             "label": typology.get("name"),
@@ -143,8 +146,11 @@ def transform(row: dict, source: Source, snapshot: dict, entity_categories: dict
         },
         "provider": source.id,
         "media": [{"url": url, "type": "image"} for url in images],
+        "media_credit": None,
+        "iiif_manifest": None,
         "is_shown_at": external_url or record_url,
         "rights": {"uri": source.rights},
+        "metadata_rights": {"uri": source.metadata_rights, "attribution": source.attribution},
         "relevance": {
             "status": RELEVANCE_STATUS.get(row.get("armenia_decision"), "candidate"),
             "criteria": relevance_criteria(

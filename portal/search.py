@@ -379,6 +379,7 @@ def summary(record: dict) -> dict:
     return {
         "id": record["id"],
         "title": record["title"],
+        "titles": record.get("titles") or {},
         "creator": creators[0]["name"] if creators else None,
         "date": record["date"]["display"] or None,
         "institution": record["institution"]["short_name"],

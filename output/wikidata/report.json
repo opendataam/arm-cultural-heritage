@@ -1,0 +1,35 @@
+{
+  "source": "int.wikidata",
+  "selection": "SELECT DISTINCT ?item WHERE { ?item wdt:P1435 [] ; wdt:P17 wd:Q399 . }",
+  "licence": "CC0-1.0",
+  "started_at": "2026-11-02T14:38:48+00:00",
+  "finished_at": "2026-11-02T14:39:29+00:00",
+  "requests": {
+    "wikidata": 11,
+    "commons": 3
+  },
+  "input_sha256": "936569b46ad50c87e66e360dec3fc8e59eed552c62df03969030bedac1fe93dd",
+  "selected_items": 120,
+  "records": 120,
+  "with_coordinates": 120,
+  "with_image": 119,
+  "image_licences": {
+    "CC BY-SA 4.0": 57,
+    "CC BY-SA 3.0": 43,
+    "CC BY 3.0": 8,
+    "Public domain": 6,
+    "CC BY 2.0": 2,
+    "CC BY 2.5": 1,
+    "CC BY 4.0": 1,
+    "CC BY-SA 1.0": 1
+  },
+  "labels": {
+    "hy": 120,
+    "ru": 112,
+    "en": 119,
+    "fr": 99,
+    "es": 65
+  },
+  "linked_entities": 119,
+  "output_sha256": "45473669b654dbff0f0aa905bcc99e41d4032e92f78a0cef796b80303bd1d2b9"
+}

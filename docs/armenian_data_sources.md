@@ -14,7 +14,7 @@ This document describes institutions and online resources that hold materials on
 
 - 112 sources in 8 sections.
 - Integration: 46 harvest, 23 filter, 39 link, 4 not a metadata source.
-- Status: 1 integrated, 7 planned, 80 candidate, 20 blocked, 4 not applicable.
+- Status: 4 integrated, 4 planned, 80 candidate, 20 blocked, 4 not applicable.
 - 29 sources publish metadata under an open licence or in the public domain; 48 publish no usable terms.
 
 ## Main changes since v1
@@ -418,8 +418,8 @@ Index of digitised Armenian manuscripts compiled by Calfa and partners: 2,579 ma
 - **Holdings:** 2,579 rows in index.tsv of Zenodo record 10.5281/zenodo.16355337 (v3.0, 22 Jul 2025); matches homepage counter; downloaded and counted 2026-11-02.
 - **Access:** bulk download, web pages, IIIF (no authentication); endpoint <https://zenodo.org/records/16355337/files/index.tsv>; metadata: csv, iiif.
 - **Terms of use:** metadata `CC-BY-4.0`; content mixed, per item; commercial use yes; attribution required; automated access allowed. The compiled index dataset is published on Zenodo under CC BY 4.0, so reuse incl. commercial is allowed with citation. The website footer says all rights reserved and the GitHub repo has no licence file; use the Zenodo release as the licensed copy. Images stay under each holding library's own terms. [Terms](https://zenodo.org/records/16355337)
-- **Integration:** harvest all records; priority 1; planned.
-- **Notes:** Live TSV also at https://raw.githubusercontent.com/CVidalG/Index-of-Armenian-Manuscripts/refs/heads/master/index.tsv (site loads it via PapaParse). Columns: ID (Coulie sigla), Cat. Number, Location, Country, Town, Permalink, Digital Library, Support, Date, Pages, Size, Title, Note, Genre, IIIF Manifest. Top holders: HMML 1,780 (Bzommar 675, Istanbul Patriarchate ~778, Aleppo 144, Antelias 61), Gallica 182, Vatican 146, Bodleian 73, UCLA 63, Berlin 51. Use as master crosswalk for manuscript sources below. robots.txt allows all. Calfa also runs catalog.mechitar.org (Venice).
+- **Integration:** harvest all records; priority 1; integrated.
+- **Notes:** Integrated 2026-11-02 with scripts/harvest_iarm.py and the portal connector `iarm_parquet`: 2,579 records from the Zenodo v3.0 release; images stay with holding libraries. Live TSV also at https://raw.githubusercontent.com/CVidalG/Index-of-Armenian-Manuscripts/refs/heads/master/index.tsv (site loads it via PapaParse). Columns: ID (Coulie sigla), Cat. Number, Location, Country, Town, Permalink, Digital Library, Support, Date, Pages, Size, Title, Note, Genre, IIIF Manifest. Top holders: HMML 1,780 (Bzommar 675, Istanbul Patriarchate ~778, Aleppo 144, Antelias 61), Gallica 182, Vatican 146, Bodleian 73, UCLA 63, Berlin 51. Use as master crosswalk for manuscript sources below. robots.txt allows all. Calfa also runs catalog.mechitar.org (Venice).
 
 ### Mekhitarist Congregation, San Lazzaro degli Armeni (Venice) - Library and Manuscript Catalogue
 
@@ -710,8 +710,8 @@ University library of languages and civilisations (INALCO) and a central portal 
 - **Holdings:** BiNA digital library Omeka S API, 2026-11-02: item set 'Domaine arménien' (id 359095) = 984 items, all tagged language arm; subsets include 'Haratch' (949 items), 'Fonds de périodiques arméniens' (983), 'Midk ev Arvest' (34). fulltext_search 'arménien' = 991. Print holdings are larger (a 2023 interview cites over 6,600 works in the Armenian collection).
 - **Access:** API, IIIF, web pages (no authentication); endpoint <https://bina.bulac.fr/api/items?item_set_id=359095>; metadata: json, rdf, iiif.
 - **Terms of use:** metadata `etalab-2.0`; content mixed, per item; commercial use conditional; attribution required; automated access unknown. Unless stated otherwise, BiNA notices and texts are reusable under the Licence Ouverte (Etalab) with source citation, and images of public-domain documents are marked Public Domain Mark 1.0. Item-level dcterms:rights overrides this: in the Armenian set 675 items are CC BY-NC 4.0 (largely Haratch), 308 public domain, 1 rights reserved. The Omeka S REST API needs no key; no rate limit is published. [Terms](https://bina.bulac.fr/s/bina/page/informations-techniques-et-juridiques)
-- **Integration:** harvest all records; priority 1; planned.
-- **Notes:** Harvest via Omeka S API with item_set_id=359095 (JSON-LD, totals in the Omeka-S-Total-Results header). The IIIF Server module is installed, so manifests are available per item. Haratch overlaps with ARAM's Haratch collection and archive.org HARATCH_YYYY-MM uploads; respect CC BY-NC for those.
+- **Integration:** harvest all records; priority 1; integrated.
+- **Notes:** Integrated 2026-11-02 with scripts/harvest_bina.py and the portal connector `bina_parquet`: 984 records, item-level rights kept (675 CC BY-NC 4.0, 308 Public Domain Mark, 1 in copyright shown without image). Harvest via Omeka S API with item_set_id=359095 (JSON-LD, totals in the Omeka-S-Total-Results header). The IIIF Server module is installed, so manifests are available per item. Haratch overlaps with ARAM's Haratch collection and archive.org HARATCH_YYYY-MM uploads; respect CC BY-NC for those.
 
 ### Bibliothèque Mazarine
 
@@ -1421,8 +1421,8 @@ Open knowledge graph: 22,025 items with a heritage designation in Armenia, plus 
 - **Holdings:** WDQS, 2026-11-02: items with heritage designation (P1435) and country Armenia (P17=Q399) = 22,025; all items with P17=Q399 = 57,827.
 - **Access:** SPARQL, API, bulk download, web pages (no authentication); endpoint <https://query.wikidata.org/sparql>; metadata: rdf, json.
 - **Terms of use:** metadata `CC0-1.0`; content open licences; commercial use yes; attribution not required; automated access allowed. Structured data is CC0 (Wikimedia Terms of Use apply to the service). WDQS limits: 60-second query timeout, 60 seconds of processing per minute per User-Agent+IP, 5 parallel queries per IP, 30 failed queries per minute; over-limit clients get 429 with Retry-After and may be banned. A descriptive User-Agent is required by the Wikimedia User-Agent policy. [Terms](https://www.wikidata.org/wiki/Wikidata:Licensing)
-- **Integration:** harvest all records; priority 1; planned.
-- **Notes:** Scholarly articles were split into a separate graph; query-scholarly.wikidata.org/sparql answered on 2026-11-02, while heritage items stay on the main endpoint. Full JSON/RDF dumps at https://dumps.wikimedia.org/wikidatawiki/entities/ (verified). Good hub for cross-ids (Europeana, Commons categories, GeoNames, VIAF, Getty, Pleiades).
+- **Integration:** harvest all records; priority 1; integrated.
+- **Notes:** Integrated 2026-11-02 with scripts/harvest_wikidata.py and the portal connector `wikidata_parquet`; the MVP publication holds a sample of the first 120 items by QID (run with --limit to extend it to the full selection of 22,025). Scholarly articles were split into a separate graph; query-scholarly.wikidata.org/sparql answered on 2026-11-02, while heritage items stay on the main endpoint. Full JSON/RDF dumps at https://dumps.wikimedia.org/wikidatawiki/entities/ (verified). Good hub for cross-ids (Europeana, Commons categories, GeoNames, VIAF, Getty, Pleiades).
 
 ### Wikimedia Commons
 

@@ -6,6 +6,19 @@ from portal.settings import get_source
 from portal.web.i18n import LANGUAGES, Translator
 
 CNE = "http://rightsstatements.org/vocab/CNE/1.0/"
+# Rights URI fragments → locale keys `rights.<key>`; the most specific fragment comes first.
+RIGHTS_KEYS = (
+    ("rightsstatements.org/vocab/CNE/", "CNE"),
+    ("rightsstatements.org/vocab/InC", "InC"),
+    ("creativecommons.org/publicdomain/mark/", "PDM"),
+    ("creativecommons.org/publicdomain/zero/", "CC0"),
+    ("creativecommons.org/licenses/by-nc-sa/", "CC-BY-NC-SA"),
+    ("creativecommons.org/licenses/by-nc/", "CC-BY-NC"),
+    ("creativecommons.org/licenses/by-sa/", "CC-BY-SA"),
+    ("creativecommons.org/licenses/by/", "CC-BY"),
+    ("etalab.gouv.fr/licence-ouverte", "LO"),
+    ("data.gov.ru/information-usage", "RU-OD"),
+)
 EDM_CONTEXT = {
     "edm": "http://www.europeana.eu/schemas/edm/",
     "ore": "http://www.openarchives.org/ore/terms/",
@@ -23,10 +36,25 @@ EDM_CONTEXT = {
     "dc:subject": {"@type": "@id"},
 }
 EDM_CLASSES = {"place": "edm:Place", "person": "edm:Agent", "organization": "foaf:Organization"}
-SCHEMA_TYPES = {"1": "Painting", "2": "VisualArtwork", "3": "Sculpture", "14": "Book", "17": "Photograph"}
-TEXT_TYPES = {"9", "14", "15", "16"}
+SCHEMA_TYPES = {
+    "1": "Painting", "2": "VisualArtwork", "3": "Sculpture", "14": "Book", "17": "Photograph",
+    "manuscript": "Manuscript", "monument": "LandmarksOrHistoricalBuildings", "periodical": "PublicationIssue",
+    "book": "Book",
+}
+TEXT_TYPES = {"9", "14", "15", "16", "manuscript", "periodical", "book"}
 # Canvas size for images whose dimensions are not yet measured by the media stage (ТЗ 6.10).
 NOMINAL_CANVAS = 1000
+
+
+def rights_key(uri: str) -> str:
+    """Locale key suffix for a rights URI; unknown URIs are 'other'."""
+    value = (uri or "").replace("https://", "http://")
+    return next((key for fragment, key in RIGHTS_KEYS if fragment in value), "other")
+
+
+def data_provider(record: dict) -> str:
+    """Holding institution, or the source itself for records without one (e.g. monuments)."""
+    return record["institution"]["name"] or get_source(record["source"]["id"]).label("en")
 
 
 def _literal(value: str, lang: str) -> dict:
@@ -72,7 +100,7 @@ def edm(record: dict, base: str, entities: Dict[str, dict]) -> dict:
         "@id": aggregation,
         "@type": "ore:Aggregation",
         "edm:aggregatedCHO": cho,
-        "edm:dataProvider": record["institution"]["name"],
+        "edm:dataProvider": data_provider(record),
         "edm:provider": get_source(record["source"]["id"]).label("en"),
         "edm:isShownAt": record["is_shown_at"],
         "edm:rights": record["rights"]["uri"],
@@ -121,7 +149,7 @@ def schema_org(record: dict, page_url: str, entities: Dict[str, dict], lang: str
         "contentLocation": [{"@type": "Place", "name": label(e)} for e in linked if e["kind"] == "place"],
         "about": [{"@type": "Thing", "name": label(e)} for e in linked if e["kind"] != "place"],
         "description": record["description"],
-        "provider": {"@type": "Museum", "name": record["institution"]["name"]},
+        "provider": {"@type": "Organization", "name": data_provider(record)},
     }
     return {k: v for k, v in data.items() if v}
 
@@ -174,7 +202,10 @@ def iiif_manifest(record: dict, base: str, page_url: Callable[[str], str]) -> di
         "type": "Manifest",
         "label": {lang: [record["title"]["value"]]},
         "metadata": metadata,
-        "requiredStatement": {"label": _label_map("field.institution"), "value": {lang: [record["institution"]["name"]]}},
+        "requiredStatement": {
+            "label": _label_map("field.institution"),
+            "value": {lang: [" · ".join(filter(None, [data_provider(record), record.get("media_credit")]))]},
+        },
         "rights": record["rights"]["uri"],
         "homepage": [{
             "id": page_url(record["id"]),

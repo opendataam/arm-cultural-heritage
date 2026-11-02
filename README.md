@@ -106,6 +106,24 @@ python3 -m venv .venv
 
 The pipeline writes to `build/portal/`, which is not tracked. Scope, deviations from the recommended stack and known limitations are described (in Russian) in [`docs/mvp.md`](docs/mvp.md).
 
+## Harvested sources
+
+Besides Goskatalog, the portal publishes three Armenian-focused sources collected by harvesters in `scripts/`:
+
+| Source | Harvester | Output | Records | Metadata licence |
+| --- | --- | --- | ---: | --- |
+| Wikidata monuments of Armenia | `harvest_wikidata.py` | `output/wikidata/` | 120 (MVP sample of 22,025) | CC0 |
+| BULAC BiNA, Armenian domain | `harvest_bina.py` | `output/bulac/` | 984 | Licence Ouverte 2.0 |
+| Index of Armenian Manuscripts | `harvest_iarm.py` | `output/iarm/` | 2,579 | CC BY 4.0 |
+
+```bash
+python3 scripts/harvest_wikidata.py --limit 3000
+python3 scripts/harvest_bina.py
+python3 scripts/harvest_iarm.py
+```
+
+Each output holds the source fields, the nine `armenia_*` fields used by the portal to link entities, and a `report.json` with counts, checksums and licences. Image rights stay item-level: Commons licences for Wikidata images and `dcterms:license` for BiNA items.
+
 ## Validation
 
 ```bash

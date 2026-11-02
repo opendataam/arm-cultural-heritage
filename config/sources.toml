@@ -3,6 +3,7 @@
 
 [[source]]
 id = "goskatalog"
+registry_id = "ru.goskatalog"
 connector = "goskatalog_parquet"
 input = "output/goskatalog/armenia_records.parquet"
 # Candidates ("review") are not published automatically (ТЗ 6.3, item 8).
@@ -12,6 +13,8 @@ record_url = "https://goskatalog.ru/portal/#/collections?id={id}"
 id_prefix = "gk"
 # The export carries no rights statements, so records get "Copyright Not Evaluated" (ТЗ 6.5).
 rights = "http://rightsstatements.org/vocab/CNE/1.0/"
+metadata_rights = "http://data.gov.ru/information-usage"
+attribution = "Госкаталог Музейного фонда Российской Федерации"
 schedule = "0 3 1 * *"
 
 [source.name]
@@ -20,3 +23,65 @@ ru = "Госкаталог Музейного фонда Российской Ф
 en = "State Catalogue of the Museum Fund of the Russian Federation"
 fr = "Catalogue d’État du fonds muséal de la Fédération de Russie"
 es = "Catálogo Estatal del Fondo de Museos de la Federación de Rusia"
+
+[[source]]
+id = "wikidata"
+registry_id = "int.wikidata"
+connector = "wikidata_parquet"
+input = "output/wikidata/records.parquet"
+homepage = "https://www.wikidata.org/"
+record_url = "https://www.wikidata.org/wiki/{id}"
+id_prefix = "wd"
+# Records without an image have no digital object; images carry their Commons licence.
+rights = "http://rightsstatements.org/vocab/CNE/1.0/"
+metadata_rights = "http://creativecommons.org/publicdomain/zero/1.0/"
+attribution = "Wikidata"
+schedule = "0 4 * * 1"
+
+[source.name]
+hy = "Վիքիտվյալներ․ Հայաստանի հուշարձաններ"
+ru = "Викиданные: памятники Армении"
+en = "Wikidata: monuments of Armenia"
+fr = "Wikidata : monuments d’Arménie"
+es = "Wikidata: monumentos de Armenia"
+
+[[source]]
+id = "bulac"
+registry_id = "fr.bulac"
+connector = "bina_parquet"
+input = "output/bulac/records.parquet"
+homepage = "https://bina.bulac.fr/"
+record_url = "https://bina.bulac.fr/s/bina/item/{id}"
+id_prefix = "bina"
+rights = "http://rightsstatements.org/vocab/CNE/1.0/"
+metadata_rights = "https://www.etalab.gouv.fr/licence-ouverte-open-licence/"
+attribution = "BULAC – BiNA"
+schedule = "0 4 1 * *"
+
+[source.name]
+hy = "BULAC, BiNA թվային գրադարան"
+ru = "BULAC, цифровая библиотека BiNA"
+en = "BULAC digital library BiNA"
+fr = "BULAC, bibliothèque numérique BiNA"
+es = "BULAC, biblioteca digital BiNA"
+
+[[source]]
+id = "iarm"
+registry_id = "int.iarm"
+connector = "iarm_parquet"
+input = "output/iarm/records.parquet"
+homepage = "https://www.armenian-manuscripts-index.com/"
+record_url = "https://www.armenian-manuscripts-index.com/"
+id_prefix = "iarm"
+# Images stay with the holding libraries under their own terms.
+rights = "http://rightsstatements.org/vocab/CNE/1.0/"
+metadata_rights = "http://creativecommons.org/licenses/by/4.0/"
+attribution = "Index of Armenian Manuscripts (Calfa et al.), Zenodo 10.5281/zenodo.16355337"
+schedule = "0 4 1 */3 *"
+
+[source.name]
+hy = "Հայերեն ձեռագրերի ցանկ (IArM)"
+ru = "Указатель армянских рукописей (IArM)"
+en = "Index of Armenian Manuscripts (IArM)"
+fr = "Index des manuscrits arméniens (IArM)"
+es = "Índice de manuscritos armenios (IArM)"

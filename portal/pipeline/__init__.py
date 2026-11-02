@@ -4,4 +4,4 @@ Stages are plain functions with a command-line entry point (`python -m portal.pi
 so the orchestrator stays a thin, replaceable layer (ТЗ 5.5, item 10).
 """
 
-RULES_VERSION = "goskatalog-mvp-1"
+RULES_VERSION = "mvp-2"

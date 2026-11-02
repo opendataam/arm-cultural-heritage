@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 {% import "_macros.html" as m with context %}
 {% set ml = record.metadata_lang %}
+{% set title = v.title(record) %}
+{% set description = v.description(record) %}
+{% set rights_key = v.rights(record.rights.uri) %}
 
-{% block title %}{{ record.title.value|truncate(90) }} · {{ t("site.name") }}{% endblock %}
-{% block description %}{{ (record.description or record.title.value)|truncate(200) }}{% endblock %}
+{% block title %}{{ title.value|truncate(90) }} · {{ t("site.name") }}{% endblock %}
+{% block description %}{{ (description.value or title.value)|truncate(200) }}{% endblock %}
 {% block head %}
   {# The viewer loads images from the source server; do not send it the portal URL. #}
   <meta name="referrer" content="no-referrer">
@@ -27,7 +30,7 @@
     {% if record.media %}
     <div class="viewer-stage" data-viewer data-images='{{ record.media|map(attribute="url")|list|tojson }}'
          data-osd-prefix="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/images/">
-      <img class="viewer-image" src="{{ record.media[0].url }}" alt="{{ record.title.value }}" referrerpolicy="no-referrer">
+      <img class="viewer-image" src="{{ record.media[0].url }}" alt="{{ title.value }}" referrerpolicy="no-referrer">
       <div class="viewer-fallback" hidden>
         <p><strong>{{ t("item.image_unavailable") }}</strong></p>
         <p>{{ t("item.image_unavailable_hint") }}</p>
@@ -51,24 +54,25 @@
     <div class="item-main">
       <header class="item-header">
         <p class="eyebrow">{{ t("typology." ~ record.object_type.id, default=record.object_type.label) }} · {{ t("media." ~ record.media_type) }}</p>
-        <h1 lang="{{ record.title.lang }}" dir="auto">{{ record.title.value }}</h1>
+        <h1 lang="{{ title.lang }}" dir="auto">{{ title.value }}</h1>
         <p class="item-sub" lang="{{ ml }}">
           {% if record.creators %}{{ record.creators|map(attribute="name")|join(", ") }}{% endif %}
           {% if record.creators and v.date(record.date) %} · {% endif %}{{ v.date(record.date) }}
         </p>
-        <p class="item-institution"><a href="{{ v.url('/institution/' ~ record.institution.id) }}" lang="{{ ml }}">{{ record.institution.short_name }}</a></p>
+        {% if record.institution.id %}<p class="item-institution"><a href="{{ v.url('/institution/' ~ record.institution.id) }}" lang="{{ ml }}">{{ record.institution.short_name }}</a></p>{% endif %}
         <div class="item-actions">
           <a class="button" href="{{ record.is_shown_at }}" rel="noopener">{{ t("item.view_at_source") }} ↗</a>
           {% if record.media %}<a class="button button-ghost iiif" href="{{ manifest_url }}" title="{{ t('item.iiif_hint') }}">IIIF</a>{% endif %}
+          {% if record.iiif_manifest %}<a class="button button-ghost iiif" href="{{ record.iiif_manifest }}" rel="noopener">{{ t("item.iiif_source") }} ↗</a>{% endif %}
           <a class="button button-ghost" href="/api/v1/records/{{ record.id }}?format=edm">EDM JSON-LD</a>
         </div>
         {% if lang != ml %}<p class="note">{{ t("item.source_language") }}</p>{% endif %}
       </header>
 
-      {% if record.description %}
+      {% if description.value %}
       <section class="item-section">
         <h2>{{ t("item.group.description") }}</h2>
-        <div class="item-description" lang="{{ ml }}" dir="auto">{% for paragraph in record.description.split("\n") %}<p>{{ paragraph }}</p>{% endfor %}</div>
+        <div class="item-description" lang="{{ description.lang }}" dir="auto">{% for paragraph in description.value.split("\n") %}<p>{{ paragraph }}</p>{% endfor %}</div>
       </section>
       {% endif %}
 
@@ -85,6 +89,10 @@
           {% endif %}
           {{ row("field.production_place", record.production_place) }}
           {{ row("field.find_place", record.find_place) }}
+          {% if record.coordinates %}
+          <div><dt>{{ t("field.coordinates") }}</dt><dd>{{ "%.5f, %.5f"|format(record.coordinates.lat, record.coordinates.lon) }}
+            · <a href="https://www.openstreetmap.org/?mlat={{ record.coordinates.lat }}&amp;mlon={{ record.coordinates.lon }}#map=16/{{ record.coordinates.lat }}/{{ record.coordinates.lon }}" rel="noopener">{{ t("item.show_on_map") }} ↗</a></dd></div>
+          {% endif %}
         </dl>
       </section>
 
@@ -118,6 +126,10 @@
           {{ row("field.inventory", record.identifiers.inventory) }}
           {{ row("field.registration", record.identifiers.goskatalog_registration, none) }}
           {{ row("field.kp_gik", record.identifiers.kp_gik) }}
+          {{ row("field.siglum", record.identifiers.siglum, none) }}
+          {{ row("field.ark", record.identifiers.ark, none) }}
+          {% if record.identifiers.wikidata %}<div><dt>{{ t("field.wikidata") }}</dt><dd><a href="https://www.wikidata.org/wiki/{{ record.identifiers.wikidata }}" rel="noopener">{{ record.identifiers.wikidata }} ↗</a></dd></div>{% endif %}
+          {{ row("field.wlm", record.identifiers.wlm, none) }}
         </dl>
       </section>
 
@@ -138,15 +150,19 @@
     <aside class="item-aside">
       <section class="panel">
         <h2>{{ t("item.group.rights") }}</h2>
-        <p><a href="{{ record.rights.uri }}" rel="license noopener"><strong>{{ t("rights.CNE") }}</strong></a></p>
-        <p class="muted">{{ t("rights.CNE.text") }}</p>
+        <p><a href="{{ record.rights.uri }}" rel="license noopener"><strong>{{ t("rights." ~ rights_key) }}</strong></a></p>
+        <p class="muted">{{ t("rights." ~ rights_key ~ ".text") }}</p>
+        {% if record.media_credit %}<p>{{ t("item.media_credit") }}: {% if record.media and record.media[0].page %}<a href="{{ record.media[0].page }}" rel="noopener">{{ record.media_credit }}</a>{% else %}{{ record.media_credit }}{% endif %}</p>{% endif %}
+        {% if record.metadata_rights and record.metadata_rights.uri %}
+        <p class="muted">{{ t("field.metadata_rights") }}: <a href="{{ record.metadata_rights.uri }}" rel="license noopener">{{ t("rights." ~ v.rights(record.metadata_rights.uri)) }}</a>{% if record.metadata_rights.attribution %} — {{ record.metadata_rights.attribution }}{% endif %}</p>
+        {% endif %}
       </section>
 
       <section class="panel">
         <h2>{{ t("item.group.record") }}</h2>
         <dl class="fields compact">
           {{ row("field.provider", source.label(lang), lang) }}
-          <div><dt>{{ t("field.institution") }}</dt><dd><a href="{{ v.url('/institution/' ~ record.institution.id) }}" lang="{{ ml }}">{{ record.institution.name }}</a></dd></div>
+          {% if record.institution.id %}<div><dt>{{ t("field.institution") }}</dt><dd><a href="{{ v.url('/institution/' ~ record.institution.id) }}" lang="{{ ml }}">{{ record.institution.name }}</a></dd></div>{% endif %}
           <div><dt>{{ t("field.source_record") }}</dt><dd><a href="{{ record.source.url }}" rel="noopener">{{ record.source.record_id }} ↗</a></dd></div>
           {{ row("field.collected_at", record.record_provenance.collected_at[:10], none) }}
           {{ row("field.rules_version", record.record_provenance.rules_version, none) }}
@@ -167,7 +183,7 @@
 
       <section class="panel">
         <h2>{{ t("item.cite") }}</h2>
-        {% set citation %}{{ record.title.value }}.{% if record.creators %} {{ record.creators[0].name }}.{% endif %}{% if record.date.display %} {{ record.date.display }}.{% endif %} {{ record.institution.short_name }}. {{ source.label(lang) }}{% if record.identifiers.goskatalog_registration %}, № {{ record.identifiers.goskatalog_registration }}{% endif %}. {{ page_url }}{% endset %}
+        {% set citation %}{{ title.value }}.{% if record.creators %} {{ record.creators[0].name }}.{% endif %}{% if record.date.display %} {{ record.date.display }}.{% endif %}{% if record.institution.short_name %} {{ record.institution.short_name }}.{% endif %} {{ source.label(lang) }}{% if record.identifiers.goskatalog_registration %}, № {{ record.identifiers.goskatalog_registration }}{% endif %}. {{ page_url }}{% endset %}
         <p class="citation" lang="{{ ml }}" id="citation">{{ citation }}</p>
         <p class="permalink"><span class="muted">{{ t("item.permalink") }}:</span> <code id="permalink">{{ page_url }}</code></p>
         <p><button type="button" class="button button-ghost" data-copy="#citation" data-copied="{{ t('item.copied') }}">{{ t("item.copy") }}</button></p>

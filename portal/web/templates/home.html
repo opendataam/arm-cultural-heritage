@@ -57,7 +57,7 @@
       <span class="card-placeholder" aria-hidden="true">{{ t("typology." ~ featured.object_type.id, default=t("media." ~ featured.media_type)) }}</span>
     </div>
     <div class="featured-body">
-      <h3 lang="{{ featured.metadata_lang }}">{{ featured.title.value }}</h3>
+      {% set featured_title = v.title(featured) %}<h3 lang="{{ featured_title.lang }}">{{ featured_title.value }}</h3>
       {% if featured.creators %}<p lang="{{ featured.metadata_lang }}">{{ featured.creators[0].name }}</p>{% endif %}
       {% if featured.date.display %}<p lang="{{ featured.metadata_lang }}">{{ featured.date.display }}</p>{% endif %}
       <p class="muted" lang="{{ featured.metadata_lang }}">{{ featured.institution.short_name }}</p>

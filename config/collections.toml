@@ -60,3 +60,18 @@ title = { hy = "Երևան", ru = "Ереван", en = "Yerevan", fr = "Erevan",
 slug = "ani-urartu"
 filters = { place = ["place.ani", "legacy.geoname.759d3f5e1798", "legacy.geoname.4ea5e2329c0c", "legacy.geoname.df34b8351c7c"] }
 title = { hy = "Անի, Ուրարտու, Գառնի, Զվարթնոց", ru = "Ани, Урарту, Гарни, Звартноц", en = "Ani, Urartu, Garni, Zvartnots", fr = "Ani, Ourartou, Garni, Zvartnots", es = "Ani, Urartu, Garni, Zvartnots" }
+
+[[collection]]
+slug = "monuments"
+filters = { type = ["monument"] }
+title = { hy = "Հայաստանի հուշարձաններ", ru = "Памятники Армении", en = "Monuments of Armenia", fr = "Monuments d’Arménie", es = "Monumentos de Armenia" }
+
+[[collection]]
+slug = "manuscripts"
+filters = { type = ["manuscript"] }
+title = { hy = "Հայերեն ձեռագրեր աշխարհի գրադարաններում", ru = "Армянские рукописи в библиотеках мира", en = "Armenian manuscripts in libraries worldwide", fr = "Manuscrits arméniens dans les bibliothèques du monde", es = "Manuscritos armenios en bibliotecas del mundo" }
+
+[[collection]]
+slug = "haratch"
+filters = { source = ["bulac"] }
+title = { hy = "«Յառաջ» և սփյուռքի մամուլը", ru = "«Арач» и пресса диаспоры", en = "Haratch and the diaspora press", fr = "Haratch et la presse de la diaspora", es = "Haratch y la prensa de la diáspora" }

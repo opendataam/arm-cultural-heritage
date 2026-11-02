@@ -31,6 +31,10 @@ class Source:
     schedule: str = ""
     review_input: Path = None
     options: Dict[str, object] = field(default_factory=dict)
+    # Licence of the metadata and the credit line the source asks for (data/sources.csv).
+    metadata_rights: str = ""
+    attribution: str = ""
+    registry_id: str = ""
 
     def label(self, lang: str) -> str:
         return self.name.get(lang) or self.name.get("en") or self.id
@@ -59,6 +63,9 @@ def load_sources(path: Path = CONFIG_DIR / "sources.toml") -> List[Source]:
                 rights=item["rights"],
                 schedule=item.get("schedule", ""),
                 options=item.get("options", {}),
+                metadata_rights=item.get("metadata_rights", ""),
+                attribution=item.get("attribution", ""),
+                registry_id=item.get("registry_id", ""),
             )
         )
     return sources

@@ -1,0 +1,21 @@
+{
+  "source": "fr.bulac",
+  "source_url": "https://bina.bulac.fr/api/items?item_set_id=359095",
+  "licence": "etalab-2.0",
+  "started_at": "2026-11-02T13:59:42+00:00",
+  "finished_at": "2026-11-02T14:00:22+00:00",
+  "requests": 10,
+  "input_sha256": "9a7d693a1e6973860e998428cb5e60b30be55b8cf117d117b70938cfaaf095bf",
+  "records": 984,
+  "rights": {
+    "https://creativecommons.org/licenses/by-nc/4.0/deed.fr": 675,
+    "https://creativecommons.org/publicdomain/mark/1.0/deed.fr": 308,
+    "Droits réservés": 1
+  },
+  "types": {
+    "Périodique": 983,
+    "Imprimé": 1
+  },
+  "linked_entities": 984,
+  "output_sha256": "8e4d423695a714f9d96c946492c9ae32f07f7274eae7723e644aedc7da728fee"
+}
