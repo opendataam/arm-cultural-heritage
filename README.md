@@ -32,6 +32,26 @@ Example inspection with DuckDB:
 duckdb -c "SELECT id, name, armenia_matched_terms, armenia_matched_fields FROM 'output/goskatalog/armenia_records.parquet' LIMIT 20"
 ```
 
+## Thematic collections
+
+Thematic collections mark subsets of the corpus with their own terms, candidate rules, and manual labels. They do not change `data/terms.csv` or the published Armenia extraction. The format is documented in [`docs/collections.md`](docs/collections.md).
+
+The first collection, [`output/goskatalog/collections/hamshen/`](output/goskatalog/collections/hamshen/), covers Hamshen Armenians and their culture:
+
+| Tier | Records | Meaning |
+| --- | ---: | --- |
+| `confirmed` | 63 | Explicit Hamshen terms such as `армяне амшенские`, `хемшины`, `Луйс Амшени`, or a manual `relevant` label |
+| `candidate` | 155 | Armenian records from Sochi, Adler, Khosta, Lazarevskoye, and Tuapse museums, plus manual `review` labels |
+
+Three confirmed records, issues of the Sochi newspaper «Луйс Амшени», are missing from the Armenia extraction because the main registry has no Hamshen terms. Candidates are not confirmed Hamshen material and require manual review.
+
+```bash
+python3 scripts/extract_collection.py \
+  --collection data/collections/hamshen \
+  --input /path/to/goskatalog/data.parquet \
+  --armenia-dir output/goskatalog
+```
+
 ## Run the extractor
 
 Python 3.9 or later is required.
@@ -92,10 +112,11 @@ Labels use `id,label,note`, where `label` is `relevant`, `nonrelevant`, or `revi
 ```bash
 python3 -m pip install -r requirements-dev.txt
 python3 scripts/terms.py data/terms.csv
+python3 scripts/terms.py data/collections/hamshen/terms.csv
 python3 -m pytest -q
 ```
 
-The tests cover registry validation, matching behavior, false substrings, negative contexts, and end-to-end extraction, resume, and evaluation through the real command-line interfaces.
+The tests cover registry validation, matching behavior, false substrings, negative contexts, and end-to-end extraction, resume, evaluation, and collection building through the real command-line interfaces.
 
 ## Provenance and license
 

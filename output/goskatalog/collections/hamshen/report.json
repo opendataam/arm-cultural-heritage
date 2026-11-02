@@ -1,0 +1,87 @@
+{
+  "armenia_extraction": {
+    "include": 58291,
+    "path": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/.claude/worktrees/amshentsy-materials-collection-e3fdb2/output/goskatalog",
+    "regional_candidates": 228,
+    "review": 86714
+  },
+  "collection": {
+    "candidates": {
+      "exclude_museum_pattern": "островск",
+      "museum_pattern": "сочи|адлер|хостин|лазаревск|туапс",
+      "note": "Армянские записи из музеев Сочи, Адлера, Хосты, Лазаревского и Туапсе, где живёт основная амшенская община России. Музей Н.А. Островского исключён: его армянские записи — переводы и письма Островскому. Требуют ручной проверки."
+    },
+    "definition_sha256": "1b381fa0732080e2021a2e705b03e834a1a9de5c9de278b20646dc040fea5f83",
+    "id": "hamshen",
+    "path": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/.claude/worktrees/amshentsy-materials-collection-e3fdb2/data/collections/hamshen",
+    "title": "Амшенские армяне"
+  },
+  "counts": {
+    "candidate": 155,
+    "confirmed": 63,
+    "excluded": 0,
+    "manual_nonrelevant": 74,
+    "not_in_armenia_extraction": 4,
+    "scanned": 292,
+    "source_rows": 31741256
+  },
+  "duration_seconds": 91.361,
+  "fields": {
+    "description": 1,
+    "name": 62
+  },
+  "finished_at": "2026-11-02T16:13:57.937655+00:00",
+  "input": {
+    "bytes": 2858122786,
+    "path": "/Users/ibegtin/workspace/wa/goskatalog/data/data.parquet",
+    "rows": 31741256
+  },
+  "labels": {
+    "counts": {
+      "nonrelevant": 74,
+      "relevant": 1,
+      "review": 3
+    },
+    "path": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/.claude/worktrees/amshentsy-materials-collection-e3fdb2/data/collections/hamshen/labels.csv",
+    "sha256": "4be39079c139524f7dd0b5f8cabad80129ce543e0cb6c21a0889a1d299f43468"
+  },
+  "outputs": {
+    "listing": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/.claude/worktrees/amshentsy-materials-collection-e3fdb2/output/goskatalog/collections/hamshen/hamshen_records.csv",
+    "records": {
+      "bytes": 48030,
+      "path": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/.claude/worktrees/amshentsy-materials-collection-e3fdb2/output/goskatalog/collections/hamshen/hamshen_records.parquet",
+      "rows": 218
+    }
+  },
+  "reasons": {
+    "manual_relevant": 1,
+    "manual_review": 3,
+    "regional_museum": 158,
+    "strong_content": 63
+  },
+  "settings": {
+    "batch_size": 8192,
+    "memory_limit": "6GB",
+    "threads": 6
+  },
+  "started_at": "2026-11-02T16:12:26.579770+00:00",
+  "terms": {
+    "active_rules": 14,
+    "counts": {
+      "context_only": 0,
+      "rejected": 0,
+      "strong": 14,
+      "total": 14,
+      "unverified": 0,
+      "weak": 0
+    },
+    "path": "/Users/ibegtin/workspace/opendataam/arm-cultural-heritage/.claude/worktrees/amshentsy-materials-collection-e3fdb2/data/collections/hamshen/terms.csv",
+    "sha256": "b60f6d2c6a80c4912a6336fe1d49ce893d5a46dc2a3f3c248affc9af3b7b9fe5"
+  },
+  "top_terms": {
+    "ru:Амшен": 4,
+    "ru:амшенский": 59,
+    "ru:хемшины": 7,
+    "ru:хопские армяне": 1
+  }
+}
