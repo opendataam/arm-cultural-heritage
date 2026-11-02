@@ -75,3 +75,8 @@ title = { hy = "Հայերեն ձեռագրեր աշխարհի գրադարան�
 slug = "haratch"
 filters = { source = ["bulac"] }
 title = { hy = "«Յառաջ» և սփյուռքի մամուլը", ru = "«Арач» и пресса диаспоры", en = "Haratch and the diaspora press", fr = "Haratch et la presse de la diaspora", es = "Haratch y la prensa de la diáspora" }
+
+[[collection]]
+slug = "hamshen"
+filters = { theme = ["hamshen"] }
+title = { hy = "Համշենահայեր", ru = "Амшенские армяне", en = "Hamshen Armenians", fr = "Arméniens du Hamchen", es = "Armenios de Hamshen" }

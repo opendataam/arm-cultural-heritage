@@ -34,7 +34,7 @@ def built(tmp_path_factory):
             (select * from '{SOURCE_PARQUET}' where len(images) = 0 order by id limit 20)
         ) qualify row_number() over (partition by id order by id) = 1) to '{sample}' (format parquet)"""
     )
-    source = replace(get_source("goskatalog"), input=sample, review_input=None)
+    source = replace(get_source("goskatalog"), input=sample, review_input=None, themes=())
     build = root / "build"
     db = build / "portal.sqlite"
     snapshot = stages.collect(source, build)

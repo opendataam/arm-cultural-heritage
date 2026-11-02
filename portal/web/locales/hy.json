@@ -257,5 +257,7 @@
   "field.metadata_rights": "Մետատվյալների լիցենզիա",
   "item.media_credit": "Պատկերը",
   "item.iiif_source": "IIIF աղբյուրում",
-  "institution.country.FR": "Ֆրանսիա"
+  "institution.country.FR": "Ֆրանսիա",
+  "facet.theme": "Թեմատիկ հավաքածու",
+  "theme.hamshen": "Համշենահայեր"
 }

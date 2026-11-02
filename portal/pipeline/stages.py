@@ -115,16 +115,31 @@ def transform(source: Source, build: Path, entities: Optional[Dict[str, Entity]]
     media = Counter()
     statuses = Counter()
     started = time.monotonic()
+    memberships, theme_rows, theme_files = load_themes(source)
+    seen = set()
     tmp = output.with_suffix(".tmp")
+
+    def emit(handle, record):
+        statuses[record["relevance"]["status"]] += 1
+        dates[record["date"]["method"]] += 1
+        media[record["media_type"]] += 1
+        handle.write(json.dumps(record, ensure_ascii=False) + "\n")
+        stats["output"] += 1
+
     with gzip.open(tmp, "wt", encoding="utf-8") as handle:
         for row in connector.read_rows(build / snapshot["path"]):
             stats["input"] += 1
             record = connector.transform(row, source, snapshot, categories)
-            statuses[record["relevance"]["status"]] += 1
-            dates[record["date"]["method"]] += 1
-            media[record["media_type"]] += 1
-            handle.write(json.dumps(record, ensure_ascii=False) + "\n")
-            stats["output"] += 1
+            record_id = record["source"]["record_id"]
+            seen.add(record_id)
+            emit(handle, apply_themes(record, memberships.get(record_id, []), theme_rows.get(record_id)))
+        # Confirmed theme members that the main extraction missed (no matching registry term).
+        for record_id, row in theme_rows.items():
+            if record_id in seen:
+                continue
+            record = connector.transform(row, source, snapshot, categories)
+            emit(handle, apply_themes(record, memberships[record_id], row))
+            stats["theme_only"] += 1
     os.replace(tmp, output)
     result = {
         "source": source.id,
@@ -136,11 +151,44 @@ def transform(source: Source, build: Path, entities: Optional[Dict[str, Entity]]
         "relevance_status": dict(statuses),
         "date_methods": dict(dates),
         "media_types": dict(media),
+        "themes": {"files": theme_files, "theme_only_records": stats["theme_only"]},
         "seconds": round(time.monotonic() - started, 1),
         "path": str(output.relative_to(build)),
     }
     write_json(output.parent / "transform.json", result)
     return result
+
+
+def load_themes(source: Source):
+    """Theme memberships by source record id, confirmed rows, and file metadata."""
+    memberships: Dict[str, List[dict]] = {}
+    rows: Dict[str, dict] = {}
+    files = []
+    for path in source.themes:
+        table = pq.read_table(path)
+        files.append({"path": str(path), "sha256": sha256(path), "rows": table.num_rows})
+        for row in table.to_pylist():
+            record_id = str(row["id"])
+            memberships.setdefault(record_id, []).append({"id": row["collection_id"], "tier": row["collection_tier"]})
+            if row["collection_tier"] == "confirmed":
+                rows.setdefault(record_id, row)
+    return memberships, rows, files
+
+
+def apply_themes(record: dict, themes: List[dict], row: Optional[dict]) -> dict:
+    """Attach theme memberships; a confirmed theme member is published (docs/collections.md)."""
+    record["themes"] = themes
+    confirmed = [theme["id"] for theme in themes if theme["tier"] == "confirmed"]
+    relevance = record["relevance"]
+    if confirmed and relevance["status"] != "confirmed":
+        relevance["status"] = "confirmed"
+        relevance["reasons"] = sorted({*relevance["reasons"], *(f"theme:{theme}" for theme in confirmed)})
+        relevance["criteria"] = sorted({*relevance["criteria"], "subject"})
+        if row and not relevance["matched_terms"]:
+            relevance["matched_terms"] = list(row.get("collection_matched_terms") or [])
+        if row and not relevance["matched_fields"]:
+            relevance["matched_fields"] = list(row.get("collection_matched_fields") or [])
+    return record
 
 
 def read_stage(build: Path, source: Source) -> Iterable[dict]:
@@ -186,6 +234,10 @@ def facet_rows(record: dict, displayable: Dict[str, Entity]) -> Iterable[tuple]:
         yield "technique", technique
     for criterion in record["relevance"]["criteria"]:
         yield "criteria", criterion
+    # Only confirmed members appear in the theme facet, as candidates are not published.
+    for theme in record.get("themes", []):
+        if theme["tier"] == "confirmed":
+            yield "theme", theme["id"]
     for entity_id in record["entities"]:
         entity = displayable.get(entity_id)
         if entity:

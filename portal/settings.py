@@ -3,7 +3,7 @@ import tomllib
 from dataclasses import dataclass, field
 from functools import lru_cache
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_DIR = ROOT / "config"
@@ -35,6 +35,9 @@ class Source:
     metadata_rights: str = ""
     attribution: str = ""
     registry_id: str = ""
+    # Thematic collections over this source (docs/collections.md): Parquet files with
+    # `collection_id` and `collection_tier` next to the source fields.
+    themes: Tuple[Path, ...] = ()
 
     def label(self, lang: str) -> str:
         return self.name.get(lang) or self.name.get("en") or self.id
@@ -66,6 +69,7 @@ def load_sources(path: Path = CONFIG_DIR / "sources.toml") -> List[Source]:
                 metadata_rights=item.get("metadata_rights", ""),
                 attribution=item.get("attribution", ""),
                 registry_id=item.get("registry_id", ""),
+                themes=tuple(_resolve(path) for path in item.get("themes", [])),
             )
         )
     return sources

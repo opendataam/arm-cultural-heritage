@@ -25,7 +25,7 @@ def client(tmp_path_factory):
         "where list_contains(armenia_matched_entities, 'place.yerevan') order by id limit 80) "
         f"to '{sample}' (format parquet)"
     )
-    source = replace(get_source("goskatalog"), input=sample, review_input=None)
+    source = replace(get_source("goskatalog"), input=sample, review_input=None, themes=())
     build = root / "build"
     stages.collect(source, build)
     stages.transform(source, build)

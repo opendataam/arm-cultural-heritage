@@ -257,5 +257,7 @@
   "field.metadata_rights": "Licencia de los metadatos",
   "item.media_credit": "Imagen",
   "item.iiif_source": "IIIF en la fuente",
-  "institution.country.FR": "Francia"
+  "institution.country.FR": "Francia",
+  "facet.theme": "Colección temática",
+  "theme.hamshen": "Armenios de Hamshen"
 }

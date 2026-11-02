@@ -182,6 +182,8 @@ class View:
             return t(f"media.{value}")
         if name == "type":
             return t(f"typology.{value}", default=value)
+        if name == "theme":
+            return t(f"theme.{value}", default=value)
         if name == "century":
             return t.century(int(value))
         if name in ("place", "person", "concept", "entity"):

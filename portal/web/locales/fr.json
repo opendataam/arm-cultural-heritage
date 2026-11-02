@@ -257,5 +257,7 @@
   "field.metadata_rights": "Licence des métadonnées",
   "item.media_credit": "Image",
   "item.iiif_source": "IIIF à la source",
-  "institution.country.FR": "France"
+  "institution.country.FR": "France",
+  "facet.theme": "Collection thématique",
+  "theme.hamshen": "Arméniens du Hamchen"
 }

@@ -257,5 +257,7 @@
   "field.metadata_rights": "Лицензия метаданных",
   "item.media_credit": "Изображение",
   "item.iiif_source": "IIIF у источника",
-  "institution.country.FR": "Франция"
+  "institution.country.FR": "Франция",
+  "facet.theme": "Тематическая коллекция",
+  "theme.hamshen": "Амшенские армяне"
 }

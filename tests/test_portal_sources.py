@@ -31,7 +31,7 @@ def built(tmp_path_factory):
     for source in load_sources():
         sample = root / f"{source.id}.parquet"
         duckdb.execute(f"copy ({SAMPLES[source.id]}) to '{sample}' (format parquet)")
-        source = replace(source, input=sample, review_input=None)
+        source = replace(source, input=sample, review_input=None, themes=())
         stages.collect(source, build)
         stages.transform(source, build)
         sources.append(source)

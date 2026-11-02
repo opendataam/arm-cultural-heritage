@@ -257,5 +257,7 @@
   "field.metadata_rights": "Metadata licence",
   "item.media_credit": "Image",
   "item.iiif_source": "IIIF at source",
-  "institution.country.FR": "France"
+  "institution.country.FR": "France",
+  "facet.theme": "Thematic collection",
+  "theme.hamshen": "Hamshen Armenians"
 }

@@ -14,7 +14,7 @@ from portal import store
 from portal.text import fold, stem, tokens
 
 FACET_FIELDS = (
-    "media", "type", "century", "place", "person", "concept", "creator",
+    "media", "type", "century", "theme", "place", "person", "concept", "creator",
     "institution", "technique", "criteria", "rights", "source",
 )
 # Fields filtered by the URL but not shown as facet lists.

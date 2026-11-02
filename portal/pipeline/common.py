@@ -125,6 +125,7 @@ def base_record(source: Source, snapshot: dict, record_id: str, title: str, titl
         "rights": {"uri": source.rights},
         "metadata_rights": {"uri": source.metadata_rights, "attribution": source.attribution},
         "relevance": {},
+        "themes": [],
         "entities": [],
         "registered_at": None,
         "record_provenance": {
