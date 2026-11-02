@@ -1,2 +1,3 @@
--r requirements.txt
+-r requirements-portal.txt
 pytest>=8.4,<9
+httpx>=0.27,<1

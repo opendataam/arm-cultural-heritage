@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% import "_macros.html" as m with context %}
+{% set ml = record.metadata_lang %}
+
+{% block title %}{{ record.title.value|truncate(90) }} · {{ t("site.name") }}{% endblock %}
+{% block description %}{{ (record.description or record.title.value)|truncate(200) }}{% endblock %}
+{% block head %}
+  {# The viewer loads images from the source server; do not send it the portal URL. #}
+  <meta name="referrer" content="no-referrer">
+  <link rel="canonical" href="{{ page_url }}">
+  <link rel="alternate" type="application/ld+json" href="/api/v1/records/{{ record.id }}?format=edm" title="EDM">
+  <script type="application/ld+json">{{ schema|tojson }}</script>
+{% endblock %}
+
+{% macro row(label_key, value, lang_attr=ml) -%}
+{% if value %}<div><dt>{{ t(label_key) }}</dt><dd {% if lang_attr %}lang="{{ lang_attr }}"{% endif %} dir="auto">{{ value }}</dd></div>{% endif %}
+{%- endmacro %}
+
+{% block content %}
+<article class="item wrap">
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+    <a href="{{ v.url('/') }}">{{ t("nav.home") }}</a> /
+    <a href="{{ v.url('/search') }}?f.type={{ record.object_type.id }}">{{ t("typology." ~ record.object_type.id, default=record.object_type.label) }}</a>
+  </nav>
+
+  <section class="viewer" aria-label="{{ t('field.media_type') }}">
+    {% if record.media %}
+    <div class="viewer-stage" data-viewer data-images='{{ record.media|map(attribute="url")|list|tojson }}'
+         data-osd-prefix="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/images/">
+      <img class="viewer-image" src="{{ record.media[0].url }}" alt="{{ record.title.value }}" referrerpolicy="no-referrer">
+      <div class="viewer-fallback" hidden>
+        <p><strong>{{ t("item.image_unavailable") }}</strong></p>
+        <p>{{ t("item.image_unavailable_hint") }}</p>
+        <p><a href="{{ record.source.url }}" rel="noopener">{{ t("item.view_at_source") }} ↗</a></p>
+      </div>
+    </div>
+    {% if record.media|length > 1 %}
+    <ol class="viewer-thumbs">
+      {% for media in record.media %}
+      <li><button type="button" data-index="{{ loop.index0 }}" aria-label="{{ loop.index }} / {{ record.media|length }}"{% if loop.first %} aria-current="true"{% endif %}>
+        <img src="{{ media.url }}" alt="" loading="lazy" referrerpolicy="no-referrer" data-fallback><span>{{ loop.index }}</span></button></li>
+      {% endfor %}
+    </ol>
+    {% endif %}
+    {% else %}
+    <div class="viewer-empty"><p>{{ t("item.no_media") }}</p></div>
+    {% endif %}
+  </section>
+
+  <div class="item-layout">
+    <div class="item-main">
+      <header class="item-header">
+        <p class="eyebrow">{{ t("typology." ~ record.object_type.id, default=record.object_type.label) }} · {{ t("media." ~ record.media_type) }}</p>
+        <h1 lang="{{ record.title.lang }}" dir="auto">{{ record.title.value }}</h1>
+        <p class="item-sub" lang="{{ ml }}">
+          {% if record.creators %}{{ record.creators|map(attribute="name")|join(", ") }}{% endif %}
+          {% if record.creators and v.date(record.date) %} · {% endif %}{{ v.date(record.date) }}
+        </p>
+        <p class="item-institution"><a href="{{ v.url('/institution/' ~ record.institution.id) }}" lang="{{ ml }}">{{ record.institution.short_name }}</a></p>
+        <div class="item-actions">
+          <a class="button" href="{{ record.is_shown_at }}" rel="noopener">{{ t("item.view_at_source") }} ↗</a>
+          {% if record.media %}<a class="button button-ghost iiif" href="{{ manifest_url }}" title="{{ t('item.iiif_hint') }}">IIIF</a>{% endif %}
+          <a class="button button-ghost" href="/api/v1/records/{{ record.id }}?format=edm">EDM JSON-LD</a>
+        </div>
+        {% if lang != ml %}<p class="note">{{ t("item.source_language") }}</p>{% endif %}
+      </header>
+
+      {% if record.description %}
+      <section class="item-section">
+        <h2>{{ t("item.group.description") }}</h2>
+        <div class="item-description" lang="{{ ml }}" dir="auto">{% for paragraph in record.description.split("\n") %}<p>{{ paragraph }}</p>{% endfor %}</div>
+      </section>
+      {% endif %}
+
+      <section class="item-section">
+        <h2>{{ t("item.group.creation") }}</h2>
+        <dl class="fields">
+          {% for creator in record.creators %}
+          <div><dt>{{ t("field.creator") }}</dt><dd lang="{{ ml }}">{{ creator.name }}{% if creator.role %} <span class="muted">({{ creator.role }})</span>{% endif %}</dd></div>
+          {% endfor %}
+          {{ row("field.date", record.date.display) }}
+          {% if record.date.edtf %}
+          <div><dt>{{ t("field.date_normalized") }}</dt><dd>{{ v.date({"display": "", "year_from": record.date.year_from, "year_to": record.date.year_to}) }}
+            {% if record.date.approximate %}({{ t("field.approximate") }}){% endif %} <code>{{ record.date.edtf }}</code></dd></div>
+          {% endif %}
+          {{ row("field.production_place", record.production_place) }}
+          {{ row("field.find_place", record.find_place) }}
+        </dl>
+      </section>
+
+      <section class="item-section">
+        <h2>{{ t("item.group.physical") }}</h2>
+        <dl class="fields">
+          {{ row("field.object_type", t("typology." ~ record.object_type.id, default=record.object_type.label), lang) }}
+          {{ row("field.type_description", record.type_description) }}
+          {{ row("field.technique", record.techniques|join(", ")) }}
+          {{ row("field.dimensions", record.dimensions.display) }}
+          {% if record.dimensions.weight %}{{ row("field.weight", "%g %s"|format(record.dimensions.weight, record.dimensions.weight_unit or "")) }}{% endif %}
+          {% if record.parts_count and record.parts_count > 1 %}{{ row("field.parts", record.parts_count, none) }}{% endif %}
+        </dl>
+      </section>
+
+      {% if record.provenance or record.keywords or record.fund %}
+      <section class="item-section">
+        <h2>{{ t("field.provenance") }}</h2>
+        <dl class="fields">
+          {{ row("field.provenance", record.provenance) }}
+          {{ row("field.fund", record.fund) }}
+          {{ row("field.keywords", record.keywords) }}
+        </dl>
+      </section>
+      {% endif %}
+
+      <section class="item-section">
+        <h2>{{ t("item.group.identifiers") }}</h2>
+        <dl class="fields">
+          {{ row("field.portal_id", record.id, none) }}
+          {{ row("field.inventory", record.identifiers.inventory) }}
+          {{ row("field.registration", record.identifiers.goskatalog_registration, none) }}
+          {{ row("field.kp_gik", record.identifiers.kp_gik) }}
+        </dl>
+      </section>
+
+      {% if entities %}
+      <section class="item-section">
+        <h2>{{ t("item.entities") }}</h2>
+        <ul class="chip-list">
+          {% for entity in entities %}
+          <li><a class="chip" href="{{ v.url('/entity/' ~ entity.id) }}"><span class="muted">{{ t("entity.kind." ~ entity.kind) }}:</span>
+            <span lang="{{ v.entity_lang(entity.id) }}">{{ v.entity_label(entity.id) }}</span></a></li>
+          {% endfor %}
+        </ul>
+        <p class="note">{{ t("item.entities_note") }}</p>
+      </section>
+      {% endif %}
+    </div>
+
+    <aside class="item-aside">
+      <section class="panel">
+        <h2>{{ t("item.group.rights") }}</h2>
+        <p><a href="{{ record.rights.uri }}" rel="license noopener"><strong>{{ t("rights.CNE") }}</strong></a></p>
+        <p class="muted">{{ t("rights.CNE.text") }}</p>
+      </section>
+
+      <section class="panel">
+        <h2>{{ t("item.group.record") }}</h2>
+        <dl class="fields compact">
+          {{ row("field.provider", source.label(lang), lang) }}
+          <div><dt>{{ t("field.institution") }}</dt><dd><a href="{{ v.url('/institution/' ~ record.institution.id) }}" lang="{{ ml }}">{{ record.institution.name }}</a></dd></div>
+          <div><dt>{{ t("field.source_record") }}</dt><dd><a href="{{ record.source.url }}" rel="noopener">{{ record.source.record_id }} ↗</a></dd></div>
+          {{ row("field.collected_at", record.record_provenance.collected_at[:10], none) }}
+          {{ row("field.rules_version", record.record_provenance.rules_version, none) }}
+          <div><dt>{{ t("field.snapshot") }}</dt><dd><code title="{{ record.record_provenance.snapshot_sha256 }}">{{ record.record_provenance.snapshot_sha256[:12] }}…</code></dd></div>
+          <div><dt>{{ t("field.quality") }}</dt><dd>{{ t("quality.content", tier=record.quality.content_tier|string) }}, {{ t("quality.metadata", tier=record.quality.metadata_tier) }}</dd></div>
+        </dl>
+      </section>
+
+      <section class="panel">
+        <h2>{{ t("item.group.relevance") }}</h2>
+        <dl class="fields compact">
+          {{ row("field.relevance_status", t("relevance." ~ record.relevance.status), lang) }}
+          <div><dt>{{ t("field.relevance_criteria") }}</dt><dd>{% for c in record.relevance.criteria %}{{ t("criteria." ~ c) }}{% if not loop.last %}, {% endif %}{% endfor %}</dd></div>
+          <div><dt>{{ t("field.matched_terms") }}</dt><dd lang="{{ ml }}">{{ record.relevance.matched_forms|join(", ") }}</dd></div>
+          <div><dt>{{ t("field.matched_fields") }}</dt><dd><code>{{ record.relevance.matched_fields|join(", ") }}</code></dd></div>
+        </dl>
+      </section>
+
+      <section class="panel">
+        <h2>{{ t("item.cite") }}</h2>
+        {% set citation %}{{ record.title.value }}.{% if record.creators %} {{ record.creators[0].name }}.{% endif %}{% if record.date.display %} {{ record.date.display }}.{% endif %} {{ record.institution.short_name }}. {{ source.label(lang) }}{% if record.identifiers.goskatalog_registration %}, № {{ record.identifiers.goskatalog_registration }}{% endif %}. {{ page_url }}{% endset %}
+        <p class="citation" lang="{{ ml }}" id="citation">{{ citation }}</p>
+        <p class="permalink"><span class="muted">{{ t("item.permalink") }}:</span> <code id="permalink">{{ page_url }}</code></p>
+        <p><button type="button" class="button button-ghost" data-copy="#citation" data-copied="{{ t('item.copied') }}">{{ t("item.copy") }}</button></p>
+      </section>
+    </aside>
+  </div>
+
+  {% if similar %}
+  <section class="section">
+    <h2>{{ t("item.similar") }}</h2>
+    {{ m.grid(similar) }}
+  </section>
+  {% endif %}
+</article>
+{% endblock %}
+
+{% block scripts %}
+{% if record.media %}<script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/openseadragon.min.js" defer></script>{% endif %}
+{% endblock %}

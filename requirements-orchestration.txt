@@ -1,0 +1,3 @@
+-r requirements-portal.txt
+dagster>=1.11,<2
+dagster-webserver>=1.11,<2

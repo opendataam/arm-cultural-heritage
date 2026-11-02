@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% import "_macros.html" as m with context %}
+
+{% block title %}
+{%- if entity -%}{{ v.entity_label(entity.id) }}
+{%- elif collection -%}{{ collection.title[lang] }}
+{%- elif institution -%}{{ institution.short_name or institution.name }}
+{%- elif query.q -%}{{ query.q }} — {{ t("search.title") }}
+{%- else -%}{{ t("nav.search") }}{%- endif %} · {{ t("site.name") }}
+{%- endblock %}
+
+{% block content %}
+<div class="wrap">
+  {% if entity %}
+  <header class="page-header">
+    <p class="eyebrow">{{ t("entity.kind." ~ entity.kind) }}</p>
+    <h1 lang="{{ v.entity_lang(entity.id) }}">{{ v.entity_label(entity.id) }}</h1>
+    <p class="muted">{{ t.plural("entity.objects", entity.record_count) }} · {{ t("entity.review." ~ entity.review_status) }}</p>
+    {% if entity.variants %}
+    <p class="variants"><span class="muted">{{ t("entity.variants") }}:</span>
+      {% for variant in entity.variants|unique(attribute="value") %}<span class="variant" lang="{{ variant.lang }}" dir="auto">{{ variant.value|title_case }}</span>{% endfor %}
+    </p>
+    {% endif %}
+    <p class="note">{{ t("entity.auto_note") }}</p>
+  </header>
+  {% elif collection %}
+  <header class="page-header">
+    <p class="eyebrow">{{ t("collection.label") }}</p>
+    <h1>{{ collection.title[lang] }}</h1>
+  </header>
+  {% elif institution %}
+  <header class="page-header">
+    <p class="eyebrow">{{ t("entity.kind.organization") }}</p>
+    <h1 lang="ru">{{ institution.short_name or institution.name }}</h1>
+    <dl class="facts">
+      <div><dt>{{ t("institution.full_name") }}</dt><dd lang="ru">{{ institution.name }}</dd></div>
+      <div><dt>{{ t("institution.country") }}</dt><dd>{{ t("institution.country." ~ institution.country, default=institution.country) }}</dd></div>
+      {% if institution.code %}<div><dt>{{ t("institution.code") }}</dt><dd>{{ institution.code }}</dd></div>{% endif %}
+      {% if institution.inn %}<div><dt>{{ t("institution.inn") }}</dt><dd>{{ institution.inn }}</dd></div>{% endif %}
+      <div><dt>{{ t("institution.source") }}</dt><dd>{{ source.label(lang) }}</dd></div>
+      <div><dt>{{ t("nav.search") }}</dt><dd>{{ t.plural("entity.objects", institution.record_count) }}, {{ t.plural("institution.with_media", institution.with_media) }}</dd></div>
+    </dl>
+  </header>
+  {% endif %}
+
+  <div class="results-layout">
+    <aside class="facets" aria-label="{{ t('search.filters') }}">
+      <details class="facets-toggle" open>
+        <summary>{{ t("search.filters") }}</summary>
+        <form class="facet-years" method="get" action="">
+          {% if query.q %}<input type="hidden" name="q" value="{{ query.q }}">{% endif %}
+          {% for name, values in query.filters %}{% for value in values %}{% if value not in fixed.get(name, []) %}
+          <input type="hidden" name="f.{{ name }}" value="{{ value }}">{% endif %}{% endfor %}{% endfor %}
+          {% if query.sort != "relevance" %}<input type="hidden" name="sort" value="{{ query.sort }}">{% endif %}
+          <fieldset>
+            <legend>{{ t("search.years") }}</legend>
+            <label>{{ t("search.year_from") }} <input type="number" name="yf" value="{{ query.year_from if query.year_from is not none else '' }}" inputmode="numeric" step="1"></label>
+            <label>{{ t("search.year_to") }} <input type="number" name="yt" value="{{ query.year_to if query.year_to is not none else '' }}" inputmode="numeric" step="1"></label>
+            <p class="hint">{{ t("search.bc_hint") }}</p>
+            <label class="check"><input type="checkbox" name="media" value="1"{% if query.media_only %} checked{% endif %}> {{ t("search.media_only") }}</label>
+            <button type="submit">{{ t("search.apply") }}</button>
+          </fieldset>
+        </form>
+
+        {% set centuries = result.facets.get("century", []) %}
+        {% if centuries %}
+        {% set peak = centuries|map(attribute=1)|max %}
+        <section class="facet">
+          <h2>{{ t("facet.century") }}</h2>
+          <ol class="histogram">
+            {% for value, count in centuries %}{% set c = value|int %}
+            <li><a href="{{ link(yf=(c - 1) * 100 + 1 if c > 0 else c * 100, yt=c * 100 if c > 0 else (c + 1) * 100 - 1) }}"
+                   title="{{ t.century(c) }}: {{ v.number(count) }}">
+              <span class="bar" style="--h: {{ ((count / peak) ** 0.5 * 100)|round(1) }}%"></span>
+              <span class="visually-hidden">{{ t.century(c) }}: {{ v.number(count) }}</span>
+            </a></li>
+            {% endfor %}
+          </ol>
+          <p class="histogram-axis"><span>{{ t.century(centuries[0][0]|int) }}</span><span>{{ t.century(centuries[-1][0]|int) }}</span></p>
+        </section>
+        {% endif %}
+
+        {% for name in facet_fields if name != "century" %}
+        {% set values = result.facets.get(name, []) %}
+        {% if values and not (name in fixed) %}
+        <section class="facet">
+          <h2>{{ t("facet." ~ name) }}</h2>
+          <ul>
+            {% set chosen = query.filter_dict().get(name, []) %}
+            {% for value, count in values %}
+            <li><a href="{{ toggle(name, value) }}" class="facet-value{% if value in chosen %} is-selected{% endif %}"
+                   {% if value in chosen %}aria-current="true"{% endif %} rel="nofollow">
+              <span class="facet-check" aria-hidden="true"></span>
+              <span class="facet-label" {% if v.facet_lang(name, value) %}lang="{{ v.facet_lang(name, value) }}"{% endif %} dir="auto">{{ v.facet_label(name, value) }}</span>
+              <span class="facet-count">{{ v.number(count) }}</span>
+            </a></li>
+            {% endfor %}
+          </ul>
+        </section>
+        {% endif %}
+        {% endfor %}
+      </details>
+    </aside>
+
+    <section class="results" aria-live="polite">
+      <div class="results-head">
+        <h1 class="results-title">
+          {{ t.plural("search.results", result.total) }}
+          {% if query.q %}<span class="muted" dir="auto">{{ t("search.results_for", q=query.q) }}</span>{% endif %}
+        </h1>
+        <form class="sort" method="get" action="">
+          <label>{{ t("search.sort") }}
+            <select name="sort" data-autosubmit>
+              {% for option in sorts %}<option value="{{ option }}"{% if option == query.sort %} selected{% endif %}>{{ t("sort." ~ option) }}</option>{% endfor %}
+            </select>
+          </label>
+          <label>{{ t("search.per_page") }}
+            <select name="size" data-autosubmit>
+              {% for option in sizes %}<option value="{{ option }}"{% if option == query.size %} selected{% endif %}>{{ option }}</option>{% endfor %}
+            </select>
+          </label>
+          {% if query.q %}<input type="hidden" name="q" value="{{ query.q }}">{% endif %}
+          {% for name, values in query.filters %}{% for value in values %}{% if value not in fixed.get(name, []) %}
+          <input type="hidden" name="f.{{ name }}" value="{{ value }}">{% endif %}{% endfor %}{% endfor %}
+          {% if query.year_from is not none %}<input type="hidden" name="yf" value="{{ query.year_from }}">{% endif %}
+          {% if query.year_to is not none %}<input type="hidden" name="yt" value="{{ query.year_to }}">{% endif %}
+          {% if query.media_only %}<input type="hidden" name="media" value="1">{% endif %}
+          <noscript><button type="submit">{{ t("search.apply") }}</button></noscript>
+        </form>
+      </div>
+
+      {% if result.expanded_entities %}
+      <p class="expanded">{{ t("search.expanded", entities="") }}
+        {% for entity_id in result.expanded_entities %}<a href="{{ v.url('/entity/' ~ entity_id) }}" lang="{{ v.entity_lang(entity_id) }}">{{ v.entity_label(entity_id) }}</a>{% if not loop.last %}, {% endif %}{% endfor %}
+      </p>
+      {% endif %}
+
+      {% if selected or query.year_from is not none or query.year_to is not none or query.media_only %}
+      <div class="active-filters" aria-label="{{ t('search.active_filters') }}">
+        {% for name, value in selected %}
+        <a class="chip chip-remove" href="{{ toggle(name, value) }}" aria-label="{{ t('search.remove_filter', label=v.facet_label(name, value)) }}">
+          <span class="muted">{{ t("facet." ~ name) }}:</span> <span {% if v.facet_lang(name, value) %}lang="{{ v.facet_lang(name, value) }}"{% endif %}>{{ v.facet_label(name, value) }}</span> ×</a>
+        {% endfor %}
+        {% if query.year_from is not none or query.year_to is not none %}
+        <a class="chip chip-remove" href="{{ link(yf=none, yt=none) }}"><span class="muted">{{ t("search.years") }}:</span>
+          {{ t.year(query.year_from) if query.year_from is not none else "…" }}–{{ t.year(query.year_to) if query.year_to is not none else "…" }} ×</a>
+        {% endif %}
+        {% if query.media_only %}<a class="chip chip-remove" href="{{ link(media=false) }}">{{ t("search.media_only") }} ×</a>{% endif %}
+        <a class="clear-all" href="{{ link(q=query.q, filters={}, yf=none, yt=none, media=false) }}">{{ t("search.clear_all") }}</a>
+      </div>
+      {% endif %}
+
+      {% if result["items"] %}
+      {{ m.grid(result["items"]) }}
+      {{ m.pagination(result, link) }}
+      {% else %}
+      <div class="empty">
+        <p><strong>{{ t("search.no_results") }}</strong></p>
+        <p>{{ t("search.no_results_hint") }}</p>
+      </div>
+      {% endif %}
+      <p class="hint syntax">{{ t("search.syntax_hint") }}</p>
+    </section>
+  </div>
+</div>
+{% endblock %}

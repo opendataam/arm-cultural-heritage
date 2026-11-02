@@ -1,0 +1,12 @@
+<form class="searchbox{% if compact %} compact{% endif %}" role="search" action="{{ v.url('/search') }}" method="get">
+  <label class="visually-hidden" for="q-{{ 'c' if compact else 'h' }}">{{ t("search.label") }}</label>
+  <div class="searchbox-field">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 016.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z" fill="currentColor"/></svg>
+    <input id="q-{{ 'c' if compact else 'h' }}" name="q" type="search" value="{{ query.q if query else '' }}"
+           placeholder="{{ t('search.placeholder') }}" autocomplete="off" dir="auto"
+           data-suggest="/api/v1/suggest?lang={{ lang }}" data-entity-url="{{ v.url('/entity/') }}"
+           aria-autocomplete="list" aria-controls="suggest-{{ 'c' if compact else 'h' }}" aria-expanded="false">
+    <ul class="suggestions" id="suggest-{{ 'c' if compact else 'h' }}" role="listbox" hidden></ul>
+  </div>
+  <button type="submit">{{ t("search.button") }}</button>
+</form>

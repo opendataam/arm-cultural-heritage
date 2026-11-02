@@ -1,0 +1,62 @@
+# Thematic collections are saved searches (ТЗ 7.8). The final list is approved by the Customer.
+# `filters` uses the same facet fields as the search URL (f.<field>=<value>).
+
+[[collection]]
+slug = "painting-graphics"
+filters = { type = ["1", "2"] }
+title = { hy = "Գեղանկարչություն և գրաֆիկա", ru = "Живопись и графика", en = "Painting and graphic art", fr = "Peinture et arts graphiques", es = "Pintura y obra gráfica" }
+
+[[collection]]
+slug = "photography"
+filters = { type = ["17"] }
+title = { hy = "Լուսանկարչություն", ru = "Фотография", en = "Photography", fr = "Photographie", es = "Fotografía" }
+
+[[collection]]
+slug = "khachkars"
+filters = { concept = ["object.khachkar"] }
+title = { hy = "Խաչքարեր", ru = "Хачкары", en = "Khachkars", fr = "Khatchkars", es = "Jachkars" }
+
+[[collection]]
+slug = "aivazovsky"
+filters = { person = ["person.hovhannes_aivazovsky"] }
+title = { hy = "Հովհաննես Այվազովսկի", ru = "Иван Айвазовский", en = "Ivan Aivazovsky", fr = "Ivan Aïvazovski", es = "Iván Aivazovski" }
+
+[[collection]]
+slug = "saryan"
+filters = { person = ["person.martiros_saryan"] }
+title = { hy = "Մարտիրոս Սարյան", ru = "Мартирос Сарьян", en = "Martiros Saryan", fr = "Martiros Sarian", es = "Martiros Saryan" }
+
+[[collection]]
+slug = "music"
+filters = { person = ["person.aram_khachaturian", "person.komitas", "person.sayat_nova"] }
+title = { hy = "Երաժշտություն՝ Կոմիտաս, Խաչատրյան, Սայաթ-Նովա", ru = "Музыка: Комитас, Хачатурян, Саят-Нова", en = "Music: Komitas, Khachaturian, Sayat-Nova", fr = "Musique : Komitas, Khatchatourian, Sayat-Nova", es = "Música: Komitas, Jachaturián, Sayat-Nova" }
+
+[[collection]]
+slug = "archaeology"
+filters = { type = ["6"] }
+title = { hy = "Հնագիտություն", ru = "Археология", en = "Archaeology", fr = "Archéologie", es = "Arqueología" }
+
+[[collection]]
+slug = "numismatics"
+filters = { type = ["5"] }
+title = { hy = "Դրամագիտություն", ru = "Нумизматика", en = "Numismatics", fr = "Numismatique", es = "Numismática" }
+
+[[collection]]
+slug = "books-print"
+filters = { type = ["14", "16"] }
+title = { hy = "Հազվագյուտ գրքեր և տպագրություն", ru = "Редкие книги и печатная продукция", en = "Rare books and printed matter", fr = "Livres rares et imprimés", es = "Libros raros e impresos" }
+
+[[collection]]
+slug = "ethnography"
+filters = { type = ["13"] }
+title = { hy = "Կիրառական արվեստ և ազգագրություն", ru = "Прикладное искусство и этнография", en = "Applied art and ethnography", fr = "Arts appliqués et ethnographie", es = "Artes aplicadas y etnografía" }
+
+[[collection]]
+slug = "yerevan"
+filters = { place = ["place.yerevan"] }
+title = { hy = "Երևան", ru = "Ереван", en = "Yerevan", fr = "Erevan", es = "Ereván" }
+
+[[collection]]
+slug = "ani-urartu"
+filters = { place = ["place.ani", "legacy.geoname.759d3f5e1798", "legacy.geoname.4ea5e2329c0c", "legacy.geoname.df34b8351c7c"] }
+title = { hy = "Անի, Ուրարտու, Գառնի, Զվարթնոց", ru = "Ани, Урарту, Гарни, Звартноц", en = "Ani, Urartu, Garni, Zvartnots", fr = "Ani, Ourartou, Garni, Zvartnots", es = "Ani, Urartu, Garni, Zvartnots" }

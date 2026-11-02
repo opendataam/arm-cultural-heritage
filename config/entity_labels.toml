@@ -1,0 +1,290 @@
+# Display labels for the most frequent entities in the interface languages.
+# Other entities fall back to registry values from data/terms.csv (ТЗ 8.4, item 2).
+# Translations are drafts and must be checked by native speakers (ТЗ 8.6).
+
+["place.armenia"]
+hy = "Հայաստան"
+ru = "Армения"
+en = "Armenia"
+fr = "Arménie"
+es = "Armenia"
+
+["concept.armenian"]
+hy = "Հայկական"
+ru = "Армянский"
+en = "Armenian"
+fr = "Arménien"
+es = "Armenio"
+
+["place.yerevan"]
+hy = "Երևան"
+ru = "Ереван"
+en = "Yerevan"
+fr = "Erevan"
+es = "Ereván"
+
+["place.armenian_ssr"]
+hy = "Հայկական ԽՍՀ"
+ru = "Армянская ССР"
+en = "Armenian SSR"
+fr = "RSS d’Arménie"
+es = "RSS de Armenia"
+
+["legacy.geoname.13824367adf9"]
+hy = "Հայկական ԽՍՀ"
+ru = "Армянская ССР"
+en = "Armenian SSR"
+fr = "RSS d’Arménie"
+es = "RSS de Armenia"
+
+["legacy.geoname.fa4f751df7d6"]
+hy = "Հայկական ԽՍՀ"
+ru = "Армянская ССР"
+en = "Armenian SSR"
+fr = "RSS d’Arménie"
+es = "RSS de Armenia"
+
+["legacy.geoname.1fe56b5cb853"]
+hy = "Հայաստանի Հանրապետություն"
+ru = "Республика Армения"
+en = "Republic of Armenia"
+fr = "République d’Arménie"
+es = "República de Armenia"
+
+["person.hovhannes_aivazovsky"]
+hy = "Հովհաննես Այվազովսկի"
+ru = "Иван Айвазовский"
+en = "Ivan Aivazovsky"
+fr = "Ivan Aïvazovski"
+es = "Iván Aivazovski"
+
+["people.armenians"]
+hy = "Հայեր"
+ru = "Армяне"
+en = "Armenians"
+fr = "Arméniens"
+es = "Armenios"
+
+["person.aram_khachaturian"]
+hy = "Արամ Խաչատրյան"
+ru = "Арам Хачатурян"
+en = "Aram Khachaturian"
+fr = "Aram Khatchatourian"
+es = "Aram Jachaturián"
+
+["place.gyumri"]
+hy = "Գյումրի"
+ru = "Гюмри"
+en = "Gyumri"
+fr = "Gyumri"
+es = "Gyumri"
+
+["person.martiros_saryan"]
+hy = "Մարտիրոս Սարյան"
+ru = "Мартирос Сарьян"
+en = "Martiros Saryan"
+fr = "Martiros Sarian"
+es = "Martiros Saryan"
+
+["legacy.geoname.fb1dc8a28967"]
+hy = "Արարատ"
+ru = "Арарат"
+en = "Ararat"
+fr = "Ararat"
+es = "Ararat"
+
+["place.etchmiadzin"]
+hy = "Էջմիածին"
+ru = "Эчмиадзин"
+en = "Etchmiadzin"
+fr = "Etchmiadzin"
+es = "Echmiadzin"
+
+["legacy.geoname.4ea5e2329c0c"]
+hy = "Գառնի"
+ru = "Гарни"
+en = "Garni"
+fr = "Garni"
+es = "Garni"
+
+["legacy.geoname.759d3f5e1798"]
+hy = "Ուրարտու"
+ru = "Урарту"
+en = "Urartu"
+fr = "Ourartou"
+es = "Urartu"
+
+["place.ani"]
+hy = "Անի"
+ru = "Ани"
+en = "Ani"
+fr = "Ani"
+es = "Ani"
+
+["person.komitas"]
+hy = "Կոմիտաս"
+ru = "Комитас"
+en = "Komitas"
+fr = "Komitas"
+es = "Komitas"
+
+["place.talin"]
+hy = "Թալին"
+ru = "Талин"
+en = "Talin"
+fr = "Talin"
+es = "Talin"
+
+["object.khachkar"]
+hy = "Խաչքար"
+ru = "Хачкар"
+en = "Khachkar"
+fr = "Khatchkar"
+es = "Jachkar"
+
+["institution.matenadaran"]
+hy = "Մատենադարան"
+ru = "Матенадаран"
+en = "Matenadaran"
+fr = "Maténadaran"
+es = "Matenadarán"
+
+["legacy.geoname.df34b8351c7c"]
+hy = "Զվարթնոց"
+ru = "Звартноц"
+en = "Zvartnots"
+fr = "Zvartnots"
+es = "Zvartnots"
+
+["place.nakhichevan_on_don"]
+hy = "Նոր Նախիջևան"
+ru = "Нахичевань-на-Дону"
+en = "Nakhichevan-on-Don"
+fr = "Nakhitchevan-sur-le-Don"
+es = "Najicheván del Don"
+
+["legacy.geoname.234b3b80db14"]
+hy = "Թիֆլիս"
+ru = "Тифлис"
+en = "Tiflis"
+fr = "Tiflis"
+es = "Tiflis"
+
+["legacy.geoname.717b1324024d"]
+hy = "Գեղարդ"
+ru = "Гегард"
+en = "Geghard"
+fr = "Geghard"
+es = "Geghard"
+
+["legacy.geoname.b80662e5bcfc"]
+hy = "Հաղպատ"
+ru = "Ахпат"
+en = "Haghpat"
+fr = "Haghpat"
+es = "Haghpat"
+
+["legacy.geoname.b37c02001f22"]
+hy = "Սանահին"
+ru = "Санаин"
+en = "Sanahin"
+fr = "Sanahin"
+es = "Sanahin"
+
+["person.sayat_nova"]
+hy = "Սայաթ-Նովա"
+ru = "Саят-Нова"
+en = "Sayat-Nova"
+fr = "Sayat-Nova"
+es = "Sayat-Nova"
+
+["legacy.geoname.63e08d4ef2f6"]
+hy = "Սևան"
+ru = "Севан"
+en = "Sevan"
+fr = "Sevan"
+es = "Sevan"
+
+["language.armenian"]
+hy = "Հայերեն"
+ru = "Армянский язык"
+en = "Armenian language"
+fr = "Langue arménienne"
+es = "Idioma armenio"
+
+["person.hovhannes_tumanyan"]
+hy = "Հովհաննես Թումանյան"
+ru = "Ованес Туманян"
+en = "Hovhannes Tumanyan"
+fr = "Hovhannès Toumanian"
+es = "Hovhannes Tumanyan"
+
+["legacy.geoname.27d14405bce0"]
+hy = "Անդրկովկաս"
+ru = "Закавказье"
+en = "Transcaucasia"
+fr = "Transcaucasie"
+es = "Transcaucasia"
+
+["legacy.geoname.15ca8b526b5b"]
+hy = "Լոռու մարզ"
+ru = "Лорийская область"
+en = "Lori Province"
+fr = "Province de Lorri"
+es = "Provincia de Lori"
+
+["place.vagharshapat"]
+hy = "Վաղարշապատ"
+ru = "Вагаршапат"
+en = "Vagharshapat"
+fr = "Vagharshapat"
+es = "Vagharshapat"
+
+["place.vanadzor"]
+hy = "Վանաձոր"
+ru = "Ванадзор"
+en = "Vanadzor"
+fr = "Vanadzor"
+es = "Vanadzor"
+
+["person.sergei_parajanov"]
+hy = "Սերգեյ Փարաջանով"
+ru = "Сергей Параджанов"
+en = "Sergei Parajanov"
+fr = "Sergueï Paradjanov"
+es = "Serguéi Paradzhánov"
+
+["person.mesrop_mashtots"]
+hy = "Մեսրոպ Մաշտոց"
+ru = "Месроп Маштоц"
+en = "Mesrop Mashtots"
+fr = "Mesrop Machtots"
+es = "Mesrop Mashtots"
+
+["person.yeghishe_charents"]
+hy = "Եղիշե Չարենց"
+ru = "Егише Чаренц"
+en = "Yeghishe Charents"
+fr = "Yéghiché Tcharents"
+es = "Yeghishe Charents"
+
+["legacy.geoname.e61b18b0170e"]
+hy = "Ղարաբաղ"
+ru = "Карабах"
+en = "Karabakh"
+fr = "Karabakh"
+es = "Karabaj"
+
+["legacy.geoname.98431f4bf0f1"]
+hy = "Նորավանք"
+ru = "Нораванк"
+en = "Noravank"
+fr = "Noravank"
+es = "Noravank"
+
+["legacy.geoname.20aaaeee634e"]
+hy = "Դիլիջան"
+ru = "Дилижан"
+en = "Dilijan"
+fr = "Dilijan"
+es = "Dilijan"

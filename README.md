@@ -93,6 +93,19 @@ Labels use `id,label,note`, where `label` is `relevant`, `nonrelevant`, or `revi
 
 Source-level terms summarise what each institution publishes; they do not replace item-level rights statements and must be re-checked before a source is integrated.
 
+## Portal MVP
+
+A prototype of the heritage portal described in the [technical specification](docs/tz-heritage-portal.md) publishes the included Goskatalog records with search, facets, object pages, entity and collection pages, a REST API with EDM JSON-LD and IIIF manifests, and an interface in Armenian, Russian, English, French and Spanish. It needs Python 3.11 or later:
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r requirements-portal.txt
+.venv/bin/python -m portal.pipeline run
+.venv/bin/uvicorn portal.web.app:app --port 8000
+```
+
+The pipeline writes to `build/portal/`, which is not tracked. Scope, deviations from the recommended stack and known limitations are described (in Russian) in [`docs/mvp.md`](docs/mvp.md).
+
 ## Validation
 
 ```bash
@@ -102,7 +115,7 @@ python3 scripts/sources.py data/sources.csv
 python3 -m pytest -q
 ```
 
-The tests cover registry validation, matching behavior, false substrings, negative contexts, and end-to-end extraction, resume, and evaluation through the real command-line interfaces.
+The tests cover registry validation, matching behavior, false substrings, negative contexts, and end-to-end extraction, resume, and evaluation through the real command-line interfaces. They also build a small portal publication from real Goskatalog rows and check the pipeline stages, search, site pages, API and locales.
 
 ## Provenance and license
 
